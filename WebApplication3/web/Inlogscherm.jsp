@@ -68,13 +68,25 @@
   <span class="input-group-addon" id="basic-addon1">password</span>
   <input type="password" class="form-control" placeholder="Wachtwoord" aria-describedby="basic-addon1">
 </div>   
+             
+             
 
-             <button type="button" id="testen1" class="btn btn-default navbar-btn" >Sign in</button>
-             
-               
-                  
-                    
-             
+             <form>
+                 <button type="submit" name="btnLogin" id="testen1" class="btn btn-default navbar-btn" >Sign in</button>
+             </form>
+             <%
+                 if(request.getParameter("btnLogin")!= null)
+                 {
+                     Test.Databaseconnector ts = new Test.Databaseconnector();
+                     if(ts.verbindmetDatabase()){
+                         response.sendRedirect("index.jsp");
+                     }
+                     else{
+                         out.print("Da ken toch niet hé!");
+                     }
+                     
+                 }
+                 %>        
     </body>
 </html>
 

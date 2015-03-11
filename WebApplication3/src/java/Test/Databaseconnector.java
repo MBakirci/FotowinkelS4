@@ -2,7 +2,8 @@ package Test;
 
 
 import java.sql.*;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -14,46 +15,52 @@ public final class Databaseconnector
     /**
      * connectie variabelen
      */
-    protected Connection conn;
+    private Connection conn;
     /**
      * constructor
      */
-    protected Databaseconnector() 
+    public Databaseconnector() 
     {
-        try {
-            this.verbindmetDatabase();
-        } catch (ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException ex) {
-            Logger.getLogger(Databaseconnector.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            this.verbindmetDatabase();
+//        } catch (ClassNotFoundException | InstantiationException | SQLException | IllegalAccessException ex) {
+//            Logger.getLogger(Databaseconnector.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
        /**
         * hier maken wij een verbinding in de database
+     * @return 
         * @throws ClassNotFoundException exeptions
         * @throws InstantiationException exeptions
         * @throws SQLException exeptions
         * @throws IllegalAccessException exeptions
         */
-    protected void verbindmetDatabase() throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    public boolean verbindmetDatabase() throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
     {
-        String url = "fhictora01.fhict.local";
-        String dbName = "fotowinkel";
-        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:oracle:thin:@fhictora01.fhict.local:1521:fhictora";
+        String driver = "oracle.jdbc.OracleDriver";
         String userName = "dbi296880"; 
         String password = "U4XAsfWbUp";
         
-        Class.forName(driver).newInstance();
-        conn = DriverManager.getConnection(url+dbName,userName,password);
-        
-        if (conn != null) {
-		System.out.println("You made it, take control your database now!");
-	} else {
-		System.out.println("Failed to make connection!");
-	}
+        try{
+        Class.forName(driver);
+        conn = DriverManager.getConnection(url,userName,password);
+        return true;
+        }
+        catch (ClassNotFoundException | SQLException ex) {
+            return false;
+        }
+        //return false;
+//        if (conn != null) {
+//		System.out.println("You made it, take control your database now!");
+//	} else {
+//		System.out.println("Failed to make connection!");
+//	}
     }
     /**
      * methode voor het verbreken van de database
      */
-    protected void verbindingverbrekenmetDatabase() 
+    public void verbindingverbrekenmetDatabase() 
     {
         try 
         {
