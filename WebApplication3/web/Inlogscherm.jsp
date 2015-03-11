@@ -1,5 +1,6 @@
 
 
+
 <%-- 
     Document   : Inlogscherm
     Created on : 11-mrt-2015, 10:56:11
@@ -9,6 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import= "java.util.*"%>
 <%@page import= "Test.Databaseconnector"%>
+<%@page import="java.sql.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -70,9 +72,8 @@
   <span class="input-group-addon" id="basic-addon1">password</span>
   <input type="password" class="form-control" placeholder="Wachtwoord" aria-describedby="basic-addon1">
 </div>   
-
-             <button type="button" id="testen1" class="btn btn-default navbar-btn" >Sign in</button>
              
+<<<<<<< HEAD
              <script language="javascript">
 
 
@@ -139,7 +140,43 @@ return false;
 </form>
              
                     
+=======
+>>>>>>> origin/master
              
+
+             <form>
+                 <button type="submit" name="btnLogin" id="testen1" class="btn btn-default navbar-btn" >Sign in</button>
+             </form>
+             <%
+                 if(request.getParameter("btnLogin")!= null)
+                 {
+                     Test.Databaseconnector ts = new Test.Databaseconnector();
+                     if(ts.verbindmetDatabase()){
+                         Statement state = null;
+                         try{
+                             state = ts.conn.createStatement();
+                             ResultSet rs = state.executeQuery("Select * from Gebruiker");
+                             while(rs.next()){
+                                 String Naam = rs.getString("NAAM");
+                                 String Pass = rs.getString("WACHTWOORD");
+                                 out.print(Naam + "\t" + Pass);
+                             }
+                         }
+                         catch (SQLException e ) {
+                             out.print(e);
+                         } 
+                         finally {
+                             if (state != null){
+                                 state.close(); 
+                             }
+    }
+                     }
+                     else{
+                         out.print("Da ken toch niet hé!");
+                     }
+                     
+                 }
+                 %>        
     </body>
 </html>
 -->
