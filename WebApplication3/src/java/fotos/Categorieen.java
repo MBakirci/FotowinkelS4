@@ -8,6 +8,7 @@ package fotos;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author Coen
@@ -36,7 +37,13 @@ public class Categorieen {
     }
     
     //set CurrentCategrorie
-    public void SetCategory(String Categorie){
-        this.CurrentCatogory = Categorie;
+    public void SetCategory(String Category){
+        this.CurrentCatogory = Category;
+    }
+    
+    //create new categorie
+    public boolean CreateCategory(String Category){
+        //todo: database logica
+        return false;
     }
 }
