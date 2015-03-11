@@ -15,7 +15,7 @@ public final class Databaseconnector
     /**
      * connectie variabelen
      */
-    private Connection conn;
+    public Connection conn;
     /**
      * constructor
      */
