@@ -20,7 +20,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Fotowinkel inlogpagina</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -38,10 +38,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-    <body>
-     
-        
-         <div class="container">
+  <body>
+      <form name ="loginform" action="login" method="post">
+          <p> Enter User Name; <input type="text" name="username"><br>
+              Enter password: <input name="password" type="password"><br>
+              <input type="submit">
+      <div class="container">
 
       <div class="masthead">
         <h3 class="text-muted">Inloggen</h3>
@@ -52,12 +54,12 @@
             <li><a href="#">Services</a></li>
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="Databasetest.jsp">database</a></li>
             <li class="active"><a href="Inlogscherm.jsp">login</a></li>
           </ul>
         </nav>
       </div>
-             
+   <!--          
          <div class="input-group">
   <span class="input-group-addon" id="username">username</span>
   <input type="text" class="form-control" name="usernameinlog" placeholder="Username" aria-describedby="basic-addon1">
@@ -71,10 +73,73 @@
 
              <button type="button" id="testen1" class="btn btn-default navbar-btn" >Sign in</button>
              
-               
-                  
+             <script language="javascript">
+
+
+    
+ <script type = "text/javascript">
+
+// Note: Like all Javascript password scripts, this is hopelessly insecure as the user can see 
+//the valid usernames/passwords and the redirect url simply with View Source.  
+// And the user can obtain another three tries simply by refreshing the page.  
+//So do not use for anything serious!
+
+var count = 2;
+function validate() {
+var un = document.myform.username.value;
+var pw = document.myform.pword.value;
+var valid = false;
+
+var unArray = ["Asror", "Ariana", "Mehmet", "Dennnis"];  // as many as you like - no comma after final entry
+var pwArray = ["Gay", "Hot", "Scrummaster", "Noob"];  // the corresponding passwords;
+
+for (var i=0; i <unArray.length; i++) {
+if ((un == unArray[i]) && (pw == pwArray[i])) {
+valid = true;
+break;
+}
+}
+
+if (valid) {
+alert ("Login was successful");
+window.location = "http://www.google.com";
+return false;
+}
+
+var t = " tries";
+if (count == 1) {t = " try"}
+
+if (count >= 1) {
+alert ("Invalid username and/or password.  You have " + count + t + " left.");
+document.myform.username.value = "";
+document.myform.pword.value = "";
+setTimeout("document.myform.username.focus()", 25);
+setTimeout("document.myform.username.select()", 25);
+count --;
+}
+
+else {
+alert ("Still incorrect! You have no more tries left!");
+document.myform.username.value = "No more tries allowed!";
+document.myform.pword.value = "";
+document.myform.username.disabled = true;
+document.myform.pword.disabled = true;
+return false;
+}
+
+}
+
+</script>
+
+<form name = "myform">
+<p>ENTER USER NAME <input type="text" name="username"> ENTER PASSWORD <input type="password" name="pword">
+<input type="button" value="Check In" name="Submit" onclick= "validate()">
+</p>
+
+</form>
+             
                     
              
     </body>
 </html>
-
+-->
