@@ -39,9 +39,8 @@
     </head>
 
     <body>
-
+        <!--NAVIGATION-->
         <div class="container">
-
             <div class="masthead">
                 <h3 class="text-muted">Fotowinkel</h3>
                 <nav>
@@ -69,68 +68,67 @@
                 <div class="col-lg-6 col-md-offset-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder=" ">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefoonnummer</label>
-                        <input type="telnr" name="telnr" class="form-control" id="exampleInputPassword1" placeholder="">
+                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="" required="" data-format="+31 (ddd) dddddd">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="pass" name="pass" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Verify Password</label>
-                        <input type="passv" name="passv" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="password" name="passv" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Firstname</label>
-                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Lastname</label>
-                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Address</label>
-                        <input type="address" name="address" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="address" name="address" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">City</label>
-                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder=" ">
+                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
                     </div>
 
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Option 1
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Option 2
-                        </label>
-                    </div>
-
-                    <button type="submit" name="save" class="btn btn-default">Save changes</button>
+                    <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>
                     <%
-                    if(request.getParameter("save") != null)
-                    {
-                        String email = request.getParameter("email");
-                        String telnr = request.getParameter("telnr");
-                        String pass = request.getParameter("pass");
-                        String passver = request.getParameter("passv");
-                        String fname = request.getParameter("fname");
-                        String lname = request.getParameter("lname");
-                        String address = request.getParameter("address");
-                        String city = request.getParameter("city");
+                        Test.AccountInfo accountInfo = new Test.AccountInfo();
 
+                        //if no button was pressed, this is the first time loading this page
+                        if (request.getParameter("btnSave") == null) {
+                            //Load existing info
+                            accountInfo.getDBInfo("SessionID");
+                        }
                         
-                        Test.AccountInfo aI = new Test.AccountInfo(email, telnr, pass, passver, fname, lname, address, city);
-                        aI.changeAccountInfo();
-                        response.sendRedirect("index.jsp");
-                        
-                    }
+                        //if button was pressed, save changes
+                        else if (request.getParameter("btnSave") != null) {
+                            //Get Textbox values
+                            String email = request.getParameter("email");
+                            String telnr = request.getParameter("telnr");
+                            String pass = request.getParameter("pass");
+                            String passver = request.getParameter("passv");
+                            String fname = request.getParameter("fname");
+                            String lname = request.getParameter("lname");
+                            String address = request.getParameter("address");
+                            String city = request.getParameter("city");
+
+                            ///todo
+                            ///Change account info
+                            accountInfo.changeAccountInfo(email, telnr, pass, passver, fname, lname, address, city);
+
+                            //debug
+                            response.sendRedirect("index.jsp");
+
+                        }
                     %>
                 </div>
             </form>
@@ -138,5 +136,5 @@
             <!-- Site footer -->
         </div>
         <footer class="footer" align="center">
-            <p>&copy; Company 2014</p>
+            <p>&copy; Company 2015</p>
         </footer>

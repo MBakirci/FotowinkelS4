@@ -20,23 +20,16 @@ public class AccountInfo {
     private String Address;
     private String City;
     
-    public AccountInfo(String email, String telnr, String pass, String passver, String fname, String lname, String address, String city)
+    public AccountInfo()
     {
-        Email = email;
-        TelNr = telnr;
-        Pass = pass;
-        PassVer = passver;
-        Fname = fname;
-        Lname = lname;
-        Address = address;
-        City = city;
+
     }
     
-    public void getDBInfo()
+    public void getDBInfo(String userID)
     {
         //get existing info
     }
-    public void changeAccountInfo()
+    public void changeAccountInfo(String email, String telnr, String pass, String passver, String fname, String lname, String address, String city)
     {
         //add to DB
         System.out.print("been here");
