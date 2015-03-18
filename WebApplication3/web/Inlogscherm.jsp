@@ -1,6 +1,5 @@
 
 
-
 <%-- 
     Document   : Inlogscherm
     Created on : 11-mrt-2015, 10:56:11
@@ -9,9 +8,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import= "java.util.*"%>
+
 <%--<%@page import= "Test.Databaseconnector"%>--%>
 <%@page import="Test.Login" %>
 <%@page import="java.sql.*"%>
+<%@page import= "Test.Databaseconnector"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -72,6 +74,7 @@
   <span class="input-group-addon" id="basic-addon1">password</span>
   <input type="password"  name="password" class="form-control" required="required" placeholder="Wachtwoord" aria-describedby="basic-addon1">
 </div>   
+<<<<<<< HEAD
                  
                  <input  type="submit" value="Sign in" name="btnLogin" id="testen1" class="btn btn-default navbar-btn" >                
              </form>  -->

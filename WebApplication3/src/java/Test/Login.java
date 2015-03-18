@@ -30,7 +30,7 @@ public class Login {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "Select WACHTWOORD from Gebruiker where NAAM = ?";
+                String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 //state.executeQuery();
@@ -50,5 +50,6 @@ public class Login {
             }
         }
         return false;
-    }
+    }    
 }
+
