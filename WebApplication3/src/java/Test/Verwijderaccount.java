@@ -15,14 +15,15 @@ import javax.servlet.http.HttpSession;
  *
  * @author Gebruiker
  */
-public class Login {
-
+public class Verwijderaccount {
     private String Naam;
-    private String Wachtwoord;
+   
+ 
+    
 
-    public Login(String naam, String wachtwoord) {
+    public Verwijderaccount(String naam) {
         this.Naam = naam;
-        this.Wachtwoord = wachtwoord;
+   
     }
 
     public boolean Verbind() throws Exception {
@@ -30,17 +31,17 @@ public class Login {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
+            
+                String q = "UPDATE GEBRUIKER SET ACTIEF = 0 WHERE EMAIL =?";
+                //String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUE( ?, ?, ? , ? ,?)";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
+               
+                
+                
                 //state.executeQuery();
-                ResultSet rs = state.executeQuery();
-                if (rs.next()) {
-                    if(Wachtwoord.equals(rs.getString("WACHTWOORD"))){
-                        return true;                        
-                    }
-                    return false;
-                }
+                state.executeUpdate();
+              
             } catch (SQLException e) {
                 return false;
             } finally {
@@ -49,7 +50,7 @@ public class Login {
                 }
             }
         }
-        return false;
+        return true;
     }    
 }
 

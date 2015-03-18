@@ -13,7 +13,7 @@
 <%@page import="Test.Login" %>
 <%@page import="java.sql.*"%>
 <%@page import= "Test.Databaseconnector"%>
-
+<%@page import = "Test.registreer"%>
 
 <!DOCTYPE html>
 <html>
@@ -58,6 +58,7 @@
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="Resgistreren"></a></li>
             <li class="active"><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
           </ul>
@@ -87,20 +88,25 @@
         <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin">Sign in</button>
+         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnregistreer">registreer</button>
       </form>
 
     </div>
 
                      
              <%
+               //  int id = 7;
                   String naam = request.getParameter("username");
                 String pass = request.getParameter("password");
+                //int id = request.getParameter("inputid".);
+                
                  if(request.getParameter("btnLogin")!= null){
                      Test.Login login = new Test.Login(naam, pass);                     
                      if(login.Verbind()){
@@ -112,6 +118,20 @@
                          out.print("Login mislukt");
                      }
                  }
+                // if(request.getParameter("btnregistreer") != null)
+                // {
+                     
+                //     Test.registreer reg = new Test.registreer(naam, pass, id);
+                    
+                //     if(reg.Verbind()){
+                //         out.print("registreer gelukt");
+                         
+                //         response.sendRedirect("index.jsp");
+                //     }
+                //         else {
+                //                 out.print("registeren mislukt");
+                //                 }
+                // }
                  %>
     </body>
 </html>
