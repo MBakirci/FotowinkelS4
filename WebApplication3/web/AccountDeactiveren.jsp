@@ -26,7 +26,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Account gegevens verwerken</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -55,13 +55,12 @@
           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
+            <li class="active"><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="Resgistreren.jsp">Registreren</a></li>
             <li><a href="logout.jsp">Logout</a></li>
-            <li><a href="Registreren.jsp">Registreer</a></li>
-            <li class="active"><a href="Registreren.jsp">Registreer</a></li>
           </ul>
         </nav>
       </div>
@@ -84,66 +83,58 @@
    <div class="container">
 
        <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">Registeren</h2>
+        <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputName" class="sr-only">Email address</label>
-        <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"required>
-      <label for="inputvoornaam" class="sr-only">Voornaam</label>
-        <input type="text" id="inputVoornaam" name="voornaam" class="form-control" placeholder="Voornaam"required>
-        <label for="inputtussenvoegsel" class="sr-only">Tussenvoegsel</label>
-        <input type="text" id="inputTussenvoegsel" name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
-        <label for="inputachternaam" class="sr-only">Achternaam</label>
-        <input type="text" id="inputAchternaam" name="achternaam" class="form-control" placeholder="Achternaam" required>
-        <div class="checkbox">
+        <input type="text" id="Name" name="Email" class="form-control" placeholder="Email" required autofocus>
+        
+       
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnNonactief">Account op non actief </button>
+         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnActief">Account naar actief </button>
          
-        </div>
-         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnregistreer">registreer</button>
-    
+      </form>
 
-    
+    </div>
 
                      
              <%
-               //  int id = 1;
-                  String naam = request.getParameter("username");
-                String pass = request.getParameter("password");
-                 String voornaam = request.getParameter("voornaam");
-                  String tussenvoegsel = request.getParameter("tussenvoegsel");
-                   String achternaam = request.getParameter("achternaam");
-                   int actief = 1;
-                //int id = request.getParameter("inputid".);
+               // de email
+                String naam = request.getParameter("Email");
                 
-                 
-                // if(request.getParameter("btnregistreer") != null)
-                // {
-                //    int actief;
-                //    Test.Verwijderaccount verw = new Test.Verwijderaccount(naam);
-                //    if(verw.Verbind()){
-                //        out.print("shit werkt");
-                //        response.sendRedirect("index.jsp");
-                 //   }
-                // }
-                     
-                    
-                     if(request.getParameter("btnregistreer") != null)
-                     {
-                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
-                     
-                     
-                     if(reg.Verbind()){
-                         out.print("registreer gelukt");
+              
+                //als iemand op de btn non actief drukt van roep je de methode
+                //uit verwijder acccount aan die de status op non actief zet\
+                //als het goed is dan ga je weer naar de start pagina
+                //als het niet goed dan krijg en een waarschuwing
+                 if(request.getParameter("btnNonactief")!= null){
+                     Test.Verwijderaccount nonactief = new Test.Verwijderaccount(naam);
+                     if(nonactief.Zetstatusnonactief()){
+                         out.print("Account op non-actief zetten gelukt");
                          
                          response.sendRedirect("index.jsp");
                      }
-                         else {
-                                out.print("registeren mislukt");
-                                 }
+                     else{
+                         out.print("iet op non-actief , controleer of u een goede email heeft ingevult");
                      }
                  
+                 }
+                //als iemand op de btn actief drukt van roep je de methode
+                //uit verwijderacccount aan die de status op actief zet\
+                //als het goed is dan ga je weer naar de start pagina
+                //als het niet goed dan krijg en een waarschuwing
+                     if(request.getParameter("btnActief")!= null){
+                     Test.Verwijderaccount actief = new Test.Verwijderaccount(naam);
+                     if(actief.Zetstatusactief()){
+                         out.print("Account is nu weer actief");
+                        
+                         response.sendRedirect("index.jsp");
+                     }
+                     else{
+                         out.print("account is niet actief, controleer of u het goede email adres heeft ingevult");
+                     }
+                 }
+                     
+           
                  %>
-                 </div>
-        </form>
     </body>
 </html>
 
