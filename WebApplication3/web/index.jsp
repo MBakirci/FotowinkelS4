@@ -47,7 +47,7 @@
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">Projects</a></li>
                         <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="newjsp.jsp">About</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
