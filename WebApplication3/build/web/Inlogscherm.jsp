@@ -25,7 +25,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Inloggen</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -52,15 +52,15 @@
         <h3 class="text-muted">Inloggen</h3>
         <nav>
           <ul class="nav nav-justified">
+           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="Resgistreren"></a></li>
-            <li class="active"><a href="Inlogscherm.jsp">login</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
+            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li><a href="Registreren.jsp">Registreren</a></li>
+            <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+            <li><a href="logout.jsp">Logout</a></li>
           </ul>
         </nav>
       </div>
@@ -84,42 +84,43 @@
 
        <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputName" class="sr-only">Email address</label>
+      <label for="inputName" class="sr-only">Email address</label>
         <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-      
+   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+          
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin">Sign in</button>
-         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnregistreer">registreer</button>
       </form>
 
     </div>
 
                      
              <%
+                
                //  int id = 7;
                   String naam = request.getParameter("username");
                 String pass = request.getParameter("password");
                 //int id = request.getParameter("inputid".);
                 
-                 if(request.getParameter("btnLogin")!= null){
-                     Test.Login login = new Test.Login(naam, pass);                     
+                if(request.getParameter("btnLogin")!= null){ 
+                    Test.Login login = new Test.Login(naam, pass);                     
                      if(login.Verbind()){
                          out.print("Login Gelukt");
                          session.setAttribute("Name", naam);
-                         response.sendRedirect("index.jsp");
+                        response.sendRedirect("index.jsp");
                      }
                      else{
-                         out.print("Login mislukt");
+                         out.print("Login mislukt, controleer of u uw gegeven goed hebt ingevult");
                      }
                  }
-                // if(request.getParameter("btnregistreer") != null)
-                // {
+               // if(request.getParameter("btnregistreer") != null)
+               // {
                      
                 //     Test.registreer reg = new Test.registreer(naam, pass, id);
                     

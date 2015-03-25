@@ -55,13 +55,12 @@
           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li class="active"><a href="Registreren.jsp">Registreren</a></li>
+            <li><a href="Inlogscherm.jsp">Login</a></li>
             <li><a href="logout.jsp">Logout</a></li>
-            <li><a href="Registreren.jsp">Registreer</a></li>
-            <li class="active"><a href="Registreren.jsp">Registreer</a></li>
           </ul>
         </nav>
       </div>
@@ -84,9 +83,10 @@
    <div class="container">
 
        <form class="form-signin" method="post">
+           
         <h2 class="form-signin-heading">Registeren</h2>
         <label for="inputName" class="sr-only">Email address</label>
-        <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="email" id="Name" name="username" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"required>
       <label for="inputvoornaam" class="sr-only">Voornaam</label>
@@ -140,8 +140,7 @@
                                 out.print("registeren mislukt");
                                  }
                      }
-                     
-                     
+                 
                  %>
                  </div>
         </form>

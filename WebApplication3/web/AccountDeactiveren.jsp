@@ -55,11 +55,11 @@
           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
-            <li class="active"><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
-            <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="Resgistreren.jsp">Registreren</a></li>
+            <li class="active"><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li><a href="Registreren.jsp">Registreren</a></li>
+            <li><a href="Inlogscherm.jsp">Login</a></li>
             <li><a href="logout.jsp">Logout</a></li>
           </ul>
         </nav>
@@ -85,7 +85,7 @@
        <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputName" class="sr-only">Email address</label>
-        <input type="text" id="Name" name="Email" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="Name" name="Email" class="form-control" placeholder="Email" required autofocus>
         
        
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnNonactief">Account op non actief </button>
@@ -113,7 +113,7 @@
                          response.sendRedirect("index.jsp");
                      }
                      else{
-                         out.print("iet op non-actief , controleer of u een goede email heeft ingevult");
+                         out.print("niet op non-actief , controleer of u een goede email heeft ingevult");
                      }
                  
                  }

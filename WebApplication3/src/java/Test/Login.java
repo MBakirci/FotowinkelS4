@@ -29,7 +29,13 @@ public class Login {
         Databaseconnector ts = new Databaseconnector();
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
+             PreparedStatement state1 = null;
             try {
+                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
+                state1 = ts.conn.prepareStatement(a);
+                state1.setString(1, Naam);
+                ResultSet rs1 = state1.executeQuery();
+                if(rs1.next()){
                 String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
@@ -41,6 +47,8 @@ public class Login {
                     }
                     return false;
                 }
+                }
+                
             } catch (SQLException e) {
                 return false;
             } finally {
