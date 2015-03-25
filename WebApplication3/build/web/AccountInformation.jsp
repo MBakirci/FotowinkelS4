@@ -45,91 +45,106 @@
                 <h3 class="text-muted">Fotowinkel</h3>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="#">Projects</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Downloads</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="AccountInfotmation.jsp">Verander</a></li>
+                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+                        <li><a href="Registreren.jsp">Registreren</a></li>
+                        <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+                        <li><a href="logout.jsp">Logout</a></li>
                     </ul>
                 </nav>
             </div>
-
-
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <h2>Change profile
                 </h2>
             </div>
 
+
+            <%
+                //if no button was pressed, this is the first time loading this page
+                Test.AccountInfo accountInfo = new Test.AccountInfo();
+                String sessionName = (String) session.getAttribute("Name");
+                sessionName = "Denniss@test.ts"; //For test purposes
+                List userinfo1 = accountInfo.getDBInfo(sessionName);
+                String emailDB = userinfo1.get(0).toString();
+                String telnrDB = userinfo1.get(1).toString();
+                String fnameDB = userinfo1.get(2).toString();
+                String lnameDB = userinfo1.get(3).toString();
+                String streetDB = userinfo1.get(4).toString();
+                String housenumDB = userinfo1.get(5).toString();
+                String zipcodeDB = userinfo1.get(6).toString();
+                String cityDB = userinfo1.get(7).toString();
+
+                //if button was pressed, save changes
+                if (request.getParameter("btnSave") != null) {
+                    //Get Textbox values
+                    String email = request.getParameter("email");
+                    String telnr = request.getParameter("telnr");
+                    String pass = request.getParameter("pass");
+                    String passver = request.getParameter("passv");
+                    String fname = request.getParameter("fname");
+                    String lname = request.getParameter("lname");
+                    String street = request.getParameter("street");
+                    String housenumber = request.getParameter("housenumber");
+                    String zipcode = request.getParameter("zipcode");
+                    String city = request.getParameter("city");
+
+                    ///todo
+                    ///Change account info
+                    accountInfo.changeAccountInfo(sessionName, email, telnr, pass, passver, fname, lname, street, housenumber, zipcode, city);
+
+                    //debug
+                    //response.sendRedirect("index.jsp");
+                }
+            %>
             <!--Inputform-->
             <form>
                 <div class="col-lg-6 col-md-offset-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder=" " required="">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="<%=emailDB%>" required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefoonnummer</label>
-                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="" required="" data-format="+31 (ddd) dddddd">
+                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="<%=telnrDB%>" required="" data-format="+31 (ddd) dddddd">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Verify Password</label>
-                        <input type="password" name="passv" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <input type="password" name="passv" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Firstname</label>
-                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder="<%=fnameDB%>" required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Lastname</label>
-                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder="<%=lnameDB%> " required="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Address</label>
-                        <input type="address" name="address" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <label for="exampleInputPassword1">Street</label>
+                        <input type="address" name="street" class="form-control" id="exampleInputPassword1" placeholder="<%=streetDB%> " required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Housenumber</label>
+                        <input type="housenumber" name="housenumber" class="form-control" id="exampleInputPassword1" placeholder="<%=housenumDB%> " required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Zipcode</label>
+                        <input type="zipcode" name="zipcode" class="form-control" id="exampleInputPassword1" placeholder="<%=zipcodeDB%> " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">City</label>
-                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder=" " required="">
+                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder="<%=cityDB%> " required="">
                     </div>
 
                     <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>
-                    <%
-                        Test.AccountInfo accountInfo = new Test.AccountInfo();
-
-                        //if no button was pressed, this is the first time loading this page
-                        if (request.getParameter("btnSave") == null) {
-                            //Load existing info
-                            accountInfo.getDBInfo("SessionID");
-                        }
-                        
-                        //if button was pressed, save changes
-                        else if (request.getParameter("btnSave") != null) {
-                            //Get Textbox values
-                            String email = request.getParameter("email");
-                            String telnr = request.getParameter("telnr");
-                            String pass = request.getParameter("pass");
-                            String passver = request.getParameter("passv");
-                            String fname = request.getParameter("fname");
-                            String lname = request.getParameter("lname");
-                            String address = request.getParameter("address");
-                            String city = request.getParameter("city");
-
-                            ///todo
-                            ///Change account info
-                            accountInfo.changeAccountInfo(email, telnr, pass, passver, fname, lname, address, city);
-
-                            //debug
-                            response.sendRedirect("index.jsp");
-
-                        }
-                    %>
                 </div>
             </form>
 
