@@ -32,6 +32,8 @@ public class Categorieen {
     
     //load all categories form database
     public List<String> GetAllCategories(){
+       
+        
         List<String> Categories = new ArrayList<>();
         //ToDo: alle categorieën uit de database ophalen
         //ToDo: code in commentaar controleren

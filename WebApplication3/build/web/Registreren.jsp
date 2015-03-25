@@ -14,6 +14,7 @@
 <%@page import="java.sql.*"%>
 <%@page import= "Test.Databaseconnector"%>
 <%@page import = "Test.registreer"%>
+<%@page import = "Test.Verwijderaccount"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Inloggen</title>
+    <title>Justified Nav Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -52,14 +53,13 @@
         <h3 class="text-muted">Inloggen</h3>
         <nav>
           <ul class="nav nav-justified">
-           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
-            <li><a href="Registreren.jsp">Registreren</a></li>
-            <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+            <li class="active"><a href="Registreren.jsp">Registreren</a></li>
+            <li><a href="Inlogscherm.jsp">Login</a></li>
             <li><a href="logout.jsp">Logout</a></li>
           </ul>
         </nav>
@@ -83,57 +83,67 @@
    <div class="container">
 
        <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-      <label for="inputName" class="sr-only">Email address</label>
-        <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-          
+           
+        <h2 class="form-signin-heading">Registeren</h2>
+        <label for="inputName" class="sr-only">Email address</label>
+        <input type="email" id="Name" name="username" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputPassword" class="sr-only">Wachtwoord</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"required>
+      <label for="inputvoornaam" class="sr-only">Voornaam</label>
+        <input type="text" id="inputVoornaam" name="voornaam" class="form-control" placeholder="Voornaam"required>
+        <label for="inputtussenvoegsel" class="sr-only">Tussenvoegsel</label>
+        <input type="text" id="inputTussenvoegsel" name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
+        <label for="inputachternaam" class="sr-only">Achternaam</label>
+        <input type="text" id="inputAchternaam" name="achternaam" class="form-control" placeholder="Achternaam" required>
         <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+         
         </div>
+         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnregistreer">registreer</button>
+    
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin">Sign in</button>
-      </form>
-
-    </div>
+    
 
                      
              <%
-                
-               //  int id = 7;
+               //  int id = 1;
                   String naam = request.getParameter("username");
                 String pass = request.getParameter("password");
+                 String voornaam = request.getParameter("voornaam");
+                  String tussenvoegsel = request.getParameter("tussenvoegsel");
+                   String achternaam = request.getParameter("achternaam");
+                   int actief = 1;
                 //int id = request.getParameter("inputid".);
                 
-                if(request.getParameter("btnLogin")!= null){ 
-                    Test.Login login = new Test.Login(naam, pass);                     
-                     if(login.Verbind()){
-                         out.print("Login Gelukt");
-                         session.setAttribute("Name", naam);
-                        response.sendRedirect("index.jsp");
-                     }
-                     else{
-                         out.print("Login mislukt, controleer of u uw gegeven goed hebt ingevult");
-                     }
-                 }
-               // if(request.getParameter("btnregistreer") != null)
-               // {
-                     
-                //     Test.registreer reg = new Test.registreer(naam, pass, id);
-                    
-                //     if(reg.Verbind()){
-                //         out.print("registreer gelukt");
-                         
-                //         response.sendRedirect("index.jsp");
-                //     }
-                //         else {
-                //                 out.print("registeren mislukt");
-                //                 }
+                 
+                // if(request.getParameter("btnregistreer") != null)
+                // {
+                //    int actief;
+                //    Test.Verwijderaccount verw = new Test.Verwijderaccount(naam);
+                //    if(verw.Verbind()){
+                //        out.print("shit werkt");
+                //        response.sendRedirect("index.jsp");
+                 //   }
                 // }
+                     
+                    
+                     if(request.getParameter("btnregistreer") != null)
+                     {
+                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
+                     
+                     
+                     if(reg.Verbind()){
+                         out.print("registreer gelukt");
+                         
+                         response.sendRedirect("index.jsp");
+                     }
+                         else {
+                                out.print("registeren mislukt");
+                                 }
+                     }
+                 
                  %>
+                 </div>
+        </form>
     </body>
 </html>
 

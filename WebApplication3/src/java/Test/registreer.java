@@ -15,40 +15,43 @@ import javax.servlet.http.HttpSession;
  *
  * @author Gebruiker
  */
-public class Login {
-
+public class registreer {
     private String Naam;
     private String Wachtwoord;
+    private String Voornaam;
+    private String Tussenvoegsel;
+    private String Achternaam;
+    private int Id;
+    private int Actief;
 
-    public Login(String naam, String wachtwoord) {
+    public registreer(String naam, String wachtwoord, String voornaam, String tussenvoegsel, String achternaam, int actief) {
         this.Naam = naam;
         this.Wachtwoord = wachtwoord;
+        this.Voornaam = voornaam;
+        this.Tussenvoegsel = tussenvoegsel;
+        this.Achternaam = achternaam;
+        this.Actief = actief;
+        
     }
 
     public boolean Verbind() throws Exception {
         Databaseconnector ts = new Databaseconnector();
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
-             PreparedStatement state1 = null;
             try {
-                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
-                state1 = ts.conn.prepareStatement(a);
-                state1.setString(1, Naam);
-                ResultSet rs1 = state1.executeQuery();
-                if(rs1.next()){
-                String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
+                String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, ACTIEF, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUES(? ,?, ?, ?, ? , ?)";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
-                //state.executeQuery();
-                ResultSet rs = state.executeQuery();
-                if (rs.next()) {
-                    if(Wachtwoord.equals(rs.getString("WACHTWOORD"))){
-                        return true;                        
-                    }
-                    return false;
-                }
-                }
+                state.setString(2, Wachtwoord);
+                Actief = 1;
+                state.setInt(3, Actief);
+                state.setString(4, Voornaam);
+                state.setString(5, Tussenvoegsel);
+                state.setString(6, Achternaam);
                 
+                //state.executeQuery();
+                state.executeUpdate();
+              
             } catch (SQLException e) {
                 return false;
             } finally {
@@ -57,7 +60,7 @@ public class Login {
                 }
             }
         }
-        return false;
+        return true;
     }    
 }
 

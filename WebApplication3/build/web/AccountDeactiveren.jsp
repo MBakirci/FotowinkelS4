@@ -14,6 +14,7 @@
 <%@page import="java.sql.*"%>
 <%@page import= "Test.Databaseconnector"%>
 <%@page import = "Test.registreer"%>
+<%@page import = "Test.Verwijderaccount"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Inloggen</title>
+    <title>Account gegevens verwerken</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -52,14 +53,13 @@
         <h3 class="text-muted">Inloggen</h3>
         <nav>
           <ul class="nav nav-justified">
-           <ul class="nav nav-justified">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="#">Projects</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li class="active"><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
             <li><a href="Registreren.jsp">Registreren</a></li>
-            <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+            <li><a href="Inlogscherm.jsp">Login</a></li>
             <li><a href="logout.jsp">Logout</a></li>
           </ul>
         </nav>
@@ -84,55 +84,56 @@
 
        <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-      <label for="inputName" class="sr-only">Email address</label>
-        <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-          
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin">Sign in</button>
+        <label for="inputName" class="sr-only">Email address</label>
+        <input type="email" id="Name" name="Email" class="form-control" placeholder="Email" required autofocus>
+        
+       
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnNonactief">Account op non actief </button>
+         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnActief">Account naar actief </button>
+         
       </form>
 
     </div>
 
                      
              <%
+               // de email
+                String naam = request.getParameter("Email");
                 
-               //  int id = 7;
-                  String naam = request.getParameter("username");
-                String pass = request.getParameter("password");
-                //int id = request.getParameter("inputid".);
-                
-                if(request.getParameter("btnLogin")!= null){ 
-                    Test.Login login = new Test.Login(naam, pass);                     
-                     if(login.Verbind()){
-                         out.print("Login Gelukt");
-                         session.setAttribute("Name", naam);
-                        response.sendRedirect("index.jsp");
+              
+                //als iemand op de btn non actief drukt van roep je de methode
+                //uit verwijder acccount aan die de status op non actief zet\
+                //als het goed is dan ga je weer naar de start pagina
+                //als het niet goed dan krijg en een waarschuwing
+                 if(request.getParameter("btnNonactief")!= null){
+                     Test.Verwijderaccount nonactief = new Test.Verwijderaccount(naam);
+                     if(nonactief.Zetstatusnonactief()){
+                         out.print("Account op non-actief zetten gelukt");
+                         
+                         response.sendRedirect("index.jsp");
                      }
                      else{
-                         out.print("Login mislukt, controleer of u uw gegeven goed hebt ingevult");
+                         out.print("niet op non-actief , controleer of u een goede email heeft ingevult");
+                     }
+                 
+                 }
+                //als iemand op de btn actief drukt van roep je de methode
+                //uit verwijderacccount aan die de status op actief zet\
+                //als het goed is dan ga je weer naar de start pagina
+                //als het niet goed dan krijg en een waarschuwing
+                     if(request.getParameter("btnActief")!= null){
+                     Test.Verwijderaccount actief = new Test.Verwijderaccount(naam);
+                     if(actief.Zetstatusactief()){
+                         out.print("Account is nu weer actief");
+                        
+                         response.sendRedirect("index.jsp");
+                     }
+                     else{
+                         out.print("account is niet actief, controleer of u het goede email adres heeft ingevult");
                      }
                  }
-               // if(request.getParameter("btnregistreer") != null)
-               // {
                      
-                //     Test.registreer reg = new Test.registreer(naam, pass, id);
-                    
-                //     if(reg.Verbind()){
-                //         out.print("registreer gelukt");
-                         
-                //         response.sendRedirect("index.jsp");
-                //     }
-                //         else {
-                //                 out.print("registeren mislukt");
-                //                 }
-                // }
+           
                  %>
     </body>
 </html>

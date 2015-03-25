@@ -17,7 +17,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>Justified Nav Template for Bootstrap</title>
+        <title>Fotowinkel</title>
 
         <!-- Bootstrap core CSS -->
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -46,10 +46,10 @@
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">Projects</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Downloads</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
+                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+                        <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
                     </ul>
@@ -60,14 +60,18 @@
             <div class="jumbotron">
                 <h1>Marketing stuff!</h1>
                 <h2>
+
                     <%
+                        
                         if (session.getAttribute("Name") != null) {
                             out.print(session.getAttribute("Name"));
+                            
+                            
                         }
                     %>
                 </h2>
                 <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-                <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+                <p><a class="btn btn-lg btn-success" a href="Registreren.jsp" role="button">Get started today</a></p>
             </div>
 
             <!-- Example row of columns -->
