@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -67,22 +68,22 @@ public class Categorieën {
     
     //create new categorie
     public boolean CreateCategory(String category) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException{
-        //todo: database logica
         if (dbhelp.verbindmetDatabase()) {
             PreparedStatement stament = null;
             PreparedStatement stamentItem = null;
             int id = 0;
             
-            String QueryItem = "INSERT INTO ITEM (TYPE, AANGEMAAKTOP) values (categorie, ?) RETURNING ID INTO ";
+            String QueryItem = "INSERT INTO ITEM (TYPE, AANGEMAAKTOP) values ('categorie', ?)";
             String Query = "INSERT INTO CATEGORIE (ITEM_ID, NAAM) values (?, ?)";
             try{
-                stamentItem = dbhelp.conn.prepareStatement(QueryItem);
-                DateFormat dateFormat = new SimpleDateFormat("dd-mon-yy");
+                stamentItem = dbhelp.conn.prepareStatement(QueryItem, new String[]{"ID"});
+                DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
                 Date date = new Date();
                 stamentItem.setString(1, dateFormat.format(date));
-                stamentItem.executeQuery();
-                if (stamentItem != null){
-                    id = stamentItem.getResultSet().getInt("ID");
+                stamentItem.executeUpdate();
+                ResultSet generatedKeys = stamentItem.getGeneratedKeys();
+                if(generatedKeys.next()){
+                    id = generatedKeys.getInt(1);
                 }
                 if(id != 0){
                     stament = dbhelp.conn.prepareStatement(Query);
@@ -96,6 +97,7 @@ public class Categorieën {
                 }
             } 
             catch (SQLException e) {
+                System.out.print("ERROR");
                 System.out.print(e.getMessage());
                 return false;
             } finally {

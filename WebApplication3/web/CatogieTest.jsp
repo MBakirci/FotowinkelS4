@@ -34,7 +34,7 @@
         %>
         <div><p><%=s%></p></div>
         <input type="firstname" name="fname" class="form-control" value="<%=hhhhh%>" rows="25" id="exampleInputPassword1" placeholder=" " required="">
-        <button name='btnTest'></button>
+        <button name='btnTest'>create</button>
         </form>
     </body>
 </html>
