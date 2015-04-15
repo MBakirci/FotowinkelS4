@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -8,3 +9,15 @@
         </group>
     </open-files>
 </project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Foto_klant.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/FotoView.jsp</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> 4701954471424469470bd0017625c50f718b9274
