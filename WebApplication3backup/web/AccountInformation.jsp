@@ -19,7 +19,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>Justified Nav Template for Bootstrap</title>
+        <title>Account informatie veranderen</title>
 
         <!-- Bootstrap core CSS -->
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -48,10 +48,10 @@
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="#">Projects</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="AccountInfotmation.jsp">Verander</a></li>
+                        <li class ="active"><a href="AccountInformation.jsp">Verander</a></li>
                         <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+                        <li><a href="Inlogscherm.jsp">Login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
                     </ul>
                 </nav>

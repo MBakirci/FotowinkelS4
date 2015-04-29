@@ -26,7 +26,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Registeren</title>
 
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -85,6 +85,7 @@
        <form class="form-signin" method="post">
            
         <h2 class="form-signin-heading">Registeren</h2>
+        
         <label for="inputName" class="sr-only">Email address</label>
         <input type="email" id="Name" name="username" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
@@ -95,9 +96,14 @@
         <input type="text" id="inputTussenvoegsel" name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
         <label for="inputachternaam" class="sr-only">Achternaam</label>
         <input type="text" id="inputAchternaam" name="achternaam" class="form-control" placeholder="Achternaam" required>
-        <div class="checkbox">
-         
-        </div>
+        <input type="checkbox" name="Klant" value="klant">Bent u een fotograaf?<br> 
+        
+       
+     
+
+        
+       
+
          <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnregistreer">registreer</button>
     
 
@@ -111,7 +117,11 @@
                  String voornaam = request.getParameter("voornaam");
                   String tussenvoegsel = request.getParameter("tussenvoegsel");
                    String achternaam = request.getParameter("achternaam");
+                   boolean type = request.getParameter("Klant") != null;
                    int actief = 1;
+                    String error= "";
+                   
+                   
                 //int id = request.getParameter("inputid".);
                 
                  
@@ -128,20 +138,35 @@
                     
                      if(request.getParameter("btnregistreer") != null)
                      {
-                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
+                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief, type);
                      
                      
-                     if(reg.Verbind()){
-                         out.print("registreer gelukt");
+                     if(!reg.Verbind()){
+                         error = "registeren is mislukt uw email adres is al bekend bij ons";
+                        
+                          
                          
-                         response.sendRedirect("index.jsp");
+                         //response.addHeader("labelmislukt", "inloggen is mislukt");
                      }
+                         //response.sendRedirect("Inlogscherm.jsp");}
+                         
+                     
                          else {
-                                out.print("registeren mislukt");
+                                if(type == true){
+                                out.print("registeren gelukt");
+                                response.sendRedirect("AccountInformation.jsp");
+                                }
+                                
+                                else{
+                                response.sendRedirect("klantcodepagina.jsp");
                                  }
+                     }
+                                
                      }
                  
                  %>
+                 <font color="red"><%=error%></font>
+                
                  </div>
         </form>
     </body>
