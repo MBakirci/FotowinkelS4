@@ -65,16 +65,17 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Thumbnail Gallery</h1>
+                    <h1 class="page-header">Gallery</h1>
                 </div>
                 
                 <%
-                    
-                    ArrayList<String> numbers = new ArrayList<String>();
+                    session.setAttribute( "username", "Dennis@dennis.nl" );  
+                    ArrayList<String> photoList = new ArrayList<String>();
                     Test.Photo tp = new Test.Photo();
-                    numbers = tp.myNumbers();
+                    photoList = tp.getPhotos(session.getAttribute( "username" ).toString()); //FOR DEBUG
+                    //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
                     
-                   for(String es: numbers)
+                   for(String es: photoList)
                     {
                        
                      %>
@@ -83,7 +84,7 @@
                         <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es %> > 
                         
                     </a>
-                        <button style="position: absolute;top:120px;left: 230px;">
+                        <button id="<%=es.substring(es.lastIndexOf("/")+1, es.lastIndexOf(".")) %>" style="position: absolute;top:120px;left: 230px;">
                             <b>+</b>
                         </button>
                         
