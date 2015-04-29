@@ -89,7 +89,7 @@ public final class KlantPagina_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <li><a href=\"#\">Projects</a></li>\n");
       out.write("            <li><a href=\"#\">About</a></li>\n");
       out.write("            <li><a href=\"#\">Contact</a></li>\n");
-      out.write("            <li><a href=\"AccountDeactiveren.jsp\">Accountinformatie</a></li>\n");
+      out.write("            <li><a href=\"AccountInformation.jsp\">Accountinformatie</a></li>\n");
       out.write("            <li class=\"active\"><a href=\"fotograafFotos.jsp\">Profiel</a></li>\n");
       out.write("            <li><a href=\"logout.jsp\">Logout</a></li>\n");
       out.write("          </ul>\n");
@@ -99,38 +99,10 @@ public final class KlantPagina_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <nav>\n");
       out.write("          <ul class=\"nav nav-justified\">\n");
       out.write("            <li><a href=\"KlantFotos.jsp\">fotos</a></li>\n");
-      out.write("            <li class=\"active\"><a href=\"fotograafProfiel.jsp\">gegevens</a></li>\n");
+      out.write("            <li class=\"active\"><a href=\"KlantInformation.jsp\">gegevens</a></li>\n");
       out.write("            <li><a href=\"#\">one more thing</a></li>\n");
       out.write("          </ul>\n");
       out.write("        </nav>\n");
-      out.write("          \n");
-      out.write("          ");
-Test.Categorieën cat = new Test.Categorieën();
-                List<Test.Categorie> test = cat.GetAllCategories(); 
-      out.write("\n");
-      out.write("      </div><select class=\"btn btn-default dropdown-toggle\" name=\"Dropdown\">\n");
-      out.write("          ");
-for(Categorie c : test){
-      out.write("\n");
-      out.write("          <option>");
-      out.print(c.GetNaam());
-      out.write("</option>\n");
-      out.write("          ");
-}
-      out.write("\n");
-      out.write("      </select>\n");
-      out.write("             \n");
-      out.write("    \n");
-      out.write("\n");
-      out.write("            ");
-for(Categorie c : test){
-      out.write("\n");
-      out.write("            <div class=\"well\">");
-      out.print(c.GetNaam());
-      out.write("</div>\n");
-      out.write("            ");
-}
-      out.write("\n");
       out.write("     \n");
       out.write("    <!-- Single button -->\n");
       out.write("        \n");

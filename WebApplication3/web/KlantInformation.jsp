@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AccountInformation
-    Created on : 11-mrt-2015, 11:06:43
-    Author     : Dennis
+    Document   : KlantInformation
+    Created on : 22-apr-2015, 11:47:19
+    Author     : jeffrey
 --%>
 
 
@@ -57,6 +57,14 @@
                     </ul>
                 </nav>
             </div>
+                  <div class="masthead">
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="KlantFotos.jsp">fotos</a></li>
+            <li class="active"><a href="KlantInformation.jsp">gegevens</a></li>
+            <li><a href="#">one more thing</a></li>
+          </ul>
+        </nav>
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <h2>Change profile
@@ -154,3 +162,4 @@
         <footer class="footer" align="center">
             <p>&copy; Company 2015</p>
         </footer>
+

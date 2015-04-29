@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import Test.NewClass;
 import Test.AccountInfo;
+import Test.KlantInfo;
 import java.util.*;
 
 public final class AccountInformation_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -44,6 +45,7 @@ public final class AccountInformation_jsp extends org.apache.jasper.runtime.Http
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -108,18 +110,18 @@ public final class AccountInformation_jsp extends org.apache.jasper.runtime.Http
       out.write("            ");
 
                 //if no button was pressed, this is the first time loading this page
-                Test.AccountInfo accountInfo = new Test.AccountInfo();
+                Test.KlantInfo accountInfo = new Test.KlantInfo();
                 String sessionName = (String) session.getAttribute("Name");
-                sessionName = "Denniss@test.ts"; //For test purposes
+                sessionName = "p.de.beer@fontys.nlrejkw"; //For test purposes
                 List userinfo1 = accountInfo.getDBInfo(sessionName);
                 String emailDB = userinfo1.get(0).toString();
-                String telnrDB = userinfo1.get(1).toString();
-                String fnameDB = userinfo1.get(2).toString();
+                //String telnrDB = userinfo1.get(1).toString();
+                String fnameDB = userinfo1.get(1).toString();
                 String lnameDB = userinfo1.get(3).toString();
-                String streetDB = userinfo1.get(4).toString();
-                String housenumDB = userinfo1.get(5).toString();
-                String zipcodeDB = userinfo1.get(6).toString();
-                String cityDB = userinfo1.get(7).toString();
+                //String streetDB = userinfo1.get(4).toString();
+                //String housenumDB = userinfo1.get(5).toString();
+                //String zipcodeDB = userinfo1.get(6).toString();
+                //String cityDB = userinfo1.get(7).toString();
 
                 //if button was pressed, save changes
                 if (request.getParameter("btnSave") != null) {
@@ -156,7 +158,7 @@ public final class AccountInformation_jsp extends org.apache.jasper.runtime.Http
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <label for=\"exampleInputPassword1\">Telefoonnummer</label>\r\n");
       out.write("                        <input type=\"telnr\" name=\"telnr\" class=\"form-control bfh-phone\" id=\"exampleInputPassword1\" placeholder=\"");
-      out.print(telnrDB);
+//=telnrDB
       out.write("\" required=\"\" data-format=\"+31 (ddd) dddddd\">\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
@@ -182,25 +184,25 @@ public final class AccountInformation_jsp extends org.apache.jasper.runtime.Http
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <label for=\"exampleInputPassword1\">Street</label>\r\n");
       out.write("                        <input type=\"address\" name=\"street\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
-      out.print(streetDB);
+//=streetDB
       out.write(" \" required=\"\">\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <label for=\"exampleInputPassword1\">Housenumber</label>\r\n");
       out.write("                        <input type=\"housenumber\" name=\"housenumber\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
-      out.print(housenumDB);
+//=housenumDB
       out.write(" \" required=\"\">\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <label for=\"exampleInputPassword1\">Zipcode</label>\r\n");
       out.write("                        <input type=\"zipcode\" name=\"zipcode\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
-      out.print(zipcodeDB);
+//=zipcodeDB
       out.write(" \" required=\"\">\r\n");
       out.write("                    </div>\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <label for=\"exampleInputPassword1\">City</label>\r\n");
       out.write("                        <input type=\"city\" name=\"city\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
-      out.print(cityDB);
+//=cityDB
       out.write(" \" required=\"\">\r\n");
       out.write("                    </div>\r\n");
       out.write("\r\n");

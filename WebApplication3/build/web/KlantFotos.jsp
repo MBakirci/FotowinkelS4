@@ -54,8 +54,8 @@
       <div class="masthead">
         <nav>
           <ul class="nav nav-justified">
-            <li class="active"><a href="fotograafFotos.jsp">fotos</a></li>
-            <li><a href="fotograafProfiel.jsp">gegevens</a></li>
+            <li class="active"><a href="KlantFotos.jsp">fotos</a></li>
+            <li><a href="KlantInformation.jsp">gegevens</a></li>
             <li><a href="#">one more thing</a></li>
           </ul>
         </nav>
