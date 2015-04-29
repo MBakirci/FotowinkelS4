@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.NewClass" %>
 <%@page import="Test.AccountInfo" %>
+<%@page import="Test.KlantInfo" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,18 +66,18 @@
 
             <%
                 //if no button was pressed, this is the first time loading this page
-                Test.AccountInfo accountInfo = new Test.AccountInfo();
+                Test.KlantInfo accountInfo = new Test.KlantInfo();
                 String sessionName = (String) session.getAttribute("Name");
-                sessionName = "Denniss@test.ts"; //For test purposes
+                sessionName = "p.de.beer@fontys.nlrejkw"; //For test purposes
                 List userinfo1 = accountInfo.getDBInfo(sessionName);
                 String emailDB = userinfo1.get(0).toString();
-                String telnrDB = userinfo1.get(1).toString();
-                String fnameDB = userinfo1.get(2).toString();
+                //String telnrDB = userinfo1.get(1).toString();
+                String fnameDB = userinfo1.get(1).toString();
                 String lnameDB = userinfo1.get(3).toString();
-                String streetDB = userinfo1.get(4).toString();
-                String housenumDB = userinfo1.get(5).toString();
-                String zipcodeDB = userinfo1.get(6).toString();
-                String cityDB = userinfo1.get(7).toString();
+                //String streetDB = userinfo1.get(4).toString();
+                //String housenumDB = userinfo1.get(5).toString();
+                //String zipcodeDB = userinfo1.get(6).toString();
+                //String cityDB = userinfo1.get(7).toString();
 
                 //if button was pressed, save changes
                 if (request.getParameter("btnSave") != null) {
@@ -109,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefoonnummer</label>
-                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="<%=telnrDB%>" required="" data-format="+31 (ddd) dddddd">
+                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="<%//=telnrDB%>" required="" data-format="+31 (ddd) dddddd">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
@@ -129,19 +130,19 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Street</label>
-                        <input type="address" name="street" class="form-control" id="exampleInputPassword1" placeholder="<%=streetDB%> " required="">
+                        <input type="address" name="street" class="form-control" id="exampleInputPassword1" placeholder="<%//=streetDB%> " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Housenumber</label>
-                        <input type="housenumber" name="housenumber" class="form-control" id="exampleInputPassword1" placeholder="<%=housenumDB%> " required="">
+                        <input type="housenumber" name="housenumber" class="form-control" id="exampleInputPassword1" placeholder="<%//=housenumDB%> " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Zipcode</label>
-                        <input type="zipcode" name="zipcode" class="form-control" id="exampleInputPassword1" placeholder="<%=zipcodeDB%> " required="">
+                        <input type="zipcode" name="zipcode" class="form-control" id="exampleInputPassword1" placeholder="<%//=zipcodeDB%> " required="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">City</label>
-                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder="<%=cityDB%> " required="">
+                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder="<%//=cityDB%> " required="">
                     </div>
 
                     <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>

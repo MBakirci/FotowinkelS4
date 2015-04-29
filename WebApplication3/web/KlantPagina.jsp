@@ -48,7 +48,7 @@
             <li><a href="#">Projects</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li><a href="AccountInformation.jsp">Accountinformatie</a></li>
             <li class="active"><a href="fotograafFotos.jsp">Profiel</a></li>
             <li><a href="logout.jsp">Logout</a></li>
           </ul>
@@ -58,24 +58,10 @@
         <nav>
           <ul class="nav nav-justified">
             <li><a href="KlantFotos.jsp">fotos</a></li>
-            <li class="active"><a href="fotograafProfiel.jsp">gegevens</a></li>
+            <li class="active"><a href="KlantInformation.jsp">gegevens</a></li>
             <li><a href="#">one more thing</a></li>
           </ul>
         </nav>
-          
-          <%Test.Categorieën cat = new Test.Categorieën();
-                List<Test.Categorie> test = cat.GetAllCategories(); %>
-      </div><select class="btn btn-default dropdown-toggle" name="Dropdown">
-          <%for(Categorie c : test){%>
-          <option><%=c.GetNaam()%></option>
-          <%}%>
-      </select>
-             
-    
-
-            <%for(Categorie c : test){%>
-            <div class="well"><%=c.GetNaam()%></div>
-            <%}%>
      
     <!-- Single button -->
         
