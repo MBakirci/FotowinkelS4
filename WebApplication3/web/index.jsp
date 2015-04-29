@@ -48,7 +48,7 @@
                         <li><a href="#">Projects</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="AccountInformation.jsp">Bewerken</a></li>
-                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
