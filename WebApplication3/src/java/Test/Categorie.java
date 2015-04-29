@@ -17,9 +17,16 @@ public class Categorie {
     int parrent;
     List<Integer> childs;
 
-    public Categorie(int id, String naam){
-        this.id = id;
-        this.naam = naam;
+    public Categorie(){
+    }
+        
+    public void SetId(int Id){
+        this.id = Id;
+    }
+    
+    public void SetNaam(String Naam)
+    {
+        this.naam = Naam;
     }
 
     public int GetId(){

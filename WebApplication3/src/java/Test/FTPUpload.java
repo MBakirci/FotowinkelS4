@@ -23,7 +23,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
- 
+import Test.Categorieën;
+
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -70,6 +71,10 @@ public class FTPUpload {
             }
             // Creates a directory
             String dirToCreate = "/"+ User + path;
+            Test.Categorieën categorieën = new Test.Categorieën();
+
+            categorieën.CreateCategory(path, "Henk@yolo.nl", dirToCreate);
+
             success = ftpClient.makeDirectory(dirToCreate);
             showServerReply(ftpClient);
             if (success) {
@@ -83,6 +88,14 @@ public class FTPUpload {
         } catch (IOException ex) {
             System.out.println("Oops! Something wrong happened");
             ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FTPUpload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(FTPUpload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FTPUpload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(FTPUpload.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -104,8 +117,17 @@ public class FTPUpload {
             String fullpathdt = path;
             // APPROACH #1: uploads first file using an InputStream
             File firstLocalFile = new File(fullpathdt);
- 
-            String firstRemoteFile = User + "/" + Category + "/" + uniquecode;
+            
+            
+            String firstRemoteFile = "";
+            if(Category == null)
+            {
+            firstRemoteFile = User + "/" + uniquecode;
+            }
+            else
+            {
+            firstRemoteFile = User + "/" + Category + "/" + uniquecode;
+            }
             InputStream inputStream = new FileInputStream(firstLocalFile);
  
             System.out.println("Start uploading first file");
@@ -239,7 +261,7 @@ public class FTPUpload {
     }
 
     
-    public boolean UploadFotoDatabase(String Uniq, int Cat, int Fotograafid, String FilePath, double Basis, int Winst) throws Exception {
+    public boolean UploadFotoDatabase(String Uniq, int Cat, String Fotograaf, String FilePath, double Basis, int Winst) throws Exception {
         Databaseconnector ts = new Databaseconnector();
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
@@ -248,6 +270,7 @@ public class FTPUpload {
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Uniq);
                 state.setInt(2, Cat);
+                int Fotograafid = getID(Fotograaf);
                 state.setInt(3, Fotograafid);
                 state.setString(4, FilePath);
                 state.setDouble(5, Basis);
@@ -275,7 +298,74 @@ public class FTPUpload {
         return true;
     }
 
+     public int getID(String email) throws ClassNotFoundException, InstantiationException, SQLException
+    {
 
+         int accountID = 0;
+         
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        try {
+            if (ts.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SELECT ACCOUNT_ID from FW_ACCOUNT where EMAIL=?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, email);
+                    ResultSet gebruikersType = state.executeQuery();
+
+                    if (gebruikersType.next()) {
+                        accountID = gebruikersType.getInt("ACCOUNT_ID");
+                    }
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+                }
+            }
+        } catch (IllegalAccessException ex) {
+            
+        }
+        return accountID;
+    }
+     
+    public String getCategoryPath(String email, String Category) throws ClassNotFoundException, InstantiationException, SQLException
+    {
+
+         String accountID = "";
+         
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        try {
+            if (ts.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SELECT FtpPath from FW_CATEGORIE where EMAIL=? and NAAM =?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, email);
+                    state.setString(2, Category);
+                    ResultSet gebruikersType = state.executeQuery();
+
+                    if (gebruikersType.next()) {
+                        accountID = gebruikersType.getString("FtpPath");
+                    }
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+                }
+            }
+        } catch (IllegalAccessException ex) {
+            
+        }
+        return accountID;
+    }
+     
+ 
     private String getUserID(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

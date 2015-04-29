@@ -73,8 +73,16 @@ public class TestServlet extends HttpServlet {
                         UniqCode = UniqCode + alphabet.charAt(r.nextInt(N));
                     }
                     
-                    String dbfilepath = user + "/" + cat + "/" + UniqCode + L;
-                    ftpload.UploadFotoDatabase(UniqCode, 2, 1, dbfilepath , 5, 5);
+                    String dbfilepath = "";
+                    if(cat == null)
+                    {
+                    dbfilepath = user + "/" + UniqCode + L;  
+                    }
+                    else
+                    {
+                    dbfilepath = user + "/" + cat + "/" + UniqCode + L;
+                    }
+                    ftpload.UploadFotoDatabase(UniqCode, 2, user, dbfilepath , 5, 5);
                     ftpload.UploadFile(UniqCode + L, cat, user, pathloca);
                 }
             }

@@ -14,7 +14,9 @@ import java.net.URLConnection;
 import java.net.URL;
 import java.util.Map;
 import Test.FTPUpload;
+import Test.Categorieën;
 import Test.Databaseconnecter;
+import Test.Categorie;
 
 public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -68,6 +70,8 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -75,6 +79,12 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>JSP Page</title>\r\n");
       out.write("        ");
  Test.FTPUpload ftpload = new Test.FTPUpload(); 
+      out.write("\r\n");
+      out.write("        ");
+ Test.Categorie categorie = new Test.Categorie(); 
+      out.write("\r\n");
+      out.write("        ");
+ Test.Categorieën categorieën = new Test.Categorieën(); 
       out.write("\r\n");
       out.write("        ");
  Test.Databaseconnecter dbconnect = new Test.Databaseconnecter(); 
@@ -128,15 +138,24 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
  String Category = ""; 
       out.write("\r\n");
+      out.write("        ");
+ List<Categorie> categories = categorieën.GetAllCategories("Henk@yolo.nl"); 
+      out.write("\r\n");
       out.write("            <form method=\"get\" name=\"productForm\">\r\n");
-      out.write("    <select name=\"category\">    \r\n");
-      out.write("        <option>Portret</option>\r\n");
-      out.write("        <option>Groep</option>\r\n");
+      out.write("    <select name=\"category\"> \r\n");
+      out.write("        ");
+   for(Categorie es: categories) { 
+      out.write("\r\n");
+      out.write("        <option>");
+      out.print( es.GetNaam() );
+      out.write("</option>\r\n");
+      out.write("        ");
+ } 
+      out.write("\r\n");
       out.write("    </select>\r\n");
       out.write("    <input type=\"submit\" value=\"Kies!\" name=\"dropdown\" id=\"dropdown\">\r\n");
       out.write("    ");
 
-         
         Category = request.getParameter("category");
         Test.StaticValues.setMyStaticMember(Category, "Henk@yolo.nl");
         out.println(Category);
@@ -153,7 +172,8 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                 if (request.getParameter("btnCategory") != null)
                 {    
-                ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
+              
+                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
                 }     
                 
       out.write("\r\n");

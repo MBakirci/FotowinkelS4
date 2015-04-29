@@ -16,13 +16,17 @@
 <%@page import ="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.FTPUpload" %>
+<%@page import="Test.Categorieën" %>
 <%@page import="Test.Databaseconnecter" %>
+<%@page import="Test.Categorie" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <% Test.FTPUpload ftpload = new Test.FTPUpload(); %>
+        <% Test.Categorie categorie = new Test.Categorie(); %>
+        <% Test.Categorieën categorieën = new Test.Categorieën(); %>
         <% Test.Databaseconnecter dbconnect = new Test.Databaseconnecter(); %>
         
     <title>Justified Nav Template for Bootstrap</title>
@@ -71,14 +75,15 @@
             <br/>
         
         <% String Category = ""; %>
+        <% List<Categorie> categories = categorieën.GetAllCategories("Henk@yolo.nl"); %>
             <form method="get" name="productForm">
-    <select name="category">    
-        <option>Portret</option>
-        <option>Groep</option>
+    <select name="category"> 
+        <%   for(Categorie es: categories) { %>
+        <option><%= es.GetNaam() %></option>
+        <% } %>
     </select>
     <input type="submit" value="Kies!" name="dropdown" id="dropdown">
     <%
-         
         Category = request.getParameter("category");
         Test.StaticValues.setMyStaticMember(Category, "Henk@yolo.nl");
         out.println(Category);
@@ -93,7 +98,8 @@
         <%
                 if (request.getParameter("btnCategory") != null)
                 {    
-                ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
+              
+                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
                 }     
                 %>
         </form>
