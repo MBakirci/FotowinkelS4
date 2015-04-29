@@ -115,55 +115,8 @@ public class FTPUpload {
                 System.out.println("The first file is uploaded successfully.");
             }
             
-             BufferedImage sourceImage = ImageIO.read(new File(path));
-            int width = sourceImage.getWidth();
-            int height = sourceImage.getHeight();
+            
 
-            if (width > height) {
-                float extraSize = height - 100;
-                float percentHight = (extraSize / height) * 100;
-                float percentWidth = width - ((width / 100) * percentHight);
-                BufferedImage img = new BufferedImage((int) percentWidth, 100, BufferedImage.TYPE_INT_RGB);
-                Image scaledImage = sourceImage.getScaledInstance((int) percentWidth, 100, Image.SCALE_FAST);
-                img.createGraphics().drawImage(scaledImage, 0, 0, null);
-                BufferedImage img2 = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-                img2 = img.getSubimage((int) ((percentWidth - 100) / 2), 0, 100, 100);
-
-                File f = new File(uniquecode);
-                ImageIO.write(img2, "PNG", f);
-
-                inputStream = new FileInputStream(f);
-                firstRemoteFile = "/Thumb" + "/" + f.getName();
-                System.out.println("Start uploading first file");
-                done = ftpClient.storeFile(firstRemoteFile, inputStream);
-                inputStream.close();
-                if (done) {
-                    System.out.println("The first file is uploaded successfully.");
-                }
-
-            } else {
-                float extraSize = width - 100;
-                float percentWidth = (extraSize / width) * 100;
-                float percentHight = height - ((height / 100) * percentWidth);
-                BufferedImage img = new BufferedImage(100, (int) percentHight, BufferedImage.TYPE_INT_RGB);
-                Image scaledImage = sourceImage.getScaledInstance(100, (int) percentHight, Image.SCALE_SMOOTH);
-                img.createGraphics().drawImage(scaledImage, 0, 0, null);
-                BufferedImage img2 = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
-                img2 = img.getSubimage(0, (int) ((percentHight - 100) / 2), 100, 100);
-
-                File f = new File("MyFile.png");
-                ImageIO.write(img2, "PNG", f);
-
-                inputStream = new FileInputStream(f);
-                firstRemoteFile = "/Thumb";
-                System.out.println("Start uploading first file");
-                done = ftpClient.storeFile(firstRemoteFile, inputStream);
-                inputStream.close();
-                if (done) {
-                    System.out.println("The first file is uploaded successfully.");
-                }
-            }
- 
             /*//APPROACH #2: uploads second file using an OutputStream
             File secondLocalFile = new File("C://Users/Asror/Desktop/mehmet2.txt");
             String secondRemoteFile = "/Upload123/mehmet4.txt";
@@ -198,6 +151,91 @@ public class FTPUpload {
                 ex.printStackTrace();
             }
         }
+        
+        Thumbnail(path, uniquecode);
+    }
+    
+    
+    public void Thumbnail(String pathh, String Uniqu)
+    {
+                String server = "212.64.126.219";
+        int port = 9942;
+        String user = "asror";
+        String pass = "asror";
+ 
+        FTPClient ftpClient = new FTPClient();
+        try {
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+                ftpClient.enterLocalPassiveMode();
+
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        
+            InputStream inputStream = new FileInputStream(pathh);
+            String firstRemoteFile = "";
+            BufferedImage sourceImage = ImageIO.read(new File(pathh));
+            
+            int width = sourceImage.getWidth();
+            int height = sourceImage.getHeight();
+
+            if (width > height) {
+                float extraSize = height - 100;
+                float percentHight = (extraSize / height) * 100;
+                float percentWidth = width - ((width / 100) * percentHight);
+                BufferedImage img = new BufferedImage((int) percentWidth, 100, BufferedImage.TYPE_INT_RGB);
+                Image scaledImage = sourceImage.getScaledInstance((int) percentWidth, 100, Image.SCALE_FAST);
+                img.createGraphics().drawImage(scaledImage, 0, 0, null);
+                BufferedImage img2 = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+                img2 = img.getSubimage((int) ((percentWidth - 100) / 2), 0, 100, 100);
+
+                File f = new File(Uniqu);
+                ImageIO.write(img2, "PNG", f);
+
+                inputStream = new FileInputStream(f);
+                firstRemoteFile = "/Thumb" + "/" + f.getName();
+                System.out.println("Start uploading first file");
+                boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+                inputStream.close();
+                if (done) {
+                    System.out.println("The first file is uploaded successfully.");
+                }
+
+            } else {
+                float extraSize = width - 100;
+                float percentWidth = (extraSize / width) * 100;
+                float percentHight = height - ((height / 100) * percentWidth);
+                BufferedImage img = new BufferedImage(100, (int) percentHight, BufferedImage.TYPE_INT_RGB);
+                Image scaledImage = sourceImage.getScaledInstance(100, (int) percentHight, Image.SCALE_SMOOTH);
+                img.createGraphics().drawImage(scaledImage, 0, 0, null);
+                BufferedImage img2 = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+                img2 = img.getSubimage(0, (int) ((percentHight - 100) / 2), 100, 100);
+
+                File f = new File(Uniqu);
+                ImageIO.write(img2, "PNG", f);
+
+                inputStream = new FileInputStream(f);
+                firstRemoteFile = "/Thumb" + "/" + f.getName();;
+                System.out.println("Start uploading first file");
+                boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+                inputStream.close();
+                if (done) {
+                    System.out.println("The first file is uploaded successfully.");
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
     }
 
     
