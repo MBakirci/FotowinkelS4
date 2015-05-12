@@ -45,13 +45,12 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
+                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
+                        <li><a href="Upload.jsp">Upload</a></li>
                     </ul>
                 </nav>
             </div>

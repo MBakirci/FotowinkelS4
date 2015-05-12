@@ -46,21 +46,20 @@
 
         <div class="container">
 
-      <div class="masthead">
-        <h3 class="text-muted">Inloggen</h3>
-        <nav>
-          <ul class="nav nav-justified">
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li class="active"><a href="Inlogscherm.jsp">login</a></li>
+            <div class="masthead">
+                <h3 class="text-muted">Project name</h3>
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
+                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
+                        <li><a href="Registreren.jsp">Registreren</a></li>
+                        <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
-          </ul>
-        </nav>
-      </div>
+                        <li class="active"><a href="Upload.jsp">Upload</a></li>
+                    </ul>
+                </nav>
+            </div>
             
         
         <form name="form1" id="form1" action="test" method="post" enctype="multipart/form-data">
@@ -75,7 +74,13 @@
             <br/>
         
         <% String Category = ""; %>
-        <% List<Categorie> categories = categorieën.GetAllCategories("Henk@yolo.nl"); %>
+        <%  
+                String user = "";
+        if (session.getAttribute("Name") != null) {
+        user =  session.getAttribute("Name").toString();
+        }
+        
+        List<Categorie> categories = categorieën.GetAllCategories(user); %>
             <form method="get" name="productForm">
     <select name="category"> 
         <%   for(Categorie es: categories) { %>
@@ -85,7 +90,10 @@
     <input type="submit" value="Kies!" name="dropdown" id="dropdown">
     <%
         Category = request.getParameter("category");
-        Test.StaticValues.setMyStaticMember(Category, "Henk@yolo.nl");
+        if (session.getAttribute("Name") != null) {
+        user =  session.getAttribute("Name").toString();
+        }
+        Test.StaticValues.setMyStaticMember(Category, user);
         out.println(Category);
     %>  
         </form>
@@ -98,8 +106,10 @@
         <%
                 if (request.getParameter("btnCategory") != null)
                 {    
-              
-                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
+             if (session.getAttribute("Name") != null) {
+                user =  session.getAttribute("Name").toString();
+                 }
+                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
                 }     
                 %>
         </form>

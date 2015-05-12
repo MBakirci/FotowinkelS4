@@ -82,59 +82,134 @@ public final class fotograafProfiel_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        \r\n");
       out.write("         <div class=\"container\">\r\n");
       out.write("\r\n");
-      out.write("      <div class=\"masthead\">\r\n");
-      out.write("        <nav>\r\n");
-      out.write("          <ul class=\"nav nav-justified\">\r\n");
-      out.write("            <li><a href=\"index.jsp\">Home</a></li>\r\n");
-      out.write("            <li><a href=\"#\">Projects</a></li>\r\n");
-      out.write("            <li><a href=\"#\">About</a></li>\r\n");
-      out.write("            <li><a href=\"#\">Contact</a></li>\r\n");
-      out.write("            <li><a href=\"AccountDeactiveren.jsp\">Accountinformatie</a></li>\r\n");
-      out.write("            <li class=\"active\"><a href=\"fotograafFotos.jsp\">Profiel</a></li>\r\n");
-      out.write("            <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
-      out.write("          </ul>\r\n");
-      out.write("        </nav>\r\n");
-      out.write("      </div>\r\n");
+      out.write("\r\n");
       out.write("      <div class=\"masthead\">\r\n");
       out.write("        <nav>\r\n");
       out.write("          <ul class=\"nav nav-justified\">\r\n");
       out.write("            <li><a href=\"fotograafFotos.jsp\">fotos</a></li>\r\n");
-      out.write("            <li class=\"active\"><a href=\"fotograafProfiel.jsp\">gegevens</a></li>\r\n");
-      out.write("            <li><a href=\"#\">one more thing</a></li>\r\n");
+      out.write("            <li class=\"active\"><a href=\"AccountInformation.jsp\">gegevens</a></li>\r\n");
+      out.write("            <li><a href=\"index.jsp\">Back to Home</a></li>\r\n");
       out.write("          </ul>\r\n");
       out.write("        </nav>\r\n");
-      out.write("          \r\n");
-      out.write("          ");
-Test.Categorieën cat = new Test.Categorieën();
-                List<Test.Categorie> test = cat.GetAllCategories(); 
+      out.write("      \r\n");
+      out.write("                      <!-- Jumbotron -->\r\n");
+      out.write("            <div class=\"jumbotron\">\r\n");
+      out.write("                <h2>Change profile\r\n");
+      out.write("                </h2>\r\n");
+      out.write("            </div>\r\n");
       out.write("\r\n");
-      out.write("      </div><select class=\"btn btn-default dropdown-toggle\" name=\"Dropdown\">\r\n");
-      out.write("          ");
-for(Categorie c : test){
-      out.write("\r\n");
-      out.write("          <option>");
-      out.print(c.GetNaam());
-      out.write("</option>\r\n");
-      out.write("          ");
-}
-      out.write("\r\n");
-      out.write("      </select>\r\n");
-      out.write("             \r\n");
-      out.write("    \r\n");
       out.write("\r\n");
       out.write("            ");
-for(Categorie c : test){
+
+                //if no button was pressed, this is the first time loading this page
+                Test.KlantInfo accountInfo = new Test.KlantInfo();
+                String sessionName = (String) session.getAttribute("Name");
+                sessionName = "p.de.beer@fontys.nlrejkw"; //For test purposes
+                List userinfo1 = accountInfo.getDBInfo(sessionName);
+                String emailDB = userinfo1.get(0).toString();
+                //String telnrDB = userinfo1.get(1).toString();
+                String fnameDB = userinfo1.get(1).toString();
+                String lnameDB = userinfo1.get(3).toString();
+                //String streetDB = userinfo1.get(4).toString();
+                //String housenumDB = userinfo1.get(5).toString();
+                //String zipcodeDB = userinfo1.get(6).toString();
+                //String cityDB = userinfo1.get(7).toString();
+
+                //if button was pressed, save changes
+                if (request.getParameter("btnSave") != null) {
+                    //Get Textbox values
+                    String email = request.getParameter("email");
+                    String telnr = request.getParameter("telnr");
+                    String pass = request.getParameter("pass");
+                    String passver = request.getParameter("passv");
+                    String fname = request.getParameter("fname");
+                    String lname = request.getParameter("lname");
+                    String street = request.getParameter("street");
+                    String housenumber = request.getParameter("housenumber");
+                    String zipcode = request.getParameter("zipcode");
+                    String city = request.getParameter("city");
+
+                    ///todo
+                    ///Change account info
+                    accountInfo.changeAccountInfo(sessionName, email, telnr, pass, passver, fname, lname, street, housenumber, zipcode, city);
+
+                    //debug
+                    //response.sendRedirect("index.jsp");
+                }
+            
       out.write("\r\n");
-      out.write("            <div class=\"well\">");
-      out.print(c.GetNaam());
-      out.write("</div>\r\n");
-      out.write("            ");
-}
+      out.write("            <!--Inputform-->\r\n");
+      out.write("            <form>\r\n");
+      out.write("                <div class=\"col-lg-6 col-md-offset-3\">\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputEmail1\">Email address</label>\r\n");
+      out.write("                        <input type=\"email\" name=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"");
+      out.print(emailDB);
+      out.write("\" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Telefoonnummer</label>\r\n");
+      out.write("                        <input type=\"telnr\" name=\"telnr\" class=\"form-control bfh-phone\" id=\"exampleInputPassword1\" placeholder=\"");
+//=telnrDB
+      out.write("\" required=\"\" data-format=\"+31 (ddd) dddddd\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Password</label>\r\n");
+      out.write("                        <input type=\"password\" name=\"pass\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"password \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Verify Password</label>\r\n");
+      out.write("                        <input type=\"password\" name=\"passv\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"password \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Firstname</label>\r\n");
+      out.write("                        <input type=\"firstname\" name=\"fname\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+      out.print(fnameDB);
+      out.write("\" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Lastname</label>\r\n");
+      out.write("                        <input type=\"lastname\" name=\"lname\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+      out.print(lnameDB);
+      out.write(" \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Street</label>\r\n");
+      out.write("                        <input type=\"address\" name=\"street\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+//=streetDB
+      out.write(" \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Housenumber</label>\r\n");
+      out.write("                        <input type=\"housenumber\" name=\"housenumber\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+//=housenumDB
+      out.write(" \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">Zipcode</label>\r\n");
+      out.write("                        <input type=\"zipcode\" name=\"zipcode\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+//=zipcodeDB
+      out.write(" \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                        <label for=\"exampleInputPassword1\">City</label>\r\n");
+      out.write("                        <input type=\"city\" name=\"city\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"");
+//=cityDB
+      out.write(" \" required=\"\">\r\n");
+      out.write("                    </div>\r\n");
       out.write("\r\n");
-      out.write("     \r\n");
-      out.write("    <!-- Single button -->\r\n");
-      out.write("        \r\n");
-      out.write("                \r\n");
+      out.write("                    <button type=\"submit\" name=\"btnSave\" class=\"btn btn-default\">Save changes</button>\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </form>\r\n");
+      out.write("\r\n");
+      out.write("            <!-- Site footer -->\r\n");
+      out.write("        </div>\r\n");
+      out.write("\r\n");
+      out.write("          <!-- Single button -->\r\n");
+      out.write("         </div>\r\n");
+      out.write("                  <footer class=\"footer\" align=\"center\">\r\n");
+      out.write("            <p>&copy; Company 2015</p>\r\n");
+      out.write("        </footer>      \r\n");
       out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");

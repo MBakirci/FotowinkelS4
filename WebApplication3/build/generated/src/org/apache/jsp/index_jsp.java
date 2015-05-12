@@ -85,13 +85,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <nav>\r\n");
       out.write("                    <ul class=\"nav nav-justified\">\r\n");
       out.write("                        <li class=\"active\"><a href=\"#\">Home</a></li>\r\n");
-      out.write("                        <li><a href=\"#\">Projects</a></li>\r\n");
-      out.write("                        <li><a href=\"#\">About</a></li>\r\n");
-      out.write("                        <li><a href=\"#\">Contact</a></li>\r\n");
-      out.write("                        <li><a href=\"AccountDeactiveren.jsp\">Accountinformatie</a></li>\r\n");
+      out.write("                        <li><a href=\"Adminpage.jsp\">Accountinformatie</a></li>\r\n");
+      out.write("                        <li><a href=\"fotograafProfiel.jsp\">Profiel</a></li>\r\n");
       out.write("                        <li><a href=\"Registreren.jsp\">Registreren</a></li>\r\n");
       out.write("                        <li><a href=\"Inlogscherm.jsp\">login</a></li>\r\n");
       out.write("                        <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
+      out.write("                        <li><a href=\"Upload.jsp\">Upload</a></li>\r\n");
       out.write("                    </ul>\r\n");
       out.write("                </nav>\r\n");
       out.write("            </div>\r\n");
