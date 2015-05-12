@@ -42,21 +42,6 @@
     <body>
         <!--NAVIGATION-->
         <div class="container">
-            <div class="masthead">
-                <h3 class="text-muted">Fotowinkel</h3>
-                <nav>
-                    <ul class="nav nav-justified">
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="AccountInfotmation.jsp">Verander</a></li>
-                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
-                        <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
-                    </ul>
-                </nav>
-            </div>
                   <div class="masthead">
         <nav>
           <ul class="nav nav-justified">

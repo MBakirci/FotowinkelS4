@@ -43,17 +43,16 @@
         <!--NAVIGATION-->
         <div class="container">
             <div class="masthead">
-                <h3 class="text-muted">Fotowinkel</h3>
+                <h3 class="text-muted">Project name</h3>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="AccountInfotmation.jsp">Verander</a></li>
-                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
+                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li class="active"><a href="Inlogscherm.jsp">Login</a></li>
+                        <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
+                        <li><a href="Upload.jsp">Upload</a></li>
                     </ul>
                 </nav>
             </div>

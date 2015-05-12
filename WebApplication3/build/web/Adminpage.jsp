@@ -1,5 +1,6 @@
 
 
+<%@page import="javax.persistence.Convert"%>
 <%-- 
     Document   : Inlogscherm
     Created on : 11-mrt-2015, 10:56:11
@@ -53,8 +54,8 @@
                 <h3 class="text-muted">Project name</h3>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li class="active"><a href="Adminpage.jsp">Accountinformatie</a></li>
                         <li><a href="fotograafProfiel.jsp">Profiel</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
@@ -84,15 +85,54 @@
        <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputName" class="sr-only">Email address</label>
-        <input type="email" id="Name" name="Email" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="Name" name="Email" class="form-control" placeholder="Email" autofocus>
         
        
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnNonactief">Account op non actief </button>
          <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnActief">Account naar actief </button>
-         
+                 <input type="number" id="Prijs" name="DDprijs" class="form-control" placeholder="Prijs" required autofocus>
+
+                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnPrijs">Stel de basis prijs in </button>
+                 <select name="DDprijs">
+                     <option></option>
+                     <option>Foto</option>
+                     <option>Muismat</option>
+                 </select>
       </form>
 
     </div>
+   <% 
+       
+        
+       
+        
+        try{
+            
+         
+            if(request.getParameter("btnPrijs") != null){
+            String prijs = request.getParameter("DDprijs");
+            Test.Adminbasisprijs prijsinstellen = new Test.Adminbasisprijs(Double.parseDouble(prijs));
+            if(prijsinstellen.Checkprijs(session.getAttribute("Name").toString()))
+            {
+                out.print("Account op non-actief zetten gelukt");
+                response.sendRedirect("index.jsp");
+                
+            }
+            else{response.sendRedirect("Registreren.jsp");}
+                    
+                    
+                    
+             }
+            
+        }
+        catch(NullPointerException ex){            
+        out.print("iets mis gegaan probeer het opnieuw");
+        }
+       
+    
+   
+       
+   %>
 
                      
              <%

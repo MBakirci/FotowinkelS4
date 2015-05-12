@@ -14,8 +14,6 @@
 <%@page import="java.sql.*"%>
 <%@page import= "Test.Databaseconnector"%>
 <%@page import = "Test.registreer"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,12 +25,8 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <c:if test="${!empty language}">
-    <fmt:setLocale value="${language}" scope="session" />
-    </c:if>
-    
-    <title><fmt:message key='inloggen'/></title>
-    
+    <title>Inloggen</title>
+
     <!-- Bootstrap core CSS -->
     <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
@@ -54,22 +48,20 @@
         
          <div class="container">
 
-      <div class="masthead">
-        <h3 class="text-muted"><fmt:message key='inloggen'/></h3>
-        <nav>
-          <ul class="nav nav-justified">
-           <ul class="nav nav-justified">
-               <li><a href="index.jsp"><fmt:message key='home'/></a></li>
-            <li><a href="#"><fmt:message key='Projects'/></a></li>
-            <li><a href="#"><fmt:message key='about'/></a></li>
-            <li><a href="#"><fmt:message key='contact'/></a></li>
-            <li><a href="AccountDeactiveren.jsp"><fmt:message key='accountInformatie'/></a></li>
-            <li><a href="Registreren.jsp"><fmt:message key='registeren'/></a></li>
-            <li class="active"><a href="Inlogscherm.jsp"><fmt:message key='login'/></a></li>
-            <li><a href="logout.jsp"><fmt:message key='logout'/></a></li>
-          </ul>
-        </nav>
-      </div>
+            <div class="masthead">
+                <h3 class="text-muted">Project name</h3>
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
+                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
+                        <li><a href="Registreren.jsp">Registreren</a></li>
+                        <li class="active"><a href="Inlogscherm.jsp">login</a></li>
+                        <li><a href="logout.jsp">Logout</a></li>
+                        <li><a href="Upload.jsp">Upload</a></li>
+                    </ul>
+                </nav>
+            </div>
              
 <!--             <form id="loginform" autocomplete="on" method="POST">
          <div class="input-group">
@@ -89,19 +81,19 @@
    <div class="container">
 
        <form class="form-signin" method="post">
-        <h2 class="form-signin-heading"><fmt:message key='login'/></h2>
-      <label for="inputName" class="sr-only"><fmt:message key='email'/></label>
+        <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="inputName" class="sr-only">Email address</label>
         <input type="text" id="Name" name="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only"><fmt:message key='password'/></label>
+        <label for="inputPassword" class="sr-only">Password</label>
    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
           
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> <fmt:message key='remberme'/>
+            <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin"><fmt:message key='singIn'/></button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnLogin">Sign in</button>
       </form>
 
     </div>
@@ -116,17 +108,15 @@
                 
                 if(request.getParameter("btnLogin")!= null){ 
                     Test.Login login = new Test.Login(naam, pass);                     
-                    if(login.Verbind()){
-                    %><fmt:message key='loginSucces'/><%
-                        //out.print("Login Gelukt);
-                        session.setAttribute("Name", naam);
+                     if(login.Verbind()){
+                         out.print("Login Gelukt");
+                         session.setAttribute("Name", naam);
                         response.sendRedirect("index.jsp");
-                    }
-                    else{
-                        %><fmt:message key='loginFail'/><%
-                        //out.print("Login mislukt, controleer of u uw gegeven goed hebt ingevult");
-                    }
-                }
+                     }
+                     else{
+                         out.print("Login mislukt, controleer of u uw gegeven goed hebt ingevult");
+                     }
+                 }
                // if(request.getParameter("btnregistreer") != null)
                // {
                      
