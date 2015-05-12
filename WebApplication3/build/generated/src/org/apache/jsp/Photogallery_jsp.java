@@ -115,11 +115,8 @@ public final class Photogallery_jsp extends org.apache.jasper.runtime.HttpJspBas
                     session.setAttribute( "username", "Dennis@dennis.nl" );  
                     ArrayList<String> photoList = new ArrayList<String>();
                     Test.Photo tp = new Test.Photo();
-                    if (session.getAttribute( "Name" ) != null ) 
-                    {
-                    photoList = tp.getPhotos(session.getAttribute( "Name" ).toString()); //FOR DEBUG
-                    }
-//photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
+                    photoList = tp.getPhotos(session.getAttribute( "username" ).toString());
+                    
                     
                    for(String es: photoList)
                     {

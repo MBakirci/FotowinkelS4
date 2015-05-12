@@ -45,7 +45,19 @@
         <input type="FotoCode" id="FotoCode" name="FotoCode" class="form-control" placeholder="FotoCode">
          <button class="" type="submit" name="btnGetfoto">Get Image</button>
         </div>
-            
+          <input type="Email" id="Email" name="Email" class="form-control" placeholder="Email">
+         <button class="" type="submit" name="btnGetCode">Get Codes</button>
+
+         <%
+               
+if (request.getParameter("btnGetCode") != null)
+{
+    Test.Foto_klant FotoCode = new Test.Foto_klant();
+    
+    String Code = FotoCode.Vraagcode(request.getParameter("Email").toString());
+    out.print(Code);
+}
+             %>
              </form>
     </body>
 </html>

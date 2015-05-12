@@ -21,18 +21,16 @@ public class registreer {
     private String Voornaam;
     private String Tussenvoegsel;
     private String Achternaam;
-    private boolean Type;
     private int Id;
     private int Actief;
 
-    public registreer(String naam, String wachtwoord, String voornaam, String tussenvoegsel, String achternaam, int actief,boolean type ) {
+    public registreer(String naam, String wachtwoord, String voornaam, String tussenvoegsel, String achternaam, int actief) {
         this.Naam = naam;
         this.Wachtwoord = wachtwoord;
         this.Voornaam = voornaam;
         this.Tussenvoegsel = tussenvoegsel;
         this.Achternaam = achternaam;
         this.Actief = actief;
-        this.Type = type;
         
     }
 
@@ -41,7 +39,7 @@ public class registreer {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, ACTIEF, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, TYPE) VALUES(? ,?, ?, ?, ? , ?,?)";
+                String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, ACTIEF, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUES(? ,?, ?, ?, ? , ?)";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 state.setString(2, Wachtwoord);
@@ -50,10 +48,6 @@ public class registreer {
                 state.setString(4, Voornaam);
                 state.setString(5, Tussenvoegsel);
                 state.setString(6, Achternaam);
-                String soort = "fotograaf";
-                if(Type == true)
-                { soort = "klant";}
-                state.setString(7, soort);
                 
                 //state.executeQuery();
                 state.executeUpdate();

@@ -41,116 +41,45 @@
         
          <div class="container">
 
-
+      <div class="masthead">
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li class="active"><a href="fotograafFotos.jsp">Profiel</a></li>
+            <li><a href="logout.jsp">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
       <div class="masthead">
         <nav>
           <ul class="nav nav-justified">
             <li><a href="fotograafFotos.jsp">fotos</a></li>
-            <li class="active"><a href="AccountInformation.jsp">gegevens</a></li>
-            <li><a href="index.jsp">Back to Home</a></li>
+            <li class="active"><a href="fotograafProfiel.jsp">gegevens</a></li>
+            <li><a href="#">one more thing</a></li>
           </ul>
         </nav>
-      
-                      <!-- Jumbotron -->
-            <div class="jumbotron">
-                <h2>Change profile
-                </h2>
-            </div>
+          
+          <%Test.Categorieën cat = new Test.Categorieën();
+                List<Test.Categorie> test = cat.GetAllCategories(); %>
+      </div><select class="btn btn-default dropdown-toggle" name="Dropdown">
+          <%for(Categorie c : test){%>
+          <option><%=c.GetNaam()%></option>
+          <%}%>
+      </select>
+             
+    
 
-
-            <%
-                //if no button was pressed, this is the first time loading this page
-                Test.KlantInfo accountInfo = new Test.KlantInfo();
-                String sessionName = (String) session.getAttribute("Name");
-                sessionName = "p.de.beer@fontys.nlrejkw"; //For test purposes
-                List userinfo1 = accountInfo.getDBInfo(sessionName);
-                String emailDB = userinfo1.get(0).toString();
-                //String telnrDB = userinfo1.get(1).toString();
-                String fnameDB = userinfo1.get(1).toString();
-                String lnameDB = userinfo1.get(3).toString();
-                //String streetDB = userinfo1.get(4).toString();
-                //String housenumDB = userinfo1.get(5).toString();
-                //String zipcodeDB = userinfo1.get(6).toString();
-                //String cityDB = userinfo1.get(7).toString();
-
-                //if button was pressed, save changes
-                if (request.getParameter("btnSave") != null) {
-                    //Get Textbox values
-                    String email = request.getParameter("email");
-                    String telnr = request.getParameter("telnr");
-                    String pass = request.getParameter("pass");
-                    String passver = request.getParameter("passv");
-                    String fname = request.getParameter("fname");
-                    String lname = request.getParameter("lname");
-                    String street = request.getParameter("street");
-                    String housenumber = request.getParameter("housenumber");
-                    String zipcode = request.getParameter("zipcode");
-                    String city = request.getParameter("city");
-
-                    ///todo
-                    ///Change account info
-                    accountInfo.changeAccountInfo(sessionName, email, telnr, pass, passver, fname, lname, street, housenumber, zipcode, city);
-
-                    //debug
-                    //response.sendRedirect("index.jsp");
-                }
-            %>
-            <!--Inputform-->
-            <form>
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="<%=emailDB%>" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Telefoonnummer</label>
-                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="<%//=telnrDB%>" required="" data-format="+31 (ddd) dddddd">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Verify Password</label>
-                        <input type="password" name="passv" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Firstname</label>
-                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder="<%=fnameDB%>" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Lastname</label>
-                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder="<%=lnameDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Street</label>
-                        <input type="address" name="street" class="form-control" id="exampleInputPassword1" placeholder="<%//=streetDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Housenumber</label>
-                        <input type="housenumber" name="housenumber" class="form-control" id="exampleInputPassword1" placeholder="<%//=housenumDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Zipcode</label>
-                        <input type="zipcode" name="zipcode" class="form-control" id="exampleInputPassword1" placeholder="<%//=zipcodeDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">City</label>
-                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder="<%//=cityDB%> " required="">
-                    </div>
-
-                    <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>
-                </div>
-            </form>
-
-            <!-- Site footer -->
-        </div>
-
-          <!-- Single button -->
-         </div>
-                  <footer class="footer" align="center">
-            <p>&copy; Company 2015</p>
-        </footer>      
+            <%for(Categorie c : test){%>
+            <div class="well"><%=c.GetNaam()%></div>
+            <%}%>
+     
+    <!-- Single button -->
+        
+                
 
     </body>
 </html>

@@ -31,12 +31,12 @@ public class Login {
             PreparedStatement state = null;
              PreparedStatement state1 = null;
             try {
-                String a = "Select EMAIL FROM FW_ACCOUNT WHERE EMAIL = ?";
+                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
                 state1 = ts.conn.prepareStatement(a);
                 state1.setString(1, Naam);
                 ResultSet rs1 = state1.executeQuery();
                 if(rs1.next()){
-                String q = "Select WACHTWOORD from FW_ACCOUNT where EMAIL = ?";
+                String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 //state.executeQuery();

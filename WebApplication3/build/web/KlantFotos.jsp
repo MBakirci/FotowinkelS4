@@ -36,7 +36,21 @@
     <body>
      
         
-      <div class="container">      
+         <div class="container">
+
+      <div class="masthead">
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
+            <li class="active"><a href="fotograafFotos.jsp">Profiel</a></li>
+            <li><a href="logout.jsp">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
       <div class="masthead">
         <nav>
           <ul class="nav nav-justified">

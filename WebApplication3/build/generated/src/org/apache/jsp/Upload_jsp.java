@@ -139,13 +139,7 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
  String Category = ""; 
       out.write("\r\n");
       out.write("        ");
-  
-                String user = "";
-        if (session.getAttribute("Name") != null) {
-        user =  session.getAttribute("Name").toString();
-        }
-        
-        List<Categorie> categories = categorieën.GetAllCategories(user); 
+ List<Categorie> categories = categorieën.GetAllCategories("Henk@yolo.nl"); 
       out.write("\r\n");
       out.write("            <form method=\"get\" name=\"productForm\">\r\n");
       out.write("    <select name=\"category\"> \r\n");
@@ -163,10 +157,7 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    ");
 
         Category = request.getParameter("category");
-        if (session.getAttribute("Name") != null) {
-        user =  session.getAttribute("Name").toString();
-        }
-        Test.StaticValues.setMyStaticMember(Category, user);
+        Test.StaticValues.setMyStaticMember(Category, "Henk@yolo.nl");
         out.println(Category);
     
       out.write("  \r\n");
@@ -181,10 +172,8 @@ public final class Upload_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                 if (request.getParameter("btnCategory") != null)
                 {    
-             if (session.getAttribute("Name") != null) {
-                user =  session.getAttribute("Name").toString();
-                 }
-                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
+              
+                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), "Henk@yolo.nl/");
                 }     
                 
       out.write("\r\n");
