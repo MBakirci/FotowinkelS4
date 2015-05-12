@@ -85,7 +85,7 @@
     <input type="submit" value="Kies!" name="dropdown" id="dropdown">
     <%
         Category = request.getParameter("category");
-        Test.StaticValues.setMyStaticMember(Category, "Henk@yolo.nl");
+        Test.StaticValues.setMyStaticMember(Category, session.getAttribute("Name").toString());
         out.println(Category);
     %>  
         </form>
