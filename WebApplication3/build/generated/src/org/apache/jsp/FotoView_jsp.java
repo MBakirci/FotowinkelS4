@@ -93,21 +93,27 @@ public final class FotoView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <input type=\"FotoCode\" id=\"FotoCode\" name=\"FotoCode\" class=\"form-control\" placeholder=\"FotoCode\">\r\n");
       out.write("         <button class=\"\" type=\"submit\" name=\"btnGetfoto\">Get Image</button>\r\n");
       out.write("        </div>\r\n");
-      out.write("          <input type=\"Email\" id=\"Email\" name=\"Email\" class=\"form-control\" placeholder=\"Email\">\r\n");
+      out.write("            \r\n");
+      out.write("         <input type=\"Email\" id=\"Email\" name=\"Email\" class=\"form-control\" placeholder=\"Email\">\r\n");
       out.write("         <button class=\"\" type=\"submit\" name=\"btnGetCode\">Get Codes</button>\r\n");
       out.write("\r\n");
       out.write("         ");
 
                
 if (request.getParameter("btnGetCode") != null)
-{
+{   ArrayList<String> Codelist = new ArrayList<String>();
     Test.Foto_klant FotoCode = new Test.Foto_klant();
     
-    String Code = FotoCode.Vraagcode(request.getParameter("Email").toString());
-    out.print(Code);
+    Codelist = FotoCode.Vraagcode(request.getParameter("Email").toString());
+    out.print("<br>");
+    for(String code: Codelist)
+    {
+        out.println(code + "<br>");
+    } 
 }
-             
+         
       out.write("\r\n");
+      out.write("             \r\n");
       out.write("             </form>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");

@@ -3,10 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gebruiker/Documents/GitHub/FotowinkelS4/WebApplication3/web/fotograafFotos.jsp</file>
-            <file>file:/C:/Users/Gebruiker/Documents/GitHub/FotowinkelS4/WebApplication3/web/Upload.jsp</file>
-            <file>file:/C:/Users/Gebruiker/Documents/GitHub/FotowinkelS4/WebApplication3/web/fotograafProfiel.jsp</file>
-            <file>file:/C:/Users/Gebruiker/Documents/GitHub/FotowinkelS4/WebApplication3/web/index.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Databaseconnector.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/fotograafFotos.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/Photogallery.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/StaticValues.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/Upload.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/index.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Photo.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Categorieën.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/KlantPagina.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Foto_klant.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/KlantFotos.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Databaseconnecter.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/FotoView.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Categorie.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/Registreren.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/AccountInformation.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/fotograafProfiel.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/AccountInfo.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/KlantInfo.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Fotos.java</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/Winkelwagen.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/web/KlantInformation.jsp</file>
+            <file>file:/C:/Users/jeffrey/Documents/FHICT/P7/FotowinkelS4/WebApplication3/src/java/Test/Fotograaf.java</file>
         </group>
     </open-files>
 </project-private>
