@@ -21,9 +21,9 @@ public class registreer {
     private String Voornaam;
     private String Tussenvoegsel;
     private String Achternaam;
-    private boolean Atype;
+    private boolean Type;
     private int Id;
-    private int Enabled;
+    private int Actief;
 
     public registreer(String naam, String wachtwoord, String voornaam, String tussenvoegsel, String achternaam, int actief,boolean type ) {
         this.Naam = naam;
@@ -31,8 +31,8 @@ public class registreer {
         this.Voornaam = voornaam;
         this.Tussenvoegsel = tussenvoegsel;
         this.Achternaam = achternaam;
-        this.Enabled = actief;
-        this.Atype = type;
+        this.Actief = actief;
+        this.Type = type;
         
     }
 
@@ -41,17 +41,17 @@ public class registreer {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "INSERT INTO FW_ACCOUNT (EMAIL,WACHTWOORD, ENABLED, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, ATYPE) VALUES(? ,?, ?, ?, ? , ?,?)";
+                String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, ACTIEF, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, TYPE) VALUES(? ,?, ?, ?, ? , ?,?)";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 state.setString(2, Wachtwoord);
-                Enabled = 1;
-                state.setInt(3, Enabled);
+                Actief = 1;
+                state.setInt(3, Actief);
                 state.setString(4, Voornaam);
                 state.setString(5, Tussenvoegsel);
                 state.setString(6, Achternaam);
                 String soort = "fotograaf";
-                if(Atype == true)
+                if(Type == true)
                 { soort = "klant";}
                 state.setString(7, soort);
                 
