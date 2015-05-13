@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="jdk.nashorn.internal.ir.RuntimeNode.Request"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.NewClass" %>
 <!DOCTYPE html>
@@ -39,18 +40,38 @@
     <body>
 
         <div class="container">
-
+             
             <div class="masthead">
                 <h3 class="text-muted">Project name</h3>
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
                         <li><a href="fotograafProfiel.jsp">Profiel</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
+                                                <% 
+                            if (session.getAttribute( "Name" ) != null ) 
+                            {
+                                
+                            Test.Photo Photo = new Test.Photo();
+                            if(Photo.isPhotographer(session.getAttribute("Name").toString()))
+                                    {
+                                        request.setAttribute("Accountinfo","fotograafProfiel.jsp");
+                            %>
                         <li><a href="Upload.jsp">Upload</a></li>
+                        <%
+                                    }
+                            else
+                            {
+                                request.setAttribute("Accountinfo","KlantPagina.jsp");
+                                        %>
+                        <li><a href="klantcodepagina.jsp">Klantcode Invoeren</a></li>
+                        
+                        <% 
+                            }}
+                                %>
+                  <li><a href="<%=request.getAttribute("Accountinfo")%>">Accountinformatie</a></li>
                     </ul>
                 </nav>
             </div>

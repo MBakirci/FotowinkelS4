@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import Test.NewClass;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -47,6 +48,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("    <head>\r\n");
@@ -79,18 +81,46 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\r\n");
       out.write("\r\n");
       out.write("        <div class=\"container\">\r\n");
-      out.write("\r\n");
+      out.write("             \r\n");
       out.write("            <div class=\"masthead\">\r\n");
       out.write("                <h3 class=\"text-muted\">Project name</h3>\r\n");
       out.write("                <nav>\r\n");
       out.write("                    <ul class=\"nav nav-justified\">\r\n");
       out.write("                        <li class=\"active\"><a href=\"#\">Home</a></li>\r\n");
-      out.write("                        <li><a href=\"Adminpage.jsp\">Accountinformatie</a></li>\r\n");
       out.write("                        <li><a href=\"fotograafProfiel.jsp\">Profiel</a></li>\r\n");
       out.write("                        <li><a href=\"Registreren.jsp\">Registreren</a></li>\r\n");
       out.write("                        <li><a href=\"Inlogscherm.jsp\">login</a></li>\r\n");
       out.write("                        <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
+      out.write("                                                ");
+ 
+                            if (session.getAttribute( "Name" ) != null ) 
+                            {
+                                
+                            Test.Photo Photo = new Test.Photo();
+                            if(Photo.isPhotographer(session.getAttribute("Name").toString()))
+                                    {
+                                        request.setAttribute("Accountinfo","fotograafProfiel.jsp");
+                            
+      out.write("\r\n");
       out.write("                        <li><a href=\"Upload.jsp\">Upload</a></li>\r\n");
+      out.write("                        ");
+
+                                    }
+                            else
+                            {
+                                request.setAttribute("Accountinfo","KlantPagina.jsp");
+                                        
+      out.write("\r\n");
+      out.write("                        <li><a href=\"klantcodepagina.jsp\">Klantcode Invoeren</a></li>\r\n");
+      out.write("                        \r\n");
+      out.write("                        ");
+ 
+                            }}
+                                
+      out.write("\r\n");
+      out.write("                  <li><a href=\"");
+      out.print(request.getAttribute("Accountinfo"));
+      out.write("\">Accountinformatie</a></li>\r\n");
       out.write("                    </ul>\r\n");
       out.write("                </nav>\r\n");
       out.write("            </div>\r\n");

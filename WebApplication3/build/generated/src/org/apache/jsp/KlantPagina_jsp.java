@@ -3,13 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.*;
-import java.io.OutputStream;
-import java.sql.*;
-import Test.Databaseconnector;
-import Test.Foto_klant;
+import Test.Categorie;
+import java.util.List;
 
-public final class FotoView_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class KlantPagina_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,16 +48,20 @@ public final class FotoView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
-      out.write("    <head>\r\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
-      out.write("            <!-- Bootstrap core CSS -->\r\n");
+      out.write("     <head>\r\n");
+      out.write("    <meta charset=\"utf-8\">\r\n");
+      out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
+      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
+      out.write("    <meta name=\"description\" content=\"\">\r\n");
+      out.write("    <meta name=\"author\" content=\"\">\r\n");
+      out.write("    <link rel=\"icon\" href=\"favicon.ico\">\r\n");
+      out.write("\r\n");
+      out.write("    <title>Justified Nav Template for Bootstrap</title>\r\n");
+      out.write("\r\n");
+      out.write("    <!-- Bootstrap core CSS -->\r\n");
       out.write("    <link href=\"CSS/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>\r\n");
       out.write("\r\n");
       out.write("    <!-- Custom styles for this template -->\r\n");
@@ -69,51 +70,31 @@ public final class FotoView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->\r\n");
       out.write("    <!--[if lt IE 9]><script src=\"../../assets/js/ie8-responsive-file-warning.js\"></script><![endif]-->\r\n");
       out.write("    <script src=\"js/ie-emulation-modes-warning.js\"></script>\r\n");
-      out.write("    </head>\r\n");
+      out.write("\r\n");
+      out.write("    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->\r\n");
+      out.write("    <!--[if lt IE 9]>\r\n");
+      out.write("      <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\r\n");
+      out.write("      <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\r\n");
+      out.write("    <![endif]-->\r\n");
+      out.write("  </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("         <form>\r\n");
-      out.write("        <div>\r\n");
-      out.write("                        ");
-
-            if (request.getParameter("btnGetfoto") != null)
-    {
-    Test.Foto_klant FotoCode = new Test.Foto_klant();
-    
-    String src = FotoCode.VraagFoto(request.getParameter("FotoCode").toString());
-    request.setAttribute("image", src);
-    //request.setAttribute("image", src);
-    }
-            
+      out.write("     \r\n");
+      out.write("        \r\n");
+      out.write("         <div class=\"container\">\r\n");
       out.write("\r\n");
-      out.write("            <img src=\"");
-      out.print(request.getAttribute("image") );
-      out.write("\">\r\n");
+      out.write("      <div class=\"masthead\">\r\n");
+      out.write("        <nav>\r\n");
+      out.write("          <ul class=\"nav nav-justified\">\r\n");
+      out.write("            <li><a href=\"KlantFotos.jsp\">fotos</a></li>\r\n");
+      out.write("            <li class=\"active\"><a href=\"KlantInformation.jsp\">gegevens</a></li>\r\n");
+      out.write("            <li><a href=\"#\">one more thing</a></li>\r\n");
+      out.write("          </ul>\r\n");
+      out.write("        </nav>\r\n");
+      out.write("     \r\n");
+      out.write("    <!-- Single button -->\r\n");
+      out.write("        \r\n");
+      out.write("                \r\n");
       out.write("\r\n");
-      out.write("        <input type=\"FotoCode\" id=\"FotoCode\" name=\"FotoCode\" class=\"form-control\" placeholder=\"FotoCode\">\r\n");
-      out.write("         <button class=\"\" type=\"submit\" name=\"btnGetfoto\">Get Image</button>\r\n");
-      out.write("        </div>\r\n");
-      out.write("            \r\n");
-      out.write("         <input type=\"Email\" id=\"Email\" name=\"Email\" class=\"form-control\" placeholder=\"Email\">\r\n");
-      out.write("         <button class=\"\" type=\"submit\" name=\"btnGetCode\">Get Codes</button>\r\n");
-      out.write("\r\n");
-      out.write("         ");
-
-               
-if (request.getParameter("btnGetCode") != null)
-{   ArrayList<String> Codelist = new ArrayList<String>();
-    Test.Foto_klant FotoCode = new Test.Foto_klant();
-    
-    Codelist = FotoCode.Vraagcode(request.getParameter("Email").toString());
-    out.print("<br>");
-    for(String code: Codelist)
-    {
-        out.println(code + "<br>");
-    } 
-}
-         
-      out.write("\r\n");
-      out.write("             \r\n");
-      out.write("             </form>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

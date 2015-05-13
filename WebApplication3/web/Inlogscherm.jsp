@@ -58,7 +58,7 @@
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li class="active"><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
-                        <li><a href="Upload.jsp">Upload</a></li>
+                        <!--<li><a href="Upload.jsp">Upload</a></li>-->
                     </ul>
                 </nav>
             </div>
