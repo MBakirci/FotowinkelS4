@@ -12,28 +12,24 @@ import java.sql.SQLException;
  *
  * @author hsm
  */
-public class Controleercode {
-     private String Code;
-
-    public Controleercode(String code ) {
-        this.Code = code;
-        
-    }
-
-    public boolean Verbind() throws Exception {
+public class SQL {
+    
+    public Boolean koppeling(int id, String source) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    {
         Databaseconnector ts = new Databaseconnector();
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
+            
             try {
-                String q = "SELECT * FROM FW_FOTO WHERE UNIQUECODE = ?";
-                state = ts.conn.prepareStatement(q);
-                state.setString(1, Code);
+                //String q = "INSERT INTO FW_FOTO (BASISPRIJS) VALUES(?)";
                 
-                if (q != null){
-                //state.executeQuery();
-                state.executeUpdate();
-                return true;}
-                else{ return false;}
+                String q = "INSERT INTO FW_KLANT_FOTO (FOTOCODE, KLANTID) VALUES(?,?)";
+                state = ts.conn.prepareStatement(q);
+                state.setString(1, source);
+                state.setInt(2, id);
+                
+                state.execute();
+                //state.executeUpdate();
               
             } catch (SQLException e) {
                 return false;
@@ -44,5 +40,5 @@ public class Controleercode {
             }
         }
         return true;
-    }    
+    }
 }
