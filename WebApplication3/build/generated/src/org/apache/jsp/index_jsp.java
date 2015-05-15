@@ -88,8 +88,20 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <li><a href=\"Adminpage.jsp\">Accountinformatie</a></li>\r\n");
       out.write("                        <li><a href=\"fotograafProfiel.jsp\">Profiel</a></li>\r\n");
       out.write("                        <li><a href=\"Registreren.jsp\">Registreren</a></li>\r\n");
+      out.write("                        ");
+ if(session.getAttribute("Name") == null){
+                        
+      out.write("\r\n");
       out.write("                        <li><a href=\"Inlogscherm.jsp\">login</a></li>\r\n");
+      out.write("                        ");
+} 
+                        else {
+      out.write("                 \r\n");
       out.write("                        <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
+      out.write("                        ");
+}
+      out.write("\r\n");
+      out.write("                        \r\n");
       out.write("                        ");
  
                             if (session.getAttribute( "Name" ) != null ) 
@@ -112,7 +124,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                  
                                         
       out.write("\r\n");
-      out.write("                        <li><a href=\\\"klantcodepagina.jsp\\\">Klantcode Invoeren</a></li>);\r\n");
+      out.write("                        <li><a href=\"klantcodepagina.jsp\">Klantcode Invoeren</a></li>\r\n");
       out.write("                        ");
  
                             }}

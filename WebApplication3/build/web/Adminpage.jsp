@@ -16,10 +16,14 @@
 <%@page import= "Test.Databaseconnector"%>
 <%@page import = "Test.registreer"%>
 <%@page import = "Test.Verwijderaccount"%>
-
+<%if(session.getAttribute("Role") == null || !session.getAttribute("Role").equals("admin")){
+             response.sendRedirect("index.jsp");}
+         %>
+         
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
+         
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,8 +50,6 @@
     <![endif]-->
   </head>
     <body>
-     
-        
          <div class="container">
 
             <div class="masthead">

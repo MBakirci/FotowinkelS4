@@ -58,7 +58,7 @@
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li class="active"><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
-                        <li><a href="Upload.jsp">Upload</a></li>
+                        <!--<li><a href="Upload.jsp">Upload</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -109,8 +109,10 @@
                 if(request.getParameter("btnLogin")!= null){ 
                     Test.Login login = new Test.Login(naam, pass);                     
                      if(login.Verbind()){
+                         String s = login.getRole();
                          out.print("Login Gelukt");
                          session.setAttribute("Name", naam);
+                         session.setAttribute("Role", login.getRole());
                         response.sendRedirect("index.jsp");
                      }
                      else{

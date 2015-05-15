@@ -86,15 +86,13 @@ public class TestServlet extends HttpServlet {
                     ftpload.UploadFile(UniqCode + L, cat, user, pathloca);
                 }
             }
-
-
+            response.sendRedirect("UploadCompl.jsp");
         } catch (FileUploadException e) {
+            response.sendRedirect("UploadFail.jsp");
             e.printStackTrace();
         } catch (Exception ex) {
+            response.sendRedirect("UploadFail.jsp");
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            response.sendRedirect("Upload.jsp");
         }
     }
 }
