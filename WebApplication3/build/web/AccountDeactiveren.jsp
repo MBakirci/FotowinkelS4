@@ -19,6 +19,7 @@
 <!DOCTYPE html>
 <html>
      <head>
+         
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +54,7 @@
                 <h3 class="text-muted">Project name</h3>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Adminpage.jsp">Accountinformatie</a></li>
                         <li><a href="fotograafProfiel.jsp">Profiel</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>

@@ -109,8 +109,10 @@
                 if(request.getParameter("btnLogin")!= null){ 
                     Test.Login login = new Test.Login(naam, pass);                     
                      if(login.Verbind()){
+                         String s = login.getRole();
                          out.print("Login Gelukt");
                          session.setAttribute("Name", naam);
+                         session.setAttribute("Role", login.getRole());
                         response.sendRedirect("index.jsp");
                      }
                      else{
