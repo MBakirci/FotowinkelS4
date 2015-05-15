@@ -68,7 +68,7 @@
                         </div>
 
                         <%
-                            String category = request.getParameter("cat");
+                            String category = request.getParameter("cat").toString();
                             String username = session.getAttribute("Name").toString();
                             
                             if (category.equals(username)) {
@@ -100,8 +100,8 @@
                         } else if (category != null) {
                             //Query for getting photos in a specific category
                             ArrayList<String> photoList = new ArrayList<String>();
-                            Test.Photo tp = new Test.Photo();
-                            photoList = tp.getPhotosCategory(category);
+                            Test.PhotoCustomer tp = new Test.PhotoCustomer();
+                            photoList = tp.getCatPhotosCustomer(username, category);
 
                             for (String es : photoList) {%>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">

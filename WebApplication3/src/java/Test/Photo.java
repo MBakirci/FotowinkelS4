@@ -70,9 +70,9 @@ public class Photo {
         return null;
     }
     
-    public ArrayList<String> getPhotosCategory(String photosCategory) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    public String getCategoryID(String photosCategory) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
     {
-        ArrayList photoList = new ArrayList();
+        String catID = "";
         Test.Databaseconnector ts = new Test.Databaseconnector();
         
         if (ts.verbindmetDatabase()) {
@@ -80,9 +80,40 @@ public class Photo {
                 
                 try {
                     //Update gebruiker gedeelte van fotograaf
-                    String q = "SElECT FILEPATH FROM FW_FOTO where FOTOGRAAFID = ?";
+                    String q = "SElECT CATEGORIE_ID FROM FW_CATEGORIE where NAAM = ?";
                     state = ts.conn.prepareStatement(q);
                     state.setString(1, photosCategory);
+                    ResultSet rs = state.executeQuery();
+
+                    if (rs.next()) {
+                        catID = rs.getString("CATEGORIE_ID");
+                    }
+                    return catID;
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+                }              
+        }
+        return null;
+    }
+    
+    public ArrayList<String> getPhotosCategory(String photosCategory) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    {
+        ArrayList photoList = new ArrayList();
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        String catID = getCategoryID(photosCategory);
+        
+        if (ts.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                
+                try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SElECT FILEPATH FROM FW_FOTO where CATID = ?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, catID);
                     ResultSet rs = state.executeQuery();
 
                     while (rs.next()) {
@@ -242,4 +273,5 @@ public class Photo {
         }
         return accountID;
     }
+    
 }

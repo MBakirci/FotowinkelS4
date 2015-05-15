@@ -23,7 +23,7 @@
 
         <!-- Custom CSS -->
         <link href="CSS/thumbnail-gallery.css" rel="stylesheet">
-        
+
         <link href="CSS/justified-nav.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,10 +37,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <!-- <h1>Hello World!</h1>
-        <img src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png"/> -->
-        
-       <!--NAVIGATION-->
+        <!-- <h1>Hello World!</h1>
+         <img src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png"/> -->
+
+        <!--NAVIGATION-->
         <div class="container">
             <div class="masthead">
                 <h3 class="text-muted">Project name</h3>
@@ -56,114 +56,71 @@
                     </ul>
                 </nav>
             </div>
-            
-                <!-- Page Content -->
-      <form action="loadPhotos">
-        <div class="container">
 
-            <div class="row">
+            <!-- Page Content -->
+            <form action="loadPhotos">
+                <div class="container">
 
-                <div class="col-lg-12">
-                    <h1 class="page-header">Gallery</h1>
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Gallery</h1>
+                        </div>
+
+                        <%
+                            String category = request.getParameter("cat");
+                            String username = session.getAttribute("Name").toString();
+                            
+                            if (category.equals(username)) {
+
+                                ArrayList<String> photoList = new ArrayList<String>();
+                                Test.Photo tp = new Test.Photo();
+                                if (session.getAttribute("Name") != null) 
+                                {
+                                    photoList = tp.getPhotos(session.getAttribute("Name").toString()); //FOR DEBUG
+                                }
+
+                                for (String es : photoList) {
+
+                        %>
+                        <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
+                            <a class="thumbnail" href=<%=es%>>
+                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
+
+                            </a>
+                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
+                                <b>+</b>
+                            </button>
+
+                        </div>
+
+                        <%
+
+                            }
+                        } else if (category != null) {
+                            //Query for getting photos in a specific category
+                            ArrayList<String> photoList = new ArrayList<String>();
+                            Test.Photo tp = new Test.Photo();
+                            photoList = tp.getPhotosCategory(category);
+
+                            for (String es : photoList) {%>
+                        <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
+                            <a class="thumbnail" href=<%=es%>>
+                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
+
+                            </a>
+                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
+                                <b>+</b>
+                            </button>
+
+                        </div>
+                        <%
+                                }
+                            }
+                        %>
+                    </div>
                 </div>
-                
-                <%
-                    String category = request.getParameter("cat");
-                    if(category != null)
-                    {
-                        //Query for getting photos in a specific category
-                        
-                    }
-                    else
-                    {
-                    
-                    session.setAttribute( "username", "Dennis@dennis.nl" );  
-                    ArrayList<String> photoList = new ArrayList<String>();
-                    Test.Photo tp = new Test.Photo();
-                    if (session.getAttribute( "Name" ) != null ) 
-                    {
-                    photoList = tp.getPhotos(session.getAttribute( "Name" ).toString()); //FOR DEBUG
-                    }
-//photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
-                    
-                   for(String es: photoList)
-                    {
-                       
-                     %>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
-                    <a class="thumbnail" href=<%=es %>>
-                        <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es %> > 
-                        
-                    </a>
-                        <button id="<%=es.substring(es.lastIndexOf("/")+1, es.lastIndexOf(".")) %>" style="position: absolute;top:120px;left: 230px;">
-                            <b>+</b>
-                        </button>
-                        
-                </div>
-                
-                <%
-                      
-                    }
-                    }
-                %>
-               <!-- <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="" height="300" width="400">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png" alt="">
-                    </a>
-                </div> -->
-            </div>
-        </div>
-      </form>
+            </form>
             <hr>
 
             <!-- Footer -->
@@ -183,7 +140,7 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="JS/bootstrap.min.js"></script>
-        </div>
-    </body>
+    </div>
+</body>
 </html>
 

@@ -4,10 +4,11 @@
     Author     : Dennis
 --%>
 
+<%@page import="java.util.HashSet"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Test.Photo"%>
+<%@page import="Test.PhotoCustomer"%>
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +59,7 @@
             </div>
 
             <!-- Page Content -->
-            <form action="loadPhotos">
+            <form>
                 <div class="container">
 
                     <div class="row">
@@ -68,56 +69,34 @@
                         </div>
 
                         <%
-                            String category = request.getParameter("cat");
-                            String username = session.getAttribute("Name").toString();
-                            
-                            if (category.equals(username)) {
+                            session.setAttribute("Name", "Dennis@dennis.nl");
+                            HashSet<String> photoList = new HashSet<String>();
+                            Test.PhotoCustomer tp = new Test.PhotoCustomer();
+                            if (session.getAttribute("Name") != null) {
+                                photoList = tp.getCategoriesCustomer("Dennis@dennis.nl"); //FOR DEBUG
+                            }
+                            //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
 
-                                ArrayList<String> photoList = new ArrayList<String>();
-                                Test.Photo tp = new Test.Photo();
-                                if (session.getAttribute("Name") != null) 
-                                {
-                                    photoList = tp.getPhotos(session.getAttribute("Name").toString()); //FOR DEBUG
-                                }
-
-                                for (String es : photoList) {
+                            for (String es : photoList) {
 
                         %>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
-                            <a class="thumbnail" href=<%=es%>>
-                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
+                            <a class="thumbnail" href="PhotogalleryCatPhotosCustomer.jsp?cat=<%=es%>">
+                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src="http://png-3.findicons.com/files/icons/2770/ios_7_icons/100/folder.png" > 
 
                             </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
-                            </button>
+                            <!--top:120px;left: 230px;-->
+                            <a id="<%=es%>" type="submit" href="PhotogalleryCatPhotosCustomer.jsp?cat=<%=es%>" style="position: absolute; text-align:center; top:115px;">
+                                <b><%=es%></b>
+                            </a>
 
                         </div>
 
                         <%
-
                             }
-                        } else if (category != null) {
-                            //Query for getting photos in a specific category
-                            ArrayList<String> photoList = new ArrayList<String>();
-                            Test.Photo tp = new Test.Photo();
-                            photoList = tp.getPhotosCategory(category);
 
-                            for (String es : photoList) {%>
-                        <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
-                            <a class="thumbnail" href=<%=es%>>
-                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
-
-                            </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
-                            </button>
-
-                        </div>
-                        <%
-                                }
-                            }
                         %>
+
                     </div>
                 </div>
             </form>
