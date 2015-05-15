@@ -50,7 +50,28 @@
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
+                        <% 
+                            if (session.getAttribute( "Name" ) != null ) 
+                            {
+                                
+                            Test.Photo Photo = new Test.Photo();
+                            if(Photo.isPhotographer(session.getAttribute("Name").toString()))
+                                    {
+                                        request.setAttribute("Accountinfo","fotograafProfiel.jsp");
+                        %>
                         <li><a href="Upload.jsp">Upload</a></li>
+                        
+                        <% 
+                                    }
+                            else
+                            {
+                                request.setAttribute("Accountinfo","KlantPagina.jsp");
+                 
+                                        %>
+                        <li><a href=\"klantcodepagina.jsp\">Klantcode Invoeren</a></li>);
+                        <% 
+                            }}
+                                %>
                     </ul>
                 </nav>
             </div>

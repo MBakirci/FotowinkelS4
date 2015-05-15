@@ -90,7 +90,34 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <li><a href=\"Registreren.jsp\">Registreren</a></li>\r\n");
       out.write("                        <li><a href=\"Inlogscherm.jsp\">login</a></li>\r\n");
       out.write("                        <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
+      out.write("                        ");
+ 
+                            if (session.getAttribute( "Name" ) != null ) 
+                            {
+                                
+                            Test.Photo Photo = new Test.Photo();
+                            if(Photo.isPhotographer(session.getAttribute("Name").toString()))
+                                    {
+                                        request.setAttribute("Accountinfo","fotograafProfiel.jsp");
+                        
+      out.write("\r\n");
       out.write("                        <li><a href=\"Upload.jsp\">Upload</a></li>\r\n");
+      out.write("                        \r\n");
+      out.write("                        ");
+ 
+                                    }
+                            else
+                            {
+                                request.setAttribute("Accountinfo","KlantPagina.jsp");
+                 
+                                        
+      out.write("\r\n");
+      out.write("                        <li><a href=\\\"klantcodepagina.jsp\\\">Klantcode Invoeren</a></li>);\r\n");
+      out.write("                        ");
+ 
+                            }}
+                                
+      out.write("\r\n");
       out.write("                    </ul>\r\n");
       out.write("                </nav>\r\n");
       out.write("            </div>\r\n");

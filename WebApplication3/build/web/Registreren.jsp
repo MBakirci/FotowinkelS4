@@ -88,9 +88,9 @@
         <label for="inputName" class="sr-only">Email address</label>
         <input type="email" id="Name" name="username" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"required>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
       <label for="inputvoornaam" class="sr-only">Voornaam</label>
-        <input type="text" id="inputVoornaam" name="voornaam" class="form-control" placeholder="Voornaam"required>
+        <input type="text" id="inputVoornaam" name="voornaam" class="form-control" placeholder="Voornaam" required>
         <label for="inputtussenvoegsel" class="sr-only">Tussenvoegsel</label>
         <input type="text" id="inputTussenvoegsel" name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
         <label for="inputachternaam" class="sr-only">Achternaam</label>
@@ -165,9 +165,11 @@
                  
                  %>
                  <font color="red"><%=error%></font>
-                
+                                 </form>
+
                  </div>
-        </form>
+         </div>
+        
     </body>
 </html>
 
