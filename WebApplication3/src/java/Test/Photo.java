@@ -38,6 +38,70 @@ public class Photo {
         }
     }
     
+    public ArrayList<String> getCategoriesPhotographer (String usernameString) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    {
+        ArrayList categoryList = new ArrayList();
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        String fotograafID = getID(usernameString);
+        
+        if(ts.verbindmetDatabase())
+        {       
+        PreparedStatement state = null;
+            try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SElECT NAAM FROM FW_CATEGORIE where FOTOGRAAFID = ?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, fotograafID);
+                    ResultSet rs = state.executeQuery();
+
+                    while (rs.next()) {
+                        String naam = rs.getString("NAAM");
+                        categoryList.add(naam);
+                    }
+                    return categoryList;
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+        }
+        }
+        return null;
+    }
+    
+    public ArrayList<String> getPhotosCategory(String photosCategory) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    {
+        ArrayList photoList = new ArrayList();
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        
+        if (ts.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                
+                try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SElECT FILEPATH FROM FW_FOTO where FOTOGRAAFID = ?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, photosCategory);
+                    ResultSet rs = state.executeQuery();
+
+                    while (rs.next()) {
+                        String filepathString = rs.getString("FILEPATH");
+                        String thumbPath = filepathString.substring(filepathString.lastIndexOf("/"));
+                        photoList.add("ftp://212.64.126.219:9942/Thumb" + thumbPath );
+                    }
+                    return photoList;
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+                }              
+        }
+        return null;
+    }
+    
     public ArrayList<String> getPhotosPhotographer(String usernameString) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
     {
         ArrayList photoList = new ArrayList();
