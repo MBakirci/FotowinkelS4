@@ -62,22 +62,23 @@
                 <div class="container">
 
                     <div class="row">
-
+                        <% String cat = request.getParameter("cat").toString();%>
                         <div class="col-lg-12">
-                            <h1 class="page-header">Gallery</h1>
+                            <h1 class="page-header"><a href="PhotogalleryCategoryCustomer.jsp" style="color: #000">Gallery</a> / <%=cat%></h1>
                         </div>
 
                         <%
                             String category = request.getParameter("cat").toString();
                             String username = session.getAttribute("Name").toString();
                             
-                            if (category.equals(username)) {
-
+                            if (category.equals("All")) {
+                                
                                 ArrayList<String> photoList = new ArrayList<String>();
                                 Test.Photo tp = new Test.Photo();
                                 if (session.getAttribute("Name") != null) 
                                 {
                                     photoList = tp.getPhotos(session.getAttribute("Name").toString()); //FOR DEBUG
+                                    
                                 }
 
                                 for (String es : photoList) {
@@ -98,6 +99,9 @@
 
                             }
                         } else if (category != null) {
+                            
+                            
+                            
                             //Query for getting photos in a specific category
                             ArrayList<String> photoList = new ArrayList<String>();
                             Test.PhotoCustomer tp = new Test.PhotoCustomer();

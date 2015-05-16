@@ -62,9 +62,9 @@
                 <div class="container">
 
                     <div class="row">
-
+                        <% String cat = request.getParameter("cat").toString();%>
                         <div class="col-lg-12">
-                            <h1 class="page-header">Gallery</h1>
+                            <h1 class="page-header"><a href="PhotogalleryCategory.jsp" style="color: #000">Gallery</a> / <%=cat%></h1>
                         </div>
 
                         <%
@@ -85,13 +85,9 @@
                         %>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
                             <a class="thumbnail" href=<%=es%>>
-                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
+                                <img id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
 
                             </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
-                            </button>
-
                         </div>
 
                         <%
@@ -106,12 +102,9 @@
                             for (String es : photoList) {%>
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
                             <a class="thumbnail" href=<%=es%>>
-                                <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
+                                <img id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
 
                             </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
-                            </button>
 
                         </div>
                         <%

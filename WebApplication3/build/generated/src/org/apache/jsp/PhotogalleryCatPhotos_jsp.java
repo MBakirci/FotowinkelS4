@@ -3,12 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.HashSet;
 import java.net.URL;
 import java.util.ArrayList;
-import Test.PhotoCustomer;
+import Test.Photo;
 
-public final class PhotogalleryCategoryCustomer_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class PhotogalleryCatPhotos_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -45,7 +44,6 @@ public final class PhotogalleryCategoryCustomer_jsp extends org.apache.jasper.ru
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -102,7 +100,7 @@ public final class PhotogalleryCategoryCustomer_jsp extends org.apache.jasper.ru
       out.write("            </div>\r\n");
       out.write("\r\n");
       out.write("            <!-- Page Content -->\r\n");
-      out.write("            <form>\r\n");
+      out.write("            <form action=\"loadPhotos\">\r\n");
       out.write("                <div class=\"container\">\r\n");
       out.write("\r\n");
       out.write("                    <div class=\"row\">\r\n");
@@ -110,59 +108,75 @@ public final class PhotogalleryCategoryCustomer_jsp extends org.apache.jasper.ru
       out.write("                        <div class=\"col-lg-12\">\r\n");
       out.write("                            <h1 class=\"page-header\">Gallery</h1>\r\n");
       out.write("                        </div>\r\n");
+      out.write("\r\n");
+      out.write("                        ");
+
+                            String category = request.getParameter("cat");
+                            String username = session.getAttribute("Name").toString();
+                            
+                            if (category.equals(username)) {
+
+                                ArrayList<String> photoList = new ArrayList<String>();
+                                Test.Photo tp = new Test.Photo();
+                                if (session.getAttribute("Name") != null) 
+                                {
+                                    photoList = tp.getPhotos(session.getAttribute("Name").toString()); //FOR DEBUG
+                                }
+
+                                for (String es : photoList) {
+
+                        
+      out.write("\r\n");
       out.write("                        <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\" style=\"position: relative\">\r\n");
-      out.write("                            <a class=\"thumbnail\" href=\"PhotogalleryCatPhotosCustomer.jsp?cat=All\">\r\n");
-      out.write("                                <img class=\"img-responsive\" style=\"position: relative; top: 0; left: 0;\" alt=\"test\" width=\"100\" height=\"100\" style=\"z-index: -1\" src=\"http://png-3.findicons.com/files/icons/2770/ios_7_icons/100/folder.png\" > \r\n");
+      out.write("                            <a class=\"thumbnail\" href=");
+      out.print(es);
+      out.write(">\r\n");
+      out.write("                                <img class=\"img-responsive\" style=\"position: relative; top: 0; left: 0;\" alt=\"test\" width=\"100\" height=\"100\" style=\"z-index: -1\" src=");
+      out.print(es);
+      out.write(" > \r\n");
       out.write("\r\n");
       out.write("                            </a>\r\n");
-      out.write("                            <!--top:120px;left: 230px;-->\r\n");
-      out.write("                            <a id=\"All\" type=\"submit\" href=\"PhotogalleryCatPhotosCustomer.jsp?cat=All\" style=\"position: absolute; text-align:center; top:115px;\">\r\n");
-      out.write("                                <b>All</b>\r\n");
-      out.write("                            </a>\r\n");
+      out.write("                            <button id=\"");
+      out.print(es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf(".")));
+      out.write("\" style=\"position: absolute;top:120px;left: 230px;\">\r\n");
+      out.write("                                <b>+</b>\r\n");
+      out.write("                            </button>\r\n");
       out.write("\r\n");
       out.write("                        </div>\r\n");
       out.write("\r\n");
       out.write("                        ");
 
-                            session.setAttribute("Name", "Dennis@dennis.nl");
-                            HashSet<String> photoList = new HashSet<String>();
-                            Test.PhotoCustomer tp = new Test.PhotoCustomer();
-                            if (session.getAttribute("Name") != null) {
-                                photoList = tp.getCategoriesCustomer("Dennis@dennis.nl"); //FOR DEBUG
 
                             }
-                            //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
+                        } else if (category != null) {
+                            //Query for getting photos in a specific category
+                            ArrayList<String> photoList = new ArrayList<String>();
+                            Test.Photo tp = new Test.Photo();
+                            photoList = tp.getPhotosCategory(category);
 
                             for (String es : photoList) {
-
-                        
       out.write("\r\n");
       out.write("                        <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\" style=\"position: relative\">\r\n");
-      out.write("                            <a class=\"thumbnail\" href=\"PhotogalleryCatPhotosCustomer.jsp?cat=");
+      out.write("                            <a class=\"thumbnail\" href=");
       out.print(es);
-      out.write("\">\r\n");
-      out.write("                                <img class=\"img-responsive\" style=\"position: relative; top: 0; left: 0;\" alt=\"test\" width=\"100\" height=\"100\" style=\"z-index: -1\" src=\"http://png-3.findicons.com/files/icons/2770/ios_7_icons/100/folder.png\" > \r\n");
+      out.write(">\r\n");
+      out.write("                                <img class=\"img-responsive\" style=\"position: relative; top: 0; left: 0;\" alt=\"test\" width=\"100\" height=\"100\" style=\"z-index: -1\" src=");
+      out.print(es);
+      out.write(" > \r\n");
       out.write("\r\n");
       out.write("                            </a>\r\n");
-      out.write("                            <!--top:120px;left: 230px;-->\r\n");
-      out.write("                            <a id=\"");
-      out.print(es);
-      out.write("\" type=\"submit\" href=\"PhotogalleryCatPhotosCustomer.jsp?cat=");
-      out.print(es);
-      out.write("\" style=\"position: absolute; text-align:center; top:115px;\">\r\n");
-      out.write("                                <b>");
-      out.print(es);
-      out.write("</b>\r\n");
-      out.write("                            </a>\r\n");
+      out.write("                            <button id=\"");
+      out.print(es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf(".")));
+      out.write("\" style=\"position: absolute;top:120px;left: 230px;\">\r\n");
+      out.write("                                <b>+</b>\r\n");
+      out.write("                            </button>\r\n");
       out.write("\r\n");
       out.write("                        </div>\r\n");
-      out.write("\r\n");
       out.write("                        ");
 
+                                }
                             }
-
                         
-      out.write("\r\n");
       out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
