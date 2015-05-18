@@ -41,6 +41,27 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
        
+    		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<style>
+			.frame {
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+			.progress-bar {
+				height: 20px;
+				width: 100px;
+				display: none;
+				border: 2px solid green;
+			}
+			.progress {
+				background-color: blue;
+				height: 100%;
+				width: 0px;
+			}
+		</style>
+
+                
     </head>
     <body>
 
@@ -68,7 +89,13 @@
 	<input type="file" size="50" name="file1" multiple >
 	<br/>
         <input type="submit" value="Upload" name="btnUpload">
+
+                
+                
         </form>
+                <% String progress = "";
+                        progress = (String) request.getAttribute("bla"); %>
+            <p><%= progress %></p>
             <br/>
             <br/>
         
@@ -112,8 +139,6 @@
                  ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
                 }     
                 %>
-        </form>
-            
-        
+
     </body>
 </html>

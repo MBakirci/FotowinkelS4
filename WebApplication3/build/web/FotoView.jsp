@@ -27,7 +27,6 @@
     <script src="js/ie-emulation-modes-warning.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
          <form>
         <div>
                         <%
@@ -46,6 +45,24 @@
          <button class="" type="submit" name="btnGetfoto">Get Image</button>
         </div>
             
+         <input type="Email" id="Email" name="Email" class="form-control" placeholder="Email">
+         <button class="" type="submit" name="btnGetCode">Get Codes</button>
+
+         <%
+               
+if (request.getParameter("btnGetCode") != null)
+{   ArrayList<String> Codelist = new ArrayList<String>();
+    Test.Foto_klant FotoCode = new Test.Foto_klant();
+    
+    Codelist = FotoCode.Vraagcode(request.getParameter("Email").toString());
+    out.print("<br>");
+    for(String code: Codelist)
+    {
+        out.println(code + "<br>");
+    } 
+}
+         %>
+             
              </form>
     </body>
 </html>
