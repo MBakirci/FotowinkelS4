@@ -88,13 +88,48 @@
 	<br/>
 	<input type="file" size="50" name="file1" multiple >
 	<br/>
-        <input type="submit" value="Upload" name="btnUpload">
+            <div id="formsubmitbutton">
+            <input type="submit" name="btnUpload" value="Upload" onclick="ButtonClicked()">
+            </div>
+            <div id="buttonreplacement" style="margin-left:30px; display:none;">
+                <img src="ajax-loader.gif" alt=""/>
+            </div>
+
+            <script type="text/javascript">
+            function ButtonClicked()
+            {
+               document.getElementById("formsubmitbutton").style.display = "none"; // to undisplay
+               document.getElementById("buttonreplacement").style.display = ""; // to display
+               return true;
+            }
+            var FirstLoading = true;
+            function RestoreSubmitButton()
+            {
+               if( FirstLoading )
+               {
+                  FirstLoading = false;
+                  return;
+               }
+               document.getElementById("formsubmitbutton").style.display = ""; // to display
+               document.getElementById("buttonreplacement").style.display = "none"; // to undisplay
+            }
+            // To disable restoring submit button, disable or delete next line.
+            document.onfocus = RestoreSubmitButton;
+            </script>
+
+
+        
 
                 
-                
+        
         </form>
-                <% String progress = "";
-                        progress = (String) request.getAttribute("bla"); %>
+            
+                <%
+        String progress = "";
+        if(request.getAttribute("bla") != null){
+            
+                        progress = (String) request.getAttribute("bla"); 
+        }%>
             <p><%= progress %></p>
             <br/>
             <br/>
@@ -137,7 +172,7 @@
         }
         Test.StaticValues.setMyStaticMember(Category, user);
                  ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
-                }     
+                }
                 %>
 
     </body>
