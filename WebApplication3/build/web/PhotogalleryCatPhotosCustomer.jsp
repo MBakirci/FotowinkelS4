@@ -90,7 +90,7 @@
 
                             </a>
                             <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
+                               
                             </button>
 
                         </div>
@@ -114,7 +114,7 @@
 
                             </a>
                             <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                                <b>+</b>
+                               
                             </button>
 
                         </div>
