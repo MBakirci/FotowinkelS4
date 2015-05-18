@@ -86,8 +86,9 @@
                         <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="position: relative">
                             <a class="thumbnail" href=<%=es%>>
                                 <img id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
-
+                                
                             </a>
+                                <b style="position: absolute; text-align:center; top:115px;"><%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%></b>
                         </div>
 
                         <%

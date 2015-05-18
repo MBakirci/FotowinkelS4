@@ -37,10 +37,10 @@ public final class Databaseconnector
         */
     public boolean verbindmetDatabase() throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
     {
-        String url = "jdbc:oracle:thin:@fhictora01.fhict.local:1521:fhictora";
+        String url = "jdbc:oracle:thin:@212.64.126.219:1994:xe";
         String driver = "oracle.jdbc.OracleDriver";
-        String userName = "dbi296880"; 
-        String password = "U4XAsfWbUp";
+        String userName = "proftaak"; 
+        String password = "Mehmet001";
         
         try{
         Class.forName(driver);

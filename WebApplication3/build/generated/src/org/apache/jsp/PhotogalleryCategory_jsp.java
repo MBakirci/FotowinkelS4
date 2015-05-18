@@ -81,21 +81,14 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
       out.write("        <title>JSP Page</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        <!-- <h1>Hello World!</h1>\r\n");
-      out.write("         <img src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\"/> -->\r\n");
-      out.write("\r\n");
-      out.write("        <!--NAVIGATION-->\r\n");
       out.write("        <div class=\"container\">       \r\n");
       out.write("            <!-- Page Content -->\r\n");
       out.write("            <form>\r\n");
       out.write("                <div class=\"container\">\r\n");
-      out.write("\r\n");
       out.write("                    <div class=\"row\">\r\n");
-      out.write("\r\n");
       out.write("                        <div class=\"col-lg-12\">\r\n");
       out.write("                            <h1 class=\"page-header\">Gallery</h1>\r\n");
       out.write("                        </div>\r\n");
-      out.write("\r\n");
       out.write("                        ");
 
                             session.setAttribute("Name", "Henk@yolo.nl");
@@ -104,7 +97,7 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
                             if (session.getAttribute("Name") != null) {
                                 photoList = tp.getCategoriesPhotographer("Henk@yolo.nl"); //FOR DEBUG
                             }
-        //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
+                            //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
 
                             for (String es : photoList) {
 
@@ -115,7 +108,6 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
       out.print(es);
       out.write("\">\r\n");
       out.write("                                <img class=\"img-responsive\" style=\"position: relative; top: 0; left: 0;\" alt=\"test\" width=\"100\" height=\"100\" style=\"z-index: -1\" src=\"http://png-3.findicons.com/files/icons/2770/ios_7_icons/100/folder.png\" > \r\n");
-      out.write("\r\n");
       out.write("                            </a>\r\n");
       out.write("                            <!--top:120px;left: 230px;-->\r\n");
       out.write("                            <a id=\"");
@@ -125,14 +117,14 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
       out.write("\" style=\"position: absolute; text-align:center; top:115px;\">\r\n");
       out.write("                                ");
 
-                                if (es.equals(session.getAttribute("Name").toString())) {
+                                    if (es.equals(session.getAttribute("Name").toString())) {
       out.write("\r\n");
       out.write("                                <b>All</b>\r\n");
       out.write("                                ");
  } 
       out.write("\r\n");
       out.write("                                ");
- if(es.equals(session.getAttribute("Name").toString()) == false) {
+ if (es.equals(session.getAttribute("Name").toString()) == false) {
       out.write("\r\n");
       out.write("                                <b>");
       out.print(es);
@@ -141,75 +133,16 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
  }
       out.write("\r\n");
       out.write("                            </a>\r\n");
-      out.write("\r\n");
       out.write("                        </div>\r\n");
-      out.write("\r\n");
       out.write("                        ");
 
                             }
-
                         
       out.write("\r\n");
-      out.write("                        <!-- <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\" height=\"300\" width=\"400\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise1.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div>\r\n");
-      out.write("                         <div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">\r\n");
-      out.write("                             <a class=\"thumbnail\" href=\"#\">\r\n");
-      out.write("                                 <img class=\"img-responsive\" src=\"ftp://asror:asror@212.64.126.219:9942/Henk@yolo.nl/Portret/Exercise2.png\" alt=\"\">\r\n");
-      out.write("                             </a>\r\n");
-      out.write("                         </div> -->\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </form>\r\n");
       out.write("            <hr>\r\n");
-      out.write("\r\n");
       out.write("            <!-- Footer -->\r\n");
       out.write("            <footer>\r\n");
       out.write("                <div class=\"row\">\r\n");
@@ -218,7 +151,6 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("            </footer>\r\n");
-      out.write("\r\n");
       out.write("        </div>\r\n");
       out.write("        <!-- /.container -->\r\n");
       out.write("\r\n");
