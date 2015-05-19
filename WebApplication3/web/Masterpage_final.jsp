@@ -30,7 +30,7 @@
         <![endif]-->
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+       <!-- <title>JSP Page</title> -->
     </head>
     <body>
         <div class="container">
@@ -40,7 +40,7 @@
                 <%if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("admin")) {%>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="Adminpage.jsp">Admininstrator</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
                     </ul>
@@ -50,7 +50,7 @@
                     if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("fotograaf")) {%>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="AccountInformation.jsp">Profiel</a></li>
                         <li><a href="PhotogalleryCategory">Foto's</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
@@ -64,7 +64,7 @@
                 %>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="AccountInformation.jsp">Accountinformatie</a></li>
                         <li><a href="klantcodepagina.jsp">Klantcode invoeren</a></li>
                         <li><a href="PhotogalleryCategoryCustomer.jsp">Foto's</a></li>
@@ -78,7 +78,7 @@
                 %>
                  <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="index.jsp">Home</a></li>
                         <li><a href="Registreren.jsp">Registreren</a></li>
                         <li><a href="Inlogscherm.jsp">login</a></li>
                     </ul>

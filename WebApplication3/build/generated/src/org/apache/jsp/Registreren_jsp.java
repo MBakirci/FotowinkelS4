@@ -63,67 +63,11 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
-      out.write("     <head>\r\n");
-      out.write("    <meta charset=\"utf-8\">\r\n");
-      out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
-      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
-      out.write("    <meta name=\"description\" content=\"\">\r\n");
-      out.write("    <meta name=\"author\" content=\"\">\r\n");
-      out.write("    <link rel=\"icon\" href=\"favicon.ico\">\r\n");
-      out.write("\r\n");
-      out.write("    <title>Registeren</title>\r\n");
-      out.write("\r\n");
-      out.write("    <!-- Bootstrap core CSS -->\r\n");
-      out.write("    <link href=\"CSS/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>\r\n");
-      out.write("\r\n");
-      out.write("    <!-- Custom styles for this template -->\r\n");
-      out.write("    <link href=\"CSS/justified-nav.css\" rel=\"stylesheet\">\r\n");
-      out.write("\r\n");
-      out.write("    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->\r\n");
-      out.write("    <!--[if lt IE 9]><script src=\"../../assets/js/ie8-responsive-file-warning.js\"></script><![endif]-->\r\n");
-      out.write("    <script src=\"js/ie-emulation-modes-warning.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->\r\n");
-      out.write("    <!--[if lt IE 9]>\r\n");
-      out.write("      <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\r\n");
-      out.write("      <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\r\n");
-      out.write("    <![endif]-->\r\n");
-      out.write("  </head>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>Registreren</title>\r\n");
+      out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("     \r\n");
-      out.write("        \r\n");
-      out.write("         <div class=\"container\">\r\n");
-      out.write("\r\n");
-      out.write("            <div class=\"masthead\">\r\n");
-      out.write("                <h3 class=\"text-muted\">Project name</h3>\r\n");
-      out.write("                <nav>\r\n");
-      out.write("                    <ul class=\"nav nav-justified\">\r\n");
-      out.write("                        <li><a href=\"#\">Home</a></li>\r\n");
-      out.write("                        <li><a href=\"Adminpage.jsp\">Accountinformatie</a></li>\r\n");
-      out.write("                        <li><a href=\"fotograafProfiel.jsp\">Profiel</a></li>\r\n");
-      out.write("                        <li class=\"active\"><a href=\"Registreren.jsp\">Registreren</a></li>\r\n");
-      out.write("                        <li><a href=\"Inlogscherm.jsp\">login</a></li>\r\n");
-      out.write("                        <li><a href=\"logout.jsp\">Logout</a></li>\r\n");
-      out.write("                        <li><a href=\"Upload.jsp\">Upload</a></li>\r\n");
-      out.write("                    </ul>\r\n");
-      out.write("                </nav>\r\n");
-      out.write("            </div>\r\n");
-      out.write("             \r\n");
-      out.write("<!--             <form id=\"loginform\" autocomplete=\"on\" method=\"POST\">\r\n");
-      out.write("         <div class=\"input-group\">\r\n");
-      out.write("  <span class=\"input-group-addon\">username</span>\r\n");
-      out.write("  <input type=\"text\" class=\"form-control\" id=\"username\" required=\"required\" name=\"username\" placeholder=\"Username\" aria-describedby=\"basic-addon1\">\r\n");
-      out.write("</div>    \r\n");
-      out.write("\r\n");
-      out.write("                    <div class=\"input-group\">\r\n");
-      out.write("  <span class=\"input-group-addon\" id=\"basic-addon1\">password</span>\r\n");
-      out.write("  <input type=\"password\"  name=\"password\" class=\"form-control\" required=\"required\" placeholder=\"Wachtwoord\" aria-describedby=\"basic-addon1\">\r\n");
-      out.write("</div>   \r\n");
-      out.write("<<<<<<< HEAD\r\n");
-      out.write("                 \r\n");
-      out.write("                 <input  type=\"submit\" value=\"Sign in\" name=\"btnLogin\" id=\"testen1\" class=\"btn btn-default navbar-btn\" >                \r\n");
-      out.write("             </form>  -->\r\n");
-      out.write("\r\n");
       out.write("   <div class=\"container\">\r\n");
       out.write("\r\n");
       out.write("       <form class=\"form-signin\" method=\"post\">\r\n");
@@ -161,7 +105,6 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
                  String voornaam = request.getParameter("voornaam");
                   String tussenvoegsel = request.getParameter("tussenvoegsel");
                    String achternaam = request.getParameter("achternaam");
-                   boolean type = request.getParameter("Klant") != null;
                    int actief = 1;
                     String error= "";
                    
@@ -182,7 +125,7 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
                     
                      if(request.getParameter("btnregistreer") != null)
                      {
-                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief, type);
+                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
                      
                      
                      if(!reg.Verbind()){
@@ -206,7 +149,6 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                 </form>\r\n");
       out.write("\r\n");
       out.write("                 </div>\r\n");
-      out.write("         </div>\r\n");
       out.write("        \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");

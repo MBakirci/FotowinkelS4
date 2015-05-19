@@ -3,7 +3,7 @@
     Created on : 19-mei-2015, 11:49:27
     Author     : Gebruiker
 --%>
-<jsp:include page="Masterpage_dynamic.jsp"/>
+<jsp:include page="Masterpage_final.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -101,6 +101,9 @@
         </form>
     
 </div>
+            <footer class="footer">
+                <p>&copy; Company 2014</p>
+            </footer>
         </div>
              <%
                //  int id = 1;
