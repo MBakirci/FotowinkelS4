@@ -6,9 +6,6 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Test.NewClass" %>
-<%@page import="Test.AccountInfo" %>
-<%@page import="Test.KlantInfo" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +16,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
+        
+
 
         <title>Justified Nav Template for Bootstrap</title>
-
         <!-- Bootstrap core CSS -->
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
@@ -62,94 +60,134 @@
                 </h2>
             </div>
 
+            
+
 
             <%
                 //if no button was pressed, this is the first time loading this page
-                Test.KlantInfo accountInfo = new Test.KlantInfo();
-                String sessionName = (String) session.getAttribute("Name");
-                sessionName = "p.de.beer@fontys.nlrejkw"; //For test purposes
-                List userinfo1 = accountInfo.getDBInfo(sessionName);
-                String emailDB = userinfo1.get(0).toString();
-                //String telnrDB = userinfo1.get(1).toString();
-                String fnameDB = userinfo1.get(1).toString();
-                String lnameDB = userinfo1.get(3).toString();
-                //String streetDB = userinfo1.get(4).toString();
-                //String housenumDB = userinfo1.get(5).toString();
-                //String zipcodeDB = userinfo1.get(6).toString();
-                //String cityDB = userinfo1.get(7).toString();
+                String SessionEmail = (String) session.getAttribute("Name");
+                Test.User user = new Test.User(SessionEmail);
+                if(session.getAttribute("Role").equals("fotograaf"))
+                {
+                user.AdditionalInfo();
+                }
+                
+                 if (request.getParameter("btnSaveEmailPass") != null) {
+                     if(request.getParameter("passv").length() > 4){
+                     if(request.getParameter("passv").equals(request.getParameter("pass"))){
+                        out.println("<script type=\"text/javascript\">");  
+                        out.println("alert('Uw wachtwoord is veranderd.');");  
+                        out.println("</script>");
+                      user.changePass(request.getParameter("pass"));
+                     }
+                     }
+                 }
 
                 //if button was pressed, save changes
                 if (request.getParameter("btnSave") != null) {
                     //Get Textbox values
-                    String email = request.getParameter("email");
-                    String telnr = request.getParameter("telnr");
-                    String pass = request.getParameter("pass");
-                    String passver = request.getParameter("passv");
-                    String fname = request.getParameter("fname");
-                    String lname = request.getParameter("lname");
-                    String street = request.getParameter("street");
-                    String housenumber = request.getParameter("housenumber");
-                    String zipcode = request.getParameter("zipcode");
-                    String city = request.getParameter("city");
-
-                    ///todo
-                    ///Change account info
-                    accountInfo.changeAccountInfo(sessionName, email, telnr, pass, passver, fname, lname, street, housenumber, zipcode, city);
-
-                    //debug
-                    //response.sendRedirect("index.jsp");
+                    user.setVoornaam(request.getParameter("fname"));
+                    user.setTussenvoegsel(request.getParameter("tname"));
+                    user.setAchternaam(request.getParameter("lname"));
+                    user.setStraat(request.getParameter("street"));
+                    user.setHuisnr(request.getParameter("housenumber"));
+                    user.setPostcode(request.getParameter("zipcode"));
+                    user.setStad(request.getParameter("city"));
+                    user.setTelefoon(request.getParameter("telnr"));
+                    user.UpdateUser();
                 }
             %>
+                
             <!--Inputform-->
-            <form>
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="<%=emailDB%>" required="">
+            <div class="row vdivide">
+                <form id="info-form">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <h3>Account informatie:</h3>
+                    <div class="text-center">
+                        <img src="http://simpleicon.com/wp-content/uploads/account.png" class="avatar img-circle img-thumbnail" alt="avatar">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Telefoonnummer</label>
-                        <input type="telnr" name="telnr" class="form-control bfh-phone" id="exampleInputPassword1" placeholder="<%//=telnrDB%>" required="" data-format="+31 (ddd) dddddd">
+                        <label for="Email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="Email" placeholder="<%=user.geteMail()%>" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
+                        <label for="Wachtwoord">Password</label>
+                        <input type="password" name="pass" class="form-control" id="Wachtwoord" placeholder="Nieuw wachtwoord" >
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Verify Password</label>
-                        <input type="password" name="passv" class="form-control" id="exampleInputPassword1" placeholder="password " required="">
+                        <label for="VerifyWachtwoord">Verify Password</label>
+                        <input type="password" name="passv" class="form-control" id="VerifyWachtwoord" placeholder="Verifieer Nieuw Wachtwoord" oninput="check(this)" >
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Firstname</label>
-                        <input type="firstname" name="fname" class="form-control" id="exampleInputPassword1" placeholder="<%=fnameDB%>" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Lastname</label>
-                        <input type="lastname" name="lname" class="form-control" id="exampleInputPassword1" placeholder="<%=lnameDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Street</label>
-                        <input type="address" name="street" class="form-control" id="exampleInputPassword1" placeholder="<%//=streetDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Housenumber</label>
-                        <input type="housenumber" name="housenumber" class="form-control" id="exampleInputPassword1" placeholder="<%//=housenumDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Zipcode</label>
-                        <input type="zipcode" name="zipcode" class="form-control" id="exampleInputPassword1" placeholder="<%//=zipcodeDB%> " required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">City</label>
-                        <input type="city" name="city" class="form-control" id="exampleInputPassword1" placeholder="<%//=cityDB%> " required="">
-                    </div>
-
-                    <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>
+                    <script language='javascript' type='text/javascript'>
+                        function check(input) {
+                            var pass = document.getElementById('Wachtwoord').value;
+                            if (input.value != pass ) {
+                                input.setCustomValidity('De wachtwoorden moeten overeenkomen!');
+                            }
+                            else if(pass.length < 5){
+                                input.setCustomValidity('Uw wachtwoord moet minimaal 5 karakters bevatten!');
+                            }
+                            else {
+                                // input is valid -- reset the error message
+                                input.setCustomValidity('');
+                           }
+                        }
+                    </script>
+                    <button type="submit" name="btnSaveEmailPass" class="btn btn-default">Save changes</button>
                 </div>
+                </form>
+                    
+                    <form>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <h3>Persoonlijke informatie:</h3>
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label for="Voornaam">Firstname</label>
+                        <input type="text" name="fname" class="form-control" id="Voornaam" value="<%=user.getVoornaam()%>" required>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Tussenvoegsel">Tussenvoegsel</label>
+                        <input type="text" name="tname" class="form-control" id="Tussenvoegsel" value="<%=user.getTussenvoegsel()%> " >
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Achternaam">Lastname</label>
+                        <input type="text" name="lname" class="form-control" id="Achternaam" value="<%=user.getAchternaam()%> " required >
+                    </div>
+                    <%if(session.getAttribute("Role").equals("fotograaf")){%>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Straat">Street</label>
+                        <input type="text" name="street" class="form-control" id="Straat" value="<%=user.getStraat()%> " >
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Huisnr">Housenumber</label>
+                        <input type="text" name="housenumber" class="form-control" id="Huisnr" value="<%=user.getHuisnr()%> " >
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Postcode">Zipcode</label>
+                        <input type="text" name="zipcode" class="form-control" id="Postcode" value="<%=user.getPostcode()%>" >
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="Stad">City</label>
+                        <input type="text" name="city" class="form-control" id="Stad" value="<%=user.getStad()%> ">
+                    </div>
+                    
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label for="Telefoon">Telefoonnummer</label>
+                        <input type="tel" name="telnr" class="form-control bfh-phone" id="Telefoon" value="<%=user.getTelefoon()%>"  data-format="+31 (ddd) dddddd" required>
+                    </div>
+                    
+                     <%}%>
+                </div>
+                   <div class="col-md-6 col-sm-6 col-xs-12"> 
+                    <button type="submit" name="btnSave" class="btn btn-default">Save changes</button>
+                    </div>
+                    
             </form>
+            </div>
 
             <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Company 2014</p>
+            </footer>
         </div>
-        <footer class="footer" align="center">
-            <p>&copy; Company 2015</p>
-        </footer>
+    </body>
+</html>

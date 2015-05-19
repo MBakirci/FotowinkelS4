@@ -41,8 +41,29 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
        
+    		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<style>
+			.frame {
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+			}
+			.progress-bar {
+				height: 20px;
+				width: 100px;
+				display: none;
+				border: 2px solid green;
+			}
+			.progress {
+				background-color: blue;
+				height: 100%;
+				width: 0px;
+			}
+		</style>
+
+                
     </head>
-    <body>
+    <body onload="Checkfile()">
 
         <div class="container">
             <div class="masthead">
@@ -60,15 +81,94 @@
                 </nav>
             </div>
             
-        
+            <div class= "row upload-block">
         <form name="form1" id="form1" action="test" method="post" enctype="multipart/form-data">
         <input type="hidden" name="hiddenfield1" value="ok">
 	Files to upload:
 	<br/>
-	<input type="file" size="50" name="file1" multiple >
+	<input id="myFile" type="file" name="myFile" multiple accept="image/*" onchange="Checkfile()">
+        <script type="text/javascript">
+                 function Checkfile(){
+                     var x = document.getElementById("myFile");
+                        var txt = "";
+                        if ('files' in x) {
+                            if (x.files.length == 0) {
+                                txt = "";
+                            } else {
+                                document.getElementById("btnUploads").removeAttribute("disabled"); 
+                                for (var i = 0; i < x.files.length; i++) {
+                                    txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                                    var file = x.files[i];
+                                    if ('name' in file) {
+                                        txt += "name: " + file.name + "<br>";
+                                    }
+                                    if ('size' in file) {
+                                        txt += "size: " + file.size + " bytes <br>";
+                                    }
+                                }
+                            }
+                        } 
+                        else {
+                            if (x.value == "") {
+                                txt += "";
+                            } else {
+                                txt += "The files property is not supported by your browser!";
+                                txt  += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
+                            }
+                        }
+                    document.getElementById("txtprogress").innerHTML = txt;
+                }
+        </script>
 	<br/>
-        <input type="submit" value="Upload" name="btnUpload">
+            <div id="formsubmitbutton">
+                <input type="submit" id="btnUploads" name="btnUpload" value="Upload" disabled="" onclick="ButtonClicked()">
+            </div>
+            <div id="buttonreplacement" style="margin-left:30px; display:none;">
+                <p>
+                <img src="ajax-loader.gif" alt=""/>
+                Uploading....
+                </p>
+            </div>
+        
+        
+
+            <script type="text/javascript">
+            function ButtonClicked()
+            {
+               document.getElementById("formsubmitbutton").style.display = "none"; // to undisplay
+               document.getElementById("buttonreplacement").style.display = ""; // to display
+               return true;
+            }
+            var FirstLoading = true;
+            function RestoreSubmitButton()
+            {
+               if( FirstLoading )
+               {
+                  FirstLoading = false;
+                  return;
+               }
+               document.getElementById("formsubmitbutton").style.display = ""; // to display
+               document.getElementById("buttonreplacement").style.display = "none"; // to undisplay
+            }
+            // To disable restoring submit button, disable or delete next line.
+            document.onfocus = RestoreSubmitButton;
+            </script>
+
+
+        
+
+                
+        
         </form>
+            
+                <%
+        String progress = "";
+        if(request.getAttribute("bla") != null){            
+        progress = (String) request.getAttribute("bla"); 
+        }
+        %>
+            <p><%= progress %></p>
+            <p id="txtprogress"></p>
             <br/>
             <br/>
         
@@ -110,10 +210,10 @@
         }
         Test.StaticValues.setMyStaticMember(Category, user);
                  ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
-                }     
+                }
                 %>
         </form>
-            
-        
+            </div>
+
     </body>
 </html>

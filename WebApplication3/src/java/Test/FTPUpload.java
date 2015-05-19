@@ -120,7 +120,7 @@ public class FTPUpload {
             
             
             String firstRemoteFile = "";
-            if(Category == null)
+            if(Category == null || Category.equals(User))
             {
             firstRemoteFile = User + "/" + uniquecode;
             }
@@ -135,6 +135,8 @@ public class FTPUpload {
             inputStream.close();
             if (done) {
                 System.out.println("The first file is uploaded successfully.");
+                
+            
             }
             
             

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,8 @@ public class TestServlet extends HttpServlet {
 
     private String cat = Test.StaticValues.getMyStaticMember();
     private String user = Test.StaticValues.getMyStaticuser();
+    private String progress = "";
+    private RequestDispatcher rd;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
@@ -43,9 +46,10 @@ public class TestServlet extends HttpServlet {
         if (!isMultipartContent) {
             return;
         }
-
+        progress = "";
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
+
         try {
             List<FileItem> fields = upload.parseRequest(request);
             Iterator<FileItem> it = fields.iterator();
@@ -72,9 +76,8 @@ public class TestServlet extends HttpServlet {
                     for (int i = 0; i < 10; i++) {
                         UniqCode = UniqCode + alphabet.charAt(r.nextInt(N));
                     }
-                    
                     String dbfilepath = "";
-                    if(cat == null)
+                    if(cat == null || cat.equals(user))
                     {
                     dbfilepath = user + "/" + UniqCode + L;  
                     }
@@ -84,15 +87,26 @@ public class TestServlet extends HttpServlet {
                     }
                     ftpload.UploadFotoDatabase(UniqCode, 2, user, dbfilepath , 5, 5);
                     ftpload.UploadFile(UniqCode + L, cat, user, pathloca);
+                    if((String) request.getAttribute("bla") != null)
+                    {
+                    progress = (String) request.getAttribute("bla");
+                    }
+                    progress = progress + UniqCode + L + " has been successfully uploaded ! <br/>";
+                    request.setAttribute("bla", progress);
                 }
-            }
-            response.sendRedirect("UploadCompl.jsp");
+            }                  
+            rd = request.getRequestDispatcher("Upload.jsp");
+            rd.forward(request, response);
+
         } catch (FileUploadException e) {
-            response.sendRedirect("UploadFail.jsp");
             e.printStackTrace();
         } catch (Exception ex) {
-            response.sendRedirect("UploadFail.jsp");
+
             Logger.getLogger(TestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+        
+        response.sendRedirect("Upload.jsp");
+
         }
     }
 }
