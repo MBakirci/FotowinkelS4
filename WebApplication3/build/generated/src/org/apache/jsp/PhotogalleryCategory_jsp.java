@@ -50,7 +50,7 @@ public final class PhotogalleryCategory_jsp extends org.apache.jasper.runtime.Ht
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Masterpage.jsp", out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Masterpage_1.jsp", out, false);
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");

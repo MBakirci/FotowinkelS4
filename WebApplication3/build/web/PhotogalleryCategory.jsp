@@ -8,7 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.Photo"%>
-<jsp:include page="Masterpage.jsp"/>
+<jsp:include page="Masterpage_final.jsp"/>
 
 <!DOCTYPE html>
 <html>
