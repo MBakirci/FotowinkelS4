@@ -109,6 +109,65 @@ public class User {
         this.stad = stad;
     }
 
+    public User(String email, String wachtwoord,
+            String voornaam, String tussenvoegsel,
+            String achternaam, String type) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        String q = "INSERT INTO FW_ACCOUNT (EMAIL,WACHTWOORD, ENABLED, VOORNAAM, TUSSENVOEGSEL,"
+                + " ACHTERNAAM, ATYPE) VALUES(? ,?, ?, ?, ? , ?,?)";
+        Test.Databaseconnector connection = new Test.Databaseconnector();
+        try {
+            if (connection.verbindmetDatabase()) {
+                if(tussenvoegsel == null){
+                    tussenvoegsel = "";
+                }
+                PreparedStatement state = null;
+                state = connection.conn.prepareStatement(q);
+                this.eMail = email;
+                state.setString(1, email);
+                state.setString(2, wachtwoord);
+                int Actief = 1;
+                state.setInt(3, Actief);
+                state.setString(4, voornaam);
+                state.setString(5, tussenvoegsel);
+                state.setString(6, achternaam);
+                state.setString(7, type);
+                state.executeQuery();
+                //
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public boolean Fotograaf(String telefoon, String straat, String huisnr,
+            String postcode, String stad)
+            throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException {
+        User a = new User(this.eMail);
+                String sql = "Insert into FW_ACCOUNT_GEGEVENS(ACCOUNT_ID, TELEFOON, STRAAT, HUISNUMMER," +
+                                        " POSTCODE, STAD) VALUES(?, ?, ?, ?, ?, ?) ";
+        Test.Databaseconnector connection = new Test.Databaseconnector();
+        try {
+            if (connection.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                state = connection.conn.prepareStatement(sql);
+                state.setString(1, a.iD);
+                state.setString(2, telefoon);
+                state.setString(3, straat);
+                state.setString(4, huisnr);
+                state.setString(5, postcode);
+                state.setString(6, stad);
+                state.executeQuery();
+                return true;
+                //
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return false;
+        }
+        return false;
+    }
+
     public User(String email) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException {
         String sql = "Select * from FW_ACCOUNT where EMAIL = ?";
         Test.Databaseconnector connection = new Test.Databaseconnector();
@@ -146,7 +205,7 @@ public class User {
                 state.setString(3, this.Achternaam);
                 state.setString(4, this.iD);
                 state.executeUpdate();
-                if(type.equals("fotograaf")){
+                if (type.equals("fotograaf")) {
                     UpdateAdditionalInfo();
                 }
                 return true;

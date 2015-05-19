@@ -95,7 +95,6 @@
         <input type="text" id="inputTussenvoegsel" name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel">
         <label for="inputachternaam" class="sr-only">Achternaam</label>
         <input type="text" id="inputAchternaam" name="achternaam" class="form-control" placeholder="Achternaam" required>
-        <input type="checkbox" name="Klant" value="klant">Bent u een fotograaf?<br> 
         
        
      
@@ -116,7 +115,6 @@
                  String voornaam = request.getParameter("voornaam");
                   String tussenvoegsel = request.getParameter("tussenvoegsel");
                    String achternaam = request.getParameter("achternaam");
-                   boolean type = request.getParameter("Klant") != null;
                    int actief = 1;
                     String error= "";
                    
@@ -137,28 +135,18 @@
                     
                      if(request.getParameter("btnregistreer") != null)
                      {
-                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief, type);
+                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
                      
                      
                      if(!reg.Verbind()){
                          error = "registeren is mislukt uw email adres is al bekend bij ons";
-                        
-                          
-                         
                          //response.addHeader("labelmislukt", "inloggen is mislukt");
                      }
                          //response.sendRedirect("Inlogscherm.jsp");}
                          
                      
                          else {
-                                if(type == true){
-                                out.print("registeren gelukt");
-                                response.sendRedirect("AccountInformation.jsp");
-                                }
-                                
-                                else{
-                                response.sendRedirect("klantcodepagina.jsp");
-                                 }
+                                response.sendRedirect("klantcodepagina_1.jsp");    
                      }
                                 
                      }
