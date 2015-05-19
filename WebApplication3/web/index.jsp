@@ -7,6 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.NewClass" %>
+<jsp:include page="Masterpage_final.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -39,48 +40,6 @@
     <body>
 
         <div class="container">
-
-            <div class="masthead">
-                <h3 class="text-muted">Project name</h3>
-                <nav>
-                    <ul class="nav nav-justified">
-                        <li class="active"><a href="index.jsp">Home</a></li>
-                        <% if(session.getAttribute("Name") != null && session.getAttribute("Role").equals("admin") ){
-                        %>
-                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
-                        <%}%>
-                        <% 
-                            if (session.getAttribute( "Name" ) != null ) 
-                            {
-                            Test.Photo Photo = new Test.Photo();
-                            if(Photo.isPhotographer(session.getAttribute("Name").toString()))
-                                    {
-                                        request.setAttribute("Accountinfo","fotograafProfiel.jsp");
-                        %>
-                        <li><a href="Upload.jsp">Upload</a></li>
-                        
-                        <% 
-                                    }
-                            else
-                            {
-                                request.setAttribute("Accountinfo","KlantPagina.jsp");
-                                        %>
-                        <li><a href="klantcodepagina.jsp">Klantcode Invoeren</a></li>
-                        <% 
-                            }}
-                                %>
-                        <% if(session.getAttribute("Name") == null){
-                        %>
-                        <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li><a href="Inlogscherm.jsp">login</a></li>
-                        <%} 
-                        else {%>
-                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
-                        <%}%>
-                    </ul>
-                </nav>
-            </div>
 
             <!-- Jumbotron -->
             <div class="jumbotron">

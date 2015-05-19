@@ -30,16 +30,16 @@
         <![endif]-->
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <!-- <title>JSP Page</title> -->
+        <!-- <title>JSP Page</title> -->
     </head>
     <body>
         <div class="container">
 
             <div class="masthead">
-                <h3 class="text-muted">Project name</h3>
+                <h3 class="text-muted"><img class="img-responsive" width="300" src="Images/professional-camera-logo-for-company-vector-217607-[Converted].gif" alt=""/></h3>
                 <%if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("admin")) {%>
-                <nav>
-                    <ul class="nav nav-justified">
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="Adminpage.jsp">Admininstrator</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
@@ -48,44 +48,67 @@
                 <%
                     }
                     if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("fotograaf")) {%>
-                <nav>
-                    <ul class="nav nav-justified">
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
-                        <li><a href="AccountInformation.jsp">Profiel</a></li>
-                        <li><a href="PhotogalleryCategory">Foto's</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Profiel<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="AccountInformation.jsp">Account Informatie</a></li>
+                                <li><a href="PhotogalleryCategory.jsp">Mijn Foto's</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="Upload.jsp">Upload</a></li>                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Item : 0</a></li>
                         <li><a href="logout.jsp">Logout</a></li>
-                        <li><a href="Upload.jsp">Upload</a></li>
+                        <li><a></a></li>
+                    </ul>
+                </nav>
+
+
+                <%
+                    }
+                    if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("klant")) {
+                %>
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.jsp">Home</a></li>
+                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Profiel<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="AccountInformation.jsp">Account Informatie</a></li>
+                                <li><a href="PhotogalleryCategoryCustomer.jsp">Mijn Foto's</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="klantcodepagina_1.jsp">Code invoeren</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Item : 0</a></li>
+                        <li><a href="logout.jsp">Logout</a></li>
+                        <li><a></a></li>
                     </ul>
                 </nav>
                 <%
                     }
-                    if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("klant"))
-                    {
+                    if (session.getAttribute("Name") == null) {
                 %>
-                <nav>
-                    <ul class="nav nav-justified">
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
-                        <li><a href="AccountInformation.jsp">Accountinformatie</a></li>
-                        <li><a href="klantcodepagina.jsp">Klantcode invoeren</a></li>
-                        <li><a href="PhotogalleryCategoryCustomer.jsp">Foto's</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
                     </ul>
-                </nav>
-                <%
-                    }
-                    if (session.getAttribute("Name") == null)
-                    {
-                %>
-                 <nav>
-                    <ul class="nav nav-justified">
-                        <li><a href="index.jsp">Home</a></li>
+                    <ul class="nav navbar-nav navbar-right">
                         <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li><a href="Inlogscherm.jsp">login</a></li>
+                        <li><a href="Inlogscherm.jsp">Login</a></li>
+                        <li><a></a></li>
                     </ul>
                 </nav>
-                 <%
+                <%
                     }%>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
