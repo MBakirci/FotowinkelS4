@@ -54,6 +54,8 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "Masterpage_final.jsp", out, false);
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -63,94 +65,108 @@ public final class Registreren_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
-      out.write("    <head>\r\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Registreren</title>\r\n");
-      out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
-      out.write("   <div class=\"container\">\r\n");
       out.write("\r\n");
-      out.write("       <form class=\"form-signin\" method=\"post\">\r\n");
-      out.write("           \r\n");
-      out.write("        <h2 class=\"form-signin-heading\">Registeren</h2>\r\n");
-      out.write("        \r\n");
-      out.write("        <label for=\"inputName\" class=\"sr-only\">Email address</label>\r\n");
-      out.write("        <input type=\"email\" id=\"Name\" name=\"username\" class=\"form-control\" placeholder=\"Email\" required autofocus>\r\n");
-      out.write("        <label for=\"inputPassword\" class=\"sr-only\">Wachtwoord</label>\r\n");
-      out.write("        <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required>\r\n");
-      out.write("      <label for=\"inputvoornaam\" class=\"sr-only\">Voornaam</label>\r\n");
-      out.write("        <input type=\"text\" id=\"inputVoornaam\" name=\"voornaam\" class=\"form-control\" placeholder=\"Voornaam\" required>\r\n");
-      out.write("        <label for=\"inputtussenvoegsel\" class=\"sr-only\">Tussenvoegsel</label>\r\n");
-      out.write("        <input type=\"text\" id=\"inputTussenvoegsel\" name=\"tussenvoegsel\" class=\"form-control\" placeholder=\"Tussenvoegsel\">\r\n");
-      out.write("        <label for=\"inputachternaam\" class=\"sr-only\">Achternaam</label>\r\n");
-      out.write("        <input type=\"text\" id=\"inputAchternaam\" name=\"achternaam\" class=\"form-control\" placeholder=\"Achternaam\" required>\r\n");
-      out.write("        \r\n");
-      out.write("       \r\n");
-      out.write("     \r\n");
+      out.write("<head>\r\n");
+      out.write("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("    <title>Registreren</title>\r\n");
+      out.write("</head>\r\n");
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("       \r\n");
+      out.write("<body>\r\n");
       out.write("\r\n");
-      out.write("         <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" name=\"btnregistreer\">registreer</button>\r\n");
-      out.write("    \r\n");
+      out.write("    <div class=\"container\">\r\n");
+      out.write("        <h1>Registeer </h1>\r\n");
+      out.write("        <hr>\r\n");
+      out.write("    </div>\r\n");
+      out.write("    <div class=\"container\">\r\n");
+      out.write("        <div class=\"row\">\r\n");
+      out.write("            <form class=\"form-signin\" method=\"post\">\r\n");
       out.write("\r\n");
-      out.write("    \r\n");
+      out.write("                <div class=\"col-md-6 col-md-offset-3 col-sm-6 col-xs-12\">\r\n");
+      out.write("                    <div class=\"well well-sm\"><strong><span class=\"glyphicon glyphicon-asterisk\"></span>Required Field</strong>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group col-md-12\">\r\n");
+      out.write("                        <label for=\"username\">Email address</label>\r\n");
+      out.write("                        <div class=\"input-group col-md-12\">\r\n");
+      out.write("                            <input type=\"email\" id=\"Name\" name=\"username\" class=\"form-control\" placeholder=\"Email\" required autofocus>\r\n");
+      out.write("                            <span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <div class=\"form-group col-md-12\">\r\n");
+      out.write("                        <label for=\"password\">Wachtwoord</label>\r\n");
+      out.write("                        <div class=\"input-group col-md-12\">\r\n");
+      out.write("                            <input type=\"password\" id=\"inputPassword\" name=\"password\" class=\"form-control\" placeholder=\"Password\" required>\r\n");
+      out.write("                            <span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
       out.write("\r\n");
-      out.write("                     \r\n");
-      out.write("             ");
+      out.write("                    <div class=\"form-group col-md-12\">\r\n");
+      out.write("                        <label for=\"voornaam\">Voornaam</label>\r\n");
+      out.write("                        <div class=\"input-group col-md-12\">\r\n");
+      out.write("                            <input type=\"text\" id=\"inputVoornaam\" name=\"voornaam\" class=\"form-control\" placeholder=\"Voornaam\" required>\r\n");
+      out.write("                            <span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("\r\n");
+      out.write("                    <div class=\"form-group col-md-4\">\r\n");
+      out.write("                        <label for=\"tussenvoegsel\">Tussenvoegsel</label>\r\n");
+      out.write("                        <div class=\"input-group col-md-12\">\r\n");
+      out.write("                            <input type=\"text\" id=\"inputTussenvoegsel\" name=\"tussenvoegsel\" class=\"form-control\" placeholder=\"Tussenvoegsel\">\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("\r\n");
+      out.write("                    <div class=\"form-group col-md-8\">\r\n");
+      out.write("                        <label for=\"achternaam\">Achternaam</label>\r\n");
+      out.write("                        <div class=\"input-group col-md-12\">\r\n");
+      out.write("                            <input type=\"text\" id=\"inputAchternaam\" name=\"achternaam\" class=\"form-control\" placeholder=\"Achternaam\" required>\r\n");
+      out.write("                            <span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("\r\n");
+      out.write("                    <div class=\"col-md-12\">\r\n");
+      out.write("                        <br/>\r\n");
+      out.write("                        <button class=\"btn btn-lg btn-primary \" type=\"submit\" name=\"btnregistreer\">registreer</button>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("            </form>\r\n");
+      out.write("                        ");
 
-               //  int id = 1;
-                  String naam = request.getParameter("username");
-                String pass = request.getParameter("password");
-                 String voornaam = request.getParameter("voornaam");
-                  String tussenvoegsel = request.getParameter("tussenvoegsel");
-                   String achternaam = request.getParameter("achternaam");
-                   int actief = 1;
-                    String error= "";
-                   
-                   
-                //int id = request.getParameter("inputid".);
-                
-                 
-                // if(request.getParameter("btnregistreer") != null)
-                // {
-                //    int actief;
-                //    Test.Verwijderaccount verw = new Test.Verwijderaccount(naam);
-                //    if(verw.Verbind()){
-                //        out.print("shit werkt");
-                //        response.sendRedirect("index.jsp");
-                 //   }
-                // }
-                     
-                    
-                     if(request.getParameter("btnregistreer") != null)
-                     {
-                     Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
-                     
-                     
-                     if(!reg.Verbind()){
-                         error = "registeren is mislukt uw email adres is al bekend bij ons";
-                         //response.addHeader("labelmislukt", "inloggen is mislukt");
-                     }
-                         //response.sendRedirect("Inlogscherm.jsp");}
-                         
-                     
-                         else {
-                                response.sendRedirect("klantcodepagina_1.jsp");    
-                     }
-                                
-                     }
-                 
-                 
+                            //  int id = 1;
+                            String naam = request.getParameter("username");
+                            String pass = request.getParameter("password");
+                            String voornaam = request.getParameter("voornaam");
+                            String tussenvoegsel = request.getParameter("tussenvoegsel");
+                            String achternaam = request.getParameter("achternaam");
+                            int actief = 1;
+                            String error = "";
+                            if (request.getParameter("btnregistreer") != null) {
+                                Test.registreer reg = new Test.registreer(naam, pass, voornaam, tussenvoegsel, achternaam, actief);
+
+                                if (!reg.Verbind()) {
+                                    error = "registeren is mislukt uw email adres is al bekend bij ons";
+                                    //response.addHeader("labelmislukt", "inloggen is mislukt");
+                                } //response.sendRedirect("Inlogscherm.jsp");}
+                                else {
+                                    Test.Login login = new Test.Login(naam, pass);
+                                    if (login.Verbind()) {
+                                     session.setAttribute("Name", naam);
+                                     session.setAttribute("Role", login.getRole());
+                                     response.sendRedirect("klantcodepagina_1.jsp");
+                            }
+                                }
+
+                            }
+
+                        
       out.write("\r\n");
-      out.write("                 <font color=\"red\">");
+      out.write("                        <font color=\"red\">");
       out.print(error);
       out.write("</font>\r\n");
-      out.write("                                 </form>\r\n");
       out.write("\r\n");
-      out.write("                 </div>\r\n");
-      out.write("        \r\n");
-      out.write("    </body>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </div>\r\n");
+      out.write("\r\n");
+      out.write("</body>\r\n");
+      out.write("\r\n");
       out.write("</html>\r\n");
       out.write("\r\n");
     } catch (Throwable t) {

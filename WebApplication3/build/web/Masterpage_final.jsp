@@ -41,9 +41,18 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
-                        <li><a href="Adminpage.jsp">Admininstrator</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
+                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Administrator<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="FotograafRegister.jsp">Registreer Fotograaf</a></li>
+                                <li><a href="Adminpage.jsp">(de)Activeer account</a></li>
+                            </ul>
+                        </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="logout.jsp">Logout</a></li>
+                        <li><a></a></li>
+                         </ul>
                 </nav>
                 <%
                     }
@@ -110,5 +119,6 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        
     </body>
 </html>

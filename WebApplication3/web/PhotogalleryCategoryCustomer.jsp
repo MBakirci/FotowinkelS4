@@ -10,32 +10,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.PhotoCustomer"%>
 
+<jsp:include page="Masterpage_final.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <!-- Bootstrap Core CSS -->
-        <link href="CSS/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="CSS/thumbnail-gallery.css" rel="stylesheet">
-
-        <link href="CSS/justified-nav.css" rel="stylesheet">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Fotogallerij</title>
     </head>
     <body>
         <!-- <h1>Hello World!</h1>
@@ -43,20 +22,6 @@
 
         <!--NAVIGATION-->
         <div class="container">
-            <div class="masthead">
-                <h3 class="text-muted">Project name</h3>
-                <nav>
-                    <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="Adminpage.jsp">Accountinformatie</a></li>
-                        <li><a href="fotograafProfiel.jsp">Profiel</a></li>
-                        <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li><a href="Inlogscherm.jsp">login</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
-                        <li><a href="Upload.jsp">Upload</a></li>
-                    </ul>
-                </nav>
-            </div>
 
             <!-- Page Content -->
             <form>
