@@ -8,6 +8,7 @@ package Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -33,6 +34,7 @@ public class TestServlet extends HttpServlet {
     private String cat = Test.StaticValues.getMyStaticMember();
     private String user = Test.StaticValues.getMyStaticuser();
     private String progress = "";
+    private ArrayList<String> files;
     private RequestDispatcher rd;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -41,12 +43,16 @@ public class TestServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
+        
+           cat = Test.StaticValues.getMyStaticMember();
+            user = Test.StaticValues.getMyStaticuser();
+    
         boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
         if (!isMultipartContent) {
             return;
         }
         progress = "";
+        files = new ArrayList<String>();
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
 
@@ -85,14 +91,16 @@ public class TestServlet extends HttpServlet {
                     {
                     dbfilepath = user + "/" + cat + "/" + UniqCode + L;
                     }
-                    ftpload.UploadFotoDatabase(UniqCode, 2, user, dbfilepath , 5, 5);
+                    ftpload.UploadFotoDatabase(UniqCode, Integer.parseInt(ftpload.getCategoryID(cat)), user, dbfilepath , 5, 5);
                     ftpload.UploadFile(UniqCode + L, cat, user, pathloca);
                     if((String) request.getAttribute("bla") != null)
                     {
                     progress = (String) request.getAttribute("bla");
                     }
                     progress = progress + UniqCode + L + " has been successfully uploaded ! <br/>";
+                    files.add(dbfilepath);
                     request.setAttribute("bla", progress);
+                    request.setAttribute("fileslist", files);
                 }
             }                  
             rd = request.getRequestDispatcher("Upload.jsp");
