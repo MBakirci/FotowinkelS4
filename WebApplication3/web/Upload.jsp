@@ -21,10 +21,10 @@
 <%@page import="Test.Categorie" %>
 <!DOCTYPE html>
 <jsp:include page="Masterpage_final.jsp"></jsp:include>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>JSP Page</title>
         <% Test.FTPUpload ftpload = new Test.FTPUpload(); %>
         <% Test.Categorie categorie = new Test.Categorie(); %>
         <% Test.Categorieën categorieën = new Test.Categorieën(); %>
@@ -153,20 +153,26 @@
                                                 <h2>Files to upload:</h2>
                                             </fieldset>
                                             <br/>
-                                            <input type="file" class="file" size="50" name="file1" multiple >
+                                            <input type="file" class="file" name="file1" accept="image/*" multiple >
+                                            <div id="buttonreplacement" style="display:none;">
+                                                <h3>
+                                                    <img src="Images/spinner.gif" width="50" alt=""/>
+                                                    Uploading....
+                                                </h3>
+                                            </div>
                                         </form>
                                         <br/>
                                         <br/>
                                         <hr>
-                                        
+
                                         <div class="form-group">
                                             <form action="NewCategoryUploaded" method="post">
-                                            <fieldset>
-                                                <h2>Maak nieuwe categorie aan:</h2>
-                                            </fieldset>
-                                            <input type="text" class="file" name="FolderCategory" value=""/>    
-                                            <input type="submit" class="btn btn-primary" value="Categorie Toevoegen!" name="btnCategory" />
-                                        </form>
+                                                <fieldset>
+                                                    <h2>Maak nieuwe categorie aan:</h2>
+                                                </fieldset>
+                                                <input type="text" class="file" name="FolderCategory" value=""/>    
+                                                <input type="submit" class="btn btn-primary" value="Categorie Toevoegen!" name="btnCategory" />
+                                            </form>
                                         </div>
                                         <%
                                             String user = "";
@@ -176,7 +182,7 @@
                                                 }
                                                 ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
                                                 //session.removeAttribute("cat");
-                                               // session.invalidate();
+                                                // session.invalidate();
                                                 response.sendRedirect("Upload.jsp");
                                             }
                                         %>
@@ -242,7 +248,15 @@
                                         'showPreview' : false,
                                                 'allowedFileExtensions' : ['jpg', 'png', 'gif'],
                                                 'elErrorContainer': '#errorBlock'
-                                        });
+                                        });                                    </script>
 
+                                    <script type="text/javascript">
+                                                function ButtonClicked()
+                                                {
+                                                //document.getElementById("UploadBTN").style.display = "none"; // to undisplay
+                                                        document.getElementById("buttonreplacement").style.display = ""; // to display
+                                                        return true;
+                                                }
                                     </script>
+
                                     </html>
