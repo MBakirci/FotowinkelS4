@@ -160,7 +160,7 @@
                                         <hr>
                                         
                                         <div class="form-group">
-                                        <form>
+                                            <form action="NewCategoryUploaded" method="post">
                                             <fieldset>
                                                 <h2>Maak nieuwe categorie aan:</h2>
                                             </fieldset>
@@ -219,25 +219,6 @@
                                         </div>
                                     </div>
 
-
-
-
-
-
-                                    <div class="tab-pane fade active in" id="step2">
-                                        <%
-                                            String user = "";
-                                            if (request.getParameter("btnCategory") != null) {
-                                                if (session.getAttribute("Name") != null) {
-                                                    user = session.getAttribute("Name").toString();
-                                                }
-                                                ftpload.uploadDiretory(request.getParameter("FolderCategory").toString(), user);
-                                                //session.removeAttribute("cat");
-                                                //session.invalidate();
-                                                response.sendRedirect("Upload.jsp");
-                                            }
-                                        %>
-                                    </div>
 
 
                                     </body>

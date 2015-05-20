@@ -106,7 +106,7 @@
                         <h4 class="modal-title" id="myModalLabel">Product Aanpassen</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="editModal">
+                        <form class="form-horizontal" action="PriceServlet" method="post" id="editModal">
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="id1">ID:</label>
                                 <div class="col-sm-4">
@@ -141,9 +141,9 @@
                 </div>
             </div>
         </div>
-        <%
+        <% /*
             if (request.getParameter("btnBewerk") != null) {
-                //Get Textbox values
+                //Get Textbox
                 String sa = request.getParameter("id1");
                 if(sa.equals("")){
                     sa = null;
@@ -165,6 +165,7 @@
                     response.sendRedirect("Price.jsp");
                 }
             }
+                */
         %>
     </body>
 </html>
