@@ -78,10 +78,6 @@
                 </c:otherwise>
             </c:choose>
                                         
-        </div>
-            
-   
-            <fmt:message key='toggleTest'/>
-   
+        </div> 
     </body>
 </html>
