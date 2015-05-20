@@ -49,7 +49,7 @@ public class FTPUpload {
         
     }
     
-    public void uploadDiretory(String path, String User){
+    public void uploadDiretory(String path, String foldername){
         String server = "212.64.126.219";
         int port = 9942;
         String user = "asror";
@@ -70,10 +70,10 @@ public class FTPUpload {
                 return;
             }
             // Creates a directory
-            String dirToCreate = "/"+ User + path;
+            String dirToCreate = "/"+ foldername + "/" + path;
             Test.Categorieën categorieën = new Test.Categorieën();
 
-            categorieën.CreateCategory(path, "Henk@yolo.nl", dirToCreate);
+            categorieën.CreateCategory(path, foldername, dirToCreate);
 
             success = ftpClient.makeDirectory(dirToCreate);
             showServerReply(ftpClient);
@@ -120,7 +120,7 @@ public class FTPUpload {
             
             
             String firstRemoteFile = "";
-            if(Category == null)
+            if(Category == null || Category.equals(User))
             {
             firstRemoteFile = User + "/" + uniquecode;
             }
@@ -135,6 +135,8 @@ public class FTPUpload {
             inputStream.close();
             if (done) {
                 System.out.println("The first file is uploaded successfully.");
+                
+            
             }
             
             
@@ -366,6 +368,36 @@ public class FTPUpload {
     }
      
  
+     public String getCategoryID(String photosCategory) throws ClassNotFoundException, InstantiationException, SQLException, IllegalAccessException
+    {
+        String catID = "";
+        Test.Databaseconnector ts = new Test.Databaseconnector();
+        
+        if (ts.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                
+                try {
+                    //Update gebruiker gedeelte van fotograaf
+                    String q = "SElECT CATEGORIE_ID FROM FW_CATEGORIE where NAAM = ?";
+                    state = ts.conn.prepareStatement(q);
+                    state.setString(1, photosCategory);
+                    ResultSet rs = state.executeQuery();
+
+                    if (rs.next()) {
+                        catID = rs.getString("CATEGORIE_ID");
+                    }
+                    return catID;
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                } finally {
+                    if (state != null) {
+                        state.close();
+                    }
+                }              
+        }
+        return null;
+    }
+     
     private String getUserID(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

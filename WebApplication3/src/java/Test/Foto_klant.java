@@ -71,7 +71,7 @@ public class Foto_klant {
                 //state.executeQuery();
                 state.execute();
                 
-                Fotocode = state.getString(2);
+                Fotocode = "ftp://asror:asror@212.64.126.219:9942/"+state.getString(2);
                   state.close();
                     ts.conn.close();
             } catch (SQLException e) {

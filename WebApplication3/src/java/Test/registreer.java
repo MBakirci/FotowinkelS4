@@ -31,7 +31,6 @@ public class registreer {
         this.Tussenvoegsel = tussenvoegsel;
         this.Achternaam = achternaam;
         this.Actief = actief;
-        
     }
 
     public boolean Verbind() throws Exception {
@@ -39,7 +38,8 @@ public class registreer {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, ACTIEF, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUES(? ,?, ?, ?, ? , ?)";
+                String q = "INSERT INTO FW_ACCOUNT (EMAIL,WACHTWOORD, ENABLED, VOORNAAM, TUSSENVOEGSEL,"
+                + " ACHTERNAAM, ATYPE) VALUES(? ,?, ?, ?, ? , ?,?)";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 state.setString(2, Wachtwoord);
@@ -48,6 +48,7 @@ public class registreer {
                 state.setString(4, Voornaam);
                 state.setString(5, Tussenvoegsel);
                 state.setString(6, Achternaam);
+                state.setString(7, "klant");
                 
                 //state.executeQuery();
                 state.executeUpdate();

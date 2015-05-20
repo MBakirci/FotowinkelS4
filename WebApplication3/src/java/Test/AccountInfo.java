@@ -35,16 +35,28 @@ public class AccountInfo {
                 PreparedStatement state2 = null;
                 try {
                     //Update gebruiker gedeelte van fotograaf
-                    String q = "SElECT EMAIL,TELEFOON, VOORNAAM, ACHTERNAAM,STRAAT,HUISNUMMER, POSTCODE,STAD FROM GEBRUIKER g, FOTOGRAAF f where f.ID = g.ID and f.ID = ?";
-                    state = ts.conn.prepareStatement(q);
+                    String SelectBase = 
+                            "select a.voornaam, a. tussenvoegsel, a.achternaam, a.email," +
+                    " from FW_ACCOUNT a Where A.ACCOUNT_ID = ?";
+                    state = ts.conn.prepareStatement(SelectBase);
                     state.setString(1, userID);
                     ResultSet rs = state.executeQuery();
 
                     if (rs.next()) {
-                        UserInfo.add(rs.getString("EMAIL"));
-                        UserInfo.add(rs.getString("TELEFOON"));
                         UserInfo.add(rs.getString("VOORNAAM"));
+                        UserInfo.add(rs.getString("TUSSENVOEGSEL"));
                         UserInfo.add(rs.getString("ACHTERNAAM"));
+                        UserInfo.add(rs.getString("EMAIL"));
+                    }
+                    
+                    String SelectAdditionalInfo = "select b.TELEFOON, b.STRAAT, b.HUISNUMMER, b.POSTCODE, b.STAD" + 
+                            " from FW_ACCOUNT_Gegevens b where B.ACCOUNT_ID = ?";
+                    state2 = ts.conn.prepareStatement(SelectAdditionalInfo);
+                    state2.setString(1, userID);
+                    ResultSet rs2 = state.executeQuery();
+                    
+                    if (rs2.next()) {
+                        UserInfo.add(rs.getString("TELEFOON"));
                         UserInfo.add(rs.getString("STRAAT"));
                         UserInfo.add(rs.getString("HUISNUMMER"));
                         UserInfo.add(rs.getString("POSTCODE"));

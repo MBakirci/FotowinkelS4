@@ -19,6 +19,12 @@ public class Login {
 
     private String Naam;
     private String Wachtwoord;
+    private String Role;
+    
+    public String getRole(){
+    return this.Role;
+    }
+    
 
     public Login(String naam, String wachtwoord) {
         this.Naam = naam;
@@ -29,26 +35,19 @@ public class Login {
         Databaseconnector ts = new Databaseconnector();
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
-             PreparedStatement state1 = null;
             try {
-                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
-                state1 = ts.conn.prepareStatement(a);
-                state1.setString(1, Naam);
-                ResultSet rs1 = state1.executeQuery();
-                if(rs1.next()){
-                String q = "Select WACHTWOORD from Gebruiker where EMAIL = ?";
+                String q = "Select WACHTWOORD, ATYPE from FW_ACCOUNT where EMAIL = ? AND ENABLED = 1";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 //state.executeQuery();
                 ResultSet rs = state.executeQuery();
                 if (rs.next()) {
                     if(Wachtwoord.equals(rs.getString("WACHTWOORD"))){
+                        Role = rs.getString("ATYPE");
                         return true;                        
                     }
                     return false;
-                }
-                }
-                
+                }                
             } catch (SQLException e) {
                 return false;
             } finally {
@@ -58,6 +57,7 @@ public class Login {
             }
         }
         return false;
-    }    
+    }
+
 }
 

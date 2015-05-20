@@ -7,6 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.NewClass" %>
+<jsp:include page="Masterpage_final.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,23 +41,19 @@
 
         <div class="container">
 
-            <div class="masthead">
-                <h3 class="text-muted">Project name</h3>
-                <nav>
-                    <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="AccountDeactiveren.jsp">Accountinformatie</a></li>
-                        <li><a href="Registreren.jsp">Registreren</a></li>
-                        <li><a href="Inlogscherm.jsp">login</a></li>
-                        <li><a href="logout.jsp">Logout</a></li>
-                        <li><a href="Upload.jsp">Upload</a></li>
-                    </ul>
-                </nav>
-            </div>
-
             <!-- Jumbotron -->
             <div class="jumbotron">
-                <h1>Marketing stuff!</h1>
+                <h1>
+                    <%
+                           if (session.getAttribute("Role") != null) {
+                            out.print("U bent ingelogd als: ");
+                               out.print("<font color='green'/>"+ session.getAttribute("Role")+ "</font>");
+                        }
+                           else {
+                               out.print("Login om uw foto's te zien!");
+                           }
+                    %>
+                </h1>
                 <h2>
 
                     <%
