@@ -46,6 +46,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="FotograafRegister.jsp">Registreer Fotograaf</a></li>
                                 <li><a href="Adminpage.jsp">(de)Activeer account</a></li>
+                                <li><a href="Price.jsp">Prijzen Instellen</a><li>
                             </ul>
                         </li>
                     </ul>

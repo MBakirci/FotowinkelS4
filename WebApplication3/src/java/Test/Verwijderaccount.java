@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 public class Verwijderaccount {
 
     //email
-
     private String Naam;
 
     //constructor
@@ -26,9 +25,26 @@ public class Verwijderaccount {
         this.Naam = naam;
 
     }
+    public Verwijderaccount(){
+        
+    }
+
+    public ResultSet getallUsers() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        String sql = "select * from FW_ACCOUNT";
+        Test.Databaseconnector connection = new Test.Databaseconnector();
+        try {
+            if (connection.verbindmetDatabase()) {
+                PreparedStatement state = null;
+                state = connection.conn.prepareStatement(sql);
+                return state.executeQuery();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
 
     //methode die de status op nonactief zet
-
     public boolean Zetstatusnonactief() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         //db connectie maken
         Databaseconnector ts = new Databaseconnector();
@@ -37,14 +53,14 @@ public class Verwijderaccount {
             PreparedStatement state1 = null;
 
             try {
-                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
+                String a = "Select EMAIL FROM FW_ACCOUNT WHERE EMAIL = ?";
                 state1 = ts.conn.prepareStatement(a);
                 state1.setString(1, Naam);
                 ResultSet rs = state1.executeQuery();
 
                 while (rs.next()) {
                     //prepared sql statement die status op non actief zet
-                    String q = "UPDATE GEBRUIKER SET ACTIEF = 0 WHERE EMAIL =?";
+                    String q = "UPDATE FW_ACCOUNT SET ENABLED = 0 WHERE EMAIL =?";
                     //String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUE( ?, ?, ? , ? ,?)";
                     state = ts.conn.prepareStatement(q);
                     state.setString(1, Naam);
@@ -77,14 +93,14 @@ public class Verwijderaccount {
             PreparedStatement state = null;
             PreparedStatement state1 = null;
             try {
-                String a = "Select EMAIL FROM GEBRUIKER WHERE EMAIL = ?";
+                String a = "Select EMAIL FROM FW_ACCOUNT WHERE EMAIL = ?";
                 state1 = ts.conn.prepareStatement(a);
                 state1.setString(1, Naam);
                 ResultSet rs = state1.executeQuery();
 
                 while (rs.next()) {
                     //status weer naar actief zetten
-                    String q = "UPDATE GEBRUIKER SET ACTIEF = 1 WHERE EMAIL =?";
+                    String q = "UPDATE FW_ACCOUNT SET ENABLED = 1 WHERE EMAIL =?";
                     //String q = "INSERT INTO GEBRUIKER (EMAIL,WACHTWOORD, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM) VALUE( ?, ?, ? , ? ,?)";
                     state = ts.conn.prepareStatement(q);
                     state.setString(1, Naam);

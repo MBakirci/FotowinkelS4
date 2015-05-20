@@ -36,7 +36,7 @@ public class Login {
         if (ts.verbindmetDatabase()) {
             PreparedStatement state = null;
             try {
-                String q = "Select WACHTWOORD, ATYPE from FW_ACCOUNT where EMAIL = ?";
+                String q = "Select WACHTWOORD, ATYPE from FW_ACCOUNT where EMAIL = ? AND ENABLED = 1";
                 state = ts.conn.prepareStatement(q);
                 state.setString(1, Naam);
                 //state.executeQuery();
