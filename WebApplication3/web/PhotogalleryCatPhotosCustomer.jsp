@@ -8,7 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Test.Photo"%>
-<jsp:include page="Master_final.jsp"></jsp:include>
+<jsp:include page="Masterpage_final.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,10 +53,6 @@
                                 <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
 
                             </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                               
-                            </button>
-
                         </div>
 
                         <%
@@ -77,10 +73,6 @@
                                 <img class="img-responsive" style="position: relative; top: 0; left: 0;" alt="test" width="100" height="100" style="z-index: -1" src=<%=es%> > 
 
                             </a>
-                            <button id="<%=es.substring(es.lastIndexOf("/") + 1, es.lastIndexOf("."))%>" style="position: absolute;top:120px;left: 230px;">
-                               
-                            </button>
-
                         </div>
                         <%
                                 }
