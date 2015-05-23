@@ -180,6 +180,50 @@ public class FTPUpload {
     }
     
     
+    //Upload voor cropped image
+    public void UploadFile(String User, String path, String name) {
+        String server = "212.64.126.219";
+        int port = 9942;
+        String user = "asror";
+        String pass = "asror";
+
+        FTPClient ftpClient = new FTPClient();
+        try {
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+            ftpClient.enterLocalPassiveMode();
+
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+            // APPROACH #1: uploads first file using an InputStream
+            //File firstLocalFile = ;
+            String firstRemoteFile = "";
+            firstRemoteFile = User + "/" + name;
+            InputStream inputStream = new FileInputStream(new File(path));
+
+            System.out.println("Start uploading first file");
+            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+            inputStream.close();
+            if (done) {
+                System.out.println("The first file is uploaded successfully.");
+
+            }
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    
     public void Thumbnail(String pathh, String Uniqu)
     {
                 String server = "212.64.126.219";
