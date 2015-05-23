@@ -33,7 +33,7 @@
                 fx.settings = {
                     from: "EUR"
                 };
-                var amount = 9.99;
+                var amount = <%=i%>;
                 
                 var EUR = fx.convert(amount, {to: "EUR"});
                 EUR = accounting.formatMoney(EUR, "€ ", 2, ".", ",");

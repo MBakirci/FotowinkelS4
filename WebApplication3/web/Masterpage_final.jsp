@@ -38,11 +38,11 @@
 
             <div class="masthead">
                 <h3 class="text-muted"><img class="img-responsive" width="300" src="Images/professional-camera-logo-for-company-vector-217607-[Converted].gif" alt=""/></h3>
-                <%if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("admin")) {%>
+                    <%if (session.getAttribute("Name") != null && session.getAttribute("Role").equals("admin")) {%>
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
-                         <li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Administrator<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="FotograafRegister.jsp">Registreer Fotograaf</a></li>
@@ -54,7 +54,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="logout.jsp">Logout</a></li>
                         <li><a></a></li>
-                         </ul>
+                    </ul>
                 </nav>
                 <%
                     }
@@ -86,13 +86,13 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li><a href="index.jsp">Home</a></li>
-                         <li class="dropdown">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Profiel<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="AccountInformation.jsp">Account Informatie</a></li>
-                                <li><a href="PhotogalleryCategoryCustomer.jsp">Mijn Foto's</a></li>
                             </ul>
                         </li>
+                        <li><a href="PhotogalleryCategoryCustomer.jsp">Mijn Foto's</a></li>
                         <li><a href="klantcodepagina_1.jsp">Code invoeren</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -121,6 +121,6 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        
+
     </body>
 </html>
