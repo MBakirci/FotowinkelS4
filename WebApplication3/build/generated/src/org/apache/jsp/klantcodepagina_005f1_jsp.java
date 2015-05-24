@@ -92,27 +92,33 @@ public final class klantcodepagina_005f1_jsp extends org.apache.jasper.runtime.H
 
                         // Test.Controleercode reg = new Test.Controleercode(code);
                         if (src.equals("")) {
-                            error = "De code bestaat niet controleer deze en probeer het opnieuw";
-
-                            //response.addHeader("labelmislukt", "inloggen is mislukt");
-                        } //response.sendRedirect("Inlogscherm.jsp");}
-                        else {
-
-                            request.setAttribute("image", src);
-                           //out.print("het is gelukt");
-                            Test.Photo idcode = new Test.Photo();
-                            String a = idcode.getID(session.getAttribute("Name").toString());
-                            int b = Integer.parseInt(a);
-                            Test.SQL sql = new Test.SQL();
-                            sql.koppeling(b, code);
-                            
+                            //error = "De code bestaat niet controleer deze en probeer het opnieuw";
+                
       out.write("\r\n");
-      out.write("                            <div style=\"margin-top: 10px\" class=\"alert alert-success\" role=\"alert\">");
+      out.write("                <div style=\"margin-top: 10px\" class=\"alert alert-danger\" role=\"alert\"><b><i>");
+      out.print(code);
+      out.write("</i></b> - Deze code bestaat niet, controleer deze en probeer het opnieuw</div>\r\n");
+      out.write("\r\n");
+      out.write("                ");
+
+                    //response.addHeader("labelmislukt", "inloggen is mislukt");
+                } //response.sendRedirect("Inlogscherm.jsp");}
+                else {
+
+                    request.setAttribute("image", src);
+                    //out.print("het is gelukt");
+                    Test.Photo idcode = new Test.Photo();
+                    String a = idcode.getID(session.getAttribute("Name").toString());
+                    int b = Integer.parseInt(a);
+                    Test.SQL sql = new Test.SQL();
+                    sql.koppeling(b, code);
+                
+      out.write("\r\n");
+      out.write("                <div style=\"margin-top: 10px\" class=\"alert alert-success\" role=\"alert\">");
       out.print(code);
       out.write(" is succesvol toegevoegd aan uw foto's</div>\r\n");
       out.write("                ");
 
-                            
 
                             //   response.sendRedirect("index.jsp");                     }
                         }
@@ -121,7 +127,7 @@ public final class klantcodepagina_005f1_jsp extends org.apache.jasper.runtime.H
                     // {
                     //      response.sendRedirect("Inlogscherm.jsp");
                     // }
-                
+
       out.write("\r\n");
       out.write("                <img src=\"");
       out.print(request.getAttribute("image"));
