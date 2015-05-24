@@ -47,11 +47,11 @@
                             <h1 class="page-header">Gallery</h1>
                         </div>
                         <%
-                            session.setAttribute("Name", "Henk@yolo.nl");
+                            //session.setAttribute("Name", "Henk@yolo.nl");
                             ArrayList<String> photoList = new ArrayList<String>();
                             Test.Photo tp = new Test.Photo();
                             if (session.getAttribute("Name") != null) {
-                                photoList = tp.getCategoriesPhotographer("Henk@yolo.nl"); //FOR DEBUG
+                                photoList = tp.getCategoriesPhotographer(session.getAttribute("Name").toString()); //FOR DEBUG
                             }
                             //photoList = tp.getPhotos(session.getAttribute("Name").toString());     // FINAL get session name
 

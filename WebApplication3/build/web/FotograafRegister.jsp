@@ -43,14 +43,14 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="username">Enter Email</label>
+                            <label for="username">Email</label>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="username" name="username" placeholder="Email" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="password">Confirm Email</label>
+                            <label for="password">Wachtwoord</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
@@ -101,9 +101,7 @@
                 </form>
 
             </div>
-            <footer class="footer">
-                <p>&copy; Company 2014</p>
-            </footer>
+
         </div>
         <%
             //  int id = 1;
@@ -129,5 +127,8 @@
                 }
             }
         %>
+                    <footer class="footer">
+                <p>&copy; Company 2014</p>
+            </footer>
     </body>
 </html>

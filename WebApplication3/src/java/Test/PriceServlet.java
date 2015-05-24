@@ -39,13 +39,13 @@ public class PriceServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PriceServlet</title>");            
+            out.println("<title>Servlet PriceServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet PriceServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            
+
         }
     }
 
@@ -75,40 +75,82 @@ public class PriceServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String a = request.getParameter("typeID");
-        String sql = "DELETE FROM FW_TYPE WHERE ID = ?";
-        Test.Databaseconnector connection = new Test.Databaseconnector();
-        try {
-            if (connection.verbindmetDatabase()) {
-                PreparedStatement state = null;
-                state = connection.conn.prepareStatement(sql);
-                String s = request.getQueryString();
-                
-                state.setString(1, a);
-                state.executeQuery();
-                //
-                response.sendRedirect("Price.jsp");
+        if (request.getParameter("typeID") != null) {
+            String a = request.getParameter("typeID");
 
+            String sql = "DELETE FROM FW_TYPE WHERE ID = ?";
+            Test.Databaseconnector connection = new Test.Databaseconnector();
+            try {
+                if (connection.verbindmetDatabase()) {
+                    PreparedStatement state = null;
+                    state = connection.conn.prepareStatement(sql);
+                    state.setString(1, a);
+                    state.executeQuery();
+                    //
+                    response.sendRedirect("Price.jsp");
+
+                }
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } else if(request.getParameter("btnBewerk") != null) {
+             PriceSettings opp = new PriceSettings();
+             String sa = request.getParameter("id1");
+                if(sa.equals("")){
+                    sa = null;
+                }
+
+                if (sa != null ) {
+                    opp.setTypeNaam(request.getParameter("naam1"));
+                    opp.setTypeDetails(request.getParameter("details1"));
+                    opp.setPrijs(Double.parseDouble(request.getParameter("prijs1")));
+                    opp.setTypeID(Integer.parseInt(request.getParameter("id1")));
+                    int a = Integer.parseInt(request.getParameter("id1"));
+                 try {
+                     opp.EditProductType(a);
+                 } catch (ClassNotFoundException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (InstantiationException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (IllegalAccessException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                    response.sendRedirect("Price.jsp");
+                } else {
+                    opp.setTypeNaam(request.getParameter("naam1"));
+                    opp.setTypeDetails(request.getParameter("details1"));
+                    opp.setPrijs(Double.parseDouble(request.getParameter("prijs1")));
+                 try {
+                     opp.AddProductType();
+                 } catch (ClassNotFoundException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (InstantiationException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (IllegalAccessException ex) {
+                     Logger.getLogger(PriceServlet.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                    response.sendRedirect("Price.jsp");
+                }
+            
         }
-    }
+        }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }
