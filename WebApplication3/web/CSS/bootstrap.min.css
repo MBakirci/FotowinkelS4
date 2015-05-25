@@ -11,13 +11,3 @@
 .navbar .nav > li.current-menu-ancestor > a {
 font-size:      1.5em;
 }
-img.sepia 
-{ -webkit-filter: sepia(1);
-  -webkit-filter: sepia(100%);
-  filter: sepia(100%);
-}
-img.desaturate 
-{
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
